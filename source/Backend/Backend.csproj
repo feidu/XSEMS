@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10FB82A6-0E1A-4056-BDC3-C41F659ECA49}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Backend</RootNamespace>
+    <AssemblyName>Backend</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'test|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.5.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Work Files\PDF报表\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=1.0.4.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Work Files\PDF报表\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authorization\AuthorizationHandlerFactory.cs" />
+    <Compile Include="Authorization\AuthorizationManager.cs" />
+    <Compile Include="Authorization\Config\AuthorizationConfigurationSectionHandler.cs" />
+    <Compile Include="Authorization\Config\AuthorizationConfigurationSetion.cs" />
+    <Compile Include="Authorization\Config\RuleAuthorizationConfigurationSectionHandler.cs" />
+    <Compile Include="Authorization\Config\RuleAuthorizationConfigurationSetion.cs" />
+    <Compile Include="Authorization\Config\RuleAuthorizationModule.cs" />
+    <Compile Include="Authorization\CookieHelper.cs" />
+    <Compile Include="Authorization\IRuleModule.cs" />
+    <Compile Include="Authorization\IRuleSessionable.cs" />
+    <Compile Include="Authorization\ISessionable.cs" />
+    <Compile Include="Authorization\RuleAuthorizationHandlerFactory.cs" />
+    <Compile Include="Authorization\RuleAuthorizationManager.cs" />
+    <Compile Include="Authorization\RuleAuthorizationStatus.cs" />
+    <Compile Include="BAL\AlreadyPaidOperation.cs" />
+    <Compile Include="BAL\AreaCountryOperation.cs" />
+    <Compile Include="BAL\CalculateTypeOperation.cs" />
+    <Compile Include="BAL\CarrierAreaOperation.cs" />
+    <Compile Include="BAL\CarrierOperation.cs" />
+    <Compile Include="BAL\ChargeStandardOperation.cs" />
+    <Compile Include="BAL\ClientAddressOpreation.cs" />
+    <Compile Include="BAL\ClientOperation.cs" />
+    <Compile Include="BAL\ClientOrderOperation.cs" />
+    <Compile Include="BAL\CompanyOperation.cs" />
+    <Compile Include="BAL\ComplaintOperation.cs" />
+    <Compile Include="BAL\CostTypeOperation.cs" />
+    <Compile Include="BAL\CountryOperation.cs" />
+    <Compile Include="BAL\DailyCostOperation.cs" />
+    <Compile Include="BAL\DepartmentOperation.cs" />
+    <Compile Include="BAL\DepotOperation.cs" />
+    <Compile Include="BAL\DetainReasonOperation.cs" />
+    <Compile Include="BAL\FetchArrangeOperation.cs" />
+    <Compile Include="BAL\InsuranceOperation.cs" />
+    <Compile Include="BAL\LiabilityOperation.cs" />
+    <Compile Include="BAL\NewsOperation.cs" />
+    <Compile Include="BAL\OrderDetailOperation.cs" />
+    <Compile Include="BAL\OrderOperation.cs" />
+    <Compile Include="BAL\PaymentMethodOperation.cs" />
+    <Compile Include="BAL\PositionOperation.cs" />
+    <Compile Include="BAL\PostPlanOperation.cs" />
+    <Compile Include="BAL\PostStatusOperation.cs" />
+    <Compile Include="BAL\QuoteOperation.cs" />
+    <Compile Include="BAL\ReceivableAccountOperation.cs" />
+    <Compile Include="BAL\RechargeOperation.cs" />
+    <Compile Include="BAL\SettingOperation.cs" />
+    <Compile Include="BAL\ShouldPayOperation.cs" />
+    <Compile Include="BAL\ShouldReceiveOperation.cs" />
+    <Compile Include="BAL\StatisticOperation.cs" />
+    <Compile Include="BAL\UserOperation.cs" />
+    <Compile Include="BAL\WrongOrderOperation.cs" />
+    <Compile Include="DAL\AlreadyPaidDAL.cs" />
+    <Compile Include="DAL\AreaCountryDAL.cs" />
+    <Compile Include="DAL\CalculateTypeDAL.cs" />
+    <Compile Include="DAL\CarrierAreaDAL.cs" />
+    <Compile Include="DAL\CarrierDAL.cs" />
+    <Compile Include="DAL\ChargeStandardDAL.cs" />
+    <Compile Include="DAL\ClientAddressDAL.cs" />
+    <Compile Include="DAL\ClientDAL.cs" />
+    <Compile Include="DAL\ClientOrderDAL.cs" />
+    <Compile Include="DAL\CompanyDAL.cs" />
+    <Compile Include="DAL\ComplaintDAL.cs" />
+    <Compile Include="DAL\CostTypeDAL.cs" />
+    <Compile Include="DAL\CountryDAL.cs" />
+    <Compile Include="DAL\DailyCostDAL.cs" />
+    <Compile Include="DAL\DepartmentDAL.cs" />
+    <Compile Include="DAL\DepotDAL.cs" />
+    <Compile Include="DAL\DetainReasonDAL.cs" />
+    <Compile Include="DAL\FetchArrangeDAL.cs" />
+    <Compile Include="DAL\InsuranceDAL.cs" />
+    <Compile Include="DAL\LiabilityDAL.cs" />
+    <Compile Include="DAL\OrderDAL.cs" />
+    <Compile Include="DAL\OrderDetailDAL.cs" />
+    <Compile Include="DAL\PaymentMethodDAL.cs" />
+    <Compile Include="DAL\PositionDAL.cs" />
+    <Compile Include="DAL\PostPlanDAL.cs" />
+    <Compile Include="DAL\PostStatusDAL.cs" />
+    <Compile Include="DAL\QuoteDAL.cs" />
+    <Compile Include="DAL\StatisticDAL.cs" />
+    <Compile Include="DAL\WrongOrderDAL.cs" />
+    <Compile Include="Models\Ad.cs" />
+    <Compile Include="Models\ClientAddress.cs" />
+    <Compile Include="Models\ClientOrder.cs" />
+    <Compile Include="Models\ClientRecharge.cs" />
+    <Compile Include="Models\CompanySales.cs" />
+    <Compile Include="Models\Insurance.cs" />
+    <Compile Include="Models\Liability.cs" />
+    <Compile Include="Models\LiabilityEventType.cs" />
+    <Compile Include="Models\LiabilityStatus.cs" />
+    <Compile Include="Models\LogisicsStatus.cs" />
+    <Compile Include="Models\PostStatus.cs" />
+    <Compile Include="Models\ReceivedDeducted.cs" />
+    <Compile Include="Models\SearchOrder.cs" />
+    <Compile Include="Models\QuoteDetail.cs" />
+    <Compile Include="DAL\ReceivableAccountDAL.cs" />
+    <Compile Include="DAL\RechargeDAL.cs" />
+    <Compile Include="DAL\ShouldPayDAL.cs" />
+    <Compile Include="DAL\ShouldReceiveDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="Models\AdminCookie.cs" />
+    <Compile Include="Models\Admin\AuthorizationModule.cs" />
+    <Compile Include="Models\Admin\ModuleAuthorization.cs" />
+    <Compile Include="Models\Admin\OperatorStaus.cs" />
+    <Compile Include="Models\AlreadyPaid.cs" />
+    <Compile Include="Models\AreaCode.cs" />
+    <Compile Include="Models\AreaCountry.cs" />
+    <Compile Include="Models\CalculateType.cs" />
+    <Compile Include="Models\Carrier.cs" />
+    <Compile Include="Models\CarrierArea.cs" />
+    <Compile Include="Models\CarrierCharge.cs" />
+    <Compile Include="Models\ChargeStandard.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Complaint.cs" />
+    <Compile Include="Models\ComplaintReply.cs" />
+    <Compile Include="Models\ContinentType.cs" />
+    <Compile Include="Models\CostType.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\CurrencyType.cs" />
+    <Compile Include="Models\DailyCost.cs" />
+    <Compile Include="Models\DailyCostStatus.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Depot.cs" />
+    <Compile Include="Models\DetainReason.cs" />
+    <Compile Include="Models\DetainReasonDispose.cs" />
+    <Compile Include="Models\FetchArrange.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Models\OrderType.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
+    <Compile Include="Models\PaymentStatus.cs" />
+    <Compile Include="Models\PaymentType.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\PostArrange.cs" />
+    <Compile Include="Models\PostPlan.cs" />
+    <Compile Include="Models\Quote.cs" />
+    <Compile Include="Models\ReceivableAccount.cs" />
+    <Compile Include="Models\Recharge.cs" />
+    <Compile Include="Models\ShouldPay.cs" />
+    <Compile Include="Models\ShouldReceive.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserSales.cs" />
+    <Compile Include="Models\WrongOrder.cs" />
+    <Compile Include="Models\WrongOrderDetail.cs" />
+    <Compile Include="Models\WrongOrderStatus.cs" />
+    <Compile Include="Utilities\AbstractSqlHelper.cs" />
+    <Compile Include="DAL\NewsDAL.cs" />
+    <Compile Include="DAL\SettingDAL.cs" />
+    <Compile Include="Utilities\CacheHelper.cs" />
+    <Compile Include="Utilities\CsvReader.cs" />
+    <Compile Include="Utilities\EmailHelper.cs" />
+    <Compile Include="Utilities\EnumConvertor.cs" />
+    <Compile Include="Utilities\FilePath\FilePathConfigurationSection.cs" />
+    <Compile Include="Utilities\FilePath\FilePathConfigurationSectionHandler.cs" />
+    <Compile Include="Utilities\FilePath\FilePathGenerator.cs" />
+    <Compile Include="Utilities\MessageBox.cs" />
+    <Compile Include="Utilities\PdfHelper.cs" />
+    <Compile Include="Utilities\SqlHelper.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsCategory.cs" />
+    <Compile Include="Models\Pagination\PaginationQueryCondition.cs" />
+    <Compile Include="Models\Pagination\PaginationQueryResult.cs" />
+    <Compile Include="Models\Pagination\SearchAscDesc.cs" />
+    <Compile Include="Models\Pagination\SearchOrderBy.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\EncryptionHelper.cs" />
+    <Compile Include="Utilities\Pagination.cs" />
+    <Compile Include="Utilities\PaginationHelper.cs" />
+    <Compile Include="Utilities\SqlParameterGenerator.cs" />
+    <Compile Include="Utilities\StringHelper.cs" />
+    <Compile Include="Utilities\Validator.cs" />
+    <Compile Include="Utilities\VerifyCode.cs" />
+    <Compile Include="Utilities\VerifyCodeHelper.cs" />
+    <Compile Include="WebControls\CarrierDropDownList.cs" />
+    <Compile Include="WebControls\CompanyDropDownList.cs" />
+    <Compile Include="WebControls\CostsTypeDropDownList.cs" />
+    <Compile Include="WebControls\CurrencyTypeDropDownList.cs" />
+    <Compile Include="WebControls\GoodsTypeDropDownList.cs" />
+    <Compile Include="WebControls\LiabilityEventTypeDropDownList.cs" />
+    <Compile Include="WebControls\OrderStatusDropDownList.cs" />
+    <Compile Include="WebControls\PaymentMethodDropDownList.cs" />
+    <Compile Include="WebControls\CalculateTypeDropDownList.cs" />
+    <Compile Include="WebControls\PaymentTypeDropDownList.cs" />
+    <Compile Include="WebControls\ShouldPaidTypeDropDownList.cs" />
+    <Compile Include="WebControls\ShouldReceivedTypeDropDownList.cs" />
+    <Compile Include="WebControls\UserPositionDropDownList.cs" />
+    <Compile Include="WebControls\WrongOrderStatusDropDownList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

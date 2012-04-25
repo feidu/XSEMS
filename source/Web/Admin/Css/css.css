@@ -1,0 +1,44 @@
+.index-center { margin:0px auto 0px auto; padding:0px; float:none; width:943px; clear:both; }
+.logo{ background-image:url(../images/logo.jpg); background-repeat:no-repeat; width:943px; height:55px; margin:24px 0px 24px ; float:left;}
+.dh{ width:943px; padding:0px; float:left; margin:0px;}
+.dh ul{ margin:0px; padding:0px;  float:left;}
+.dh ul li{ font-family:"宋体"; line-height:33px; font-size:14px; font-weight:bold; color:#FFFFFF; width:80px; list-style:none; float:left; padding-bottom:0px; padding-top:0px; padding-left:15px; padding-right:15px; text-align:center; margin:0px;}
+.dh ul li a{color: #ffffff; text-decoration:none;}
+.dh ul li a:hover{ background-image:url(../images/index-dh-li.jpg); background-repeat:no-repeat; width:80px; height:24px; float:left; margin-top:5px; color:#F50084; line-height:24px;} 
+.dh ul li .hover{ background-image:url(../images/index-dh-li.jpg); background-repeat:no-repeat; width:80px; height:24px !important; float:left; margin-top:5px; color:#F50084; line-height:24px;} 
+.index-middle{ width:943px; float:left; margin:0px; padding:0px;}
+.index-fla{ background-image:url(../images/index-fla.jpg); width:942px; height:297px; float:left; background-repeat:no-repeat; margin-top:5px;}
+.index-left{ width:690px; margin:0px; padding:0px; float:left; margin-top:5px;}
+.index-right{ width:245px; margin:0px; padding:0px; float:right; margin-top:5px;}
+.index-footer{ width:943px; background-image:url(../images/index-footer.jpg); height:82px; background-repeat: repeat-x; text-align:center; font-family: "宋体"; font-size:12px; color:#666; line-height:30px; float:left; margin-top:5px;padding-top:10px;}
+
+.font-s{ font-family:"宋体"; font-size:14px; color:#333; line-height:36px; font-weight:bold;}
+.font-s a{ font-family:"宋体"; font-size:14px; color:#333; line-height:36px; font-weight:bold; text-decoration:none;}
+.font-s a:hover{ font-family:"宋体"; font-size:14px; color:#666; line-height:36px; font-weight:bold; text-decoration:none;}
+.font-s1{ font-family:"宋体"; font-size:12px; color:#616161; line-height:24px; }
+.font-s1{ font-family:"宋体"; font-size:12px; color:#616161; line-height:24px; text-decoration:none;}
+.font-s1{ font-family:"宋体"; font-size:12px; color:#666; line-height:24px; text-decoration:none;}
+.font-s2{ font-family:"宋体"; font-size:14px; color:#F50084; line-height:24px;font-weight:bold; }
+.font-s2{ font-family:"宋体"; font-size:14px; color:#F50084; line-height:24px; text-decoration:none;}
+.font-s2{ font-family:"宋体"; font-size:14px; color:#F50084; line-height:24px; text-decoration:none;}
+.font-s3{ font-family:"宋体"; font-size:12px; color:#333; line-height:24px; font-weight:bold; }
+.input{ border:1px #D3D3D3 solid; background-color:#FFFFFF; height:24px; line-height:24px; font-family:"宋体"; font-size:12px;}
+.font-s4{ font-family:"宋体"; font-size:14px; color:#666; line-height:24px;font-weight:bold;}
+.font-s5{ font-family:"宋体"; font-size:14px; color:#999; line-height:30px;font-weight:bold;}
+.font-s6{ font-family:"宋体"; font-size:12px; color:#F50084; line-height:24px;font-weight:bold; padding-left:10px; padding-right:10px;}
+.font-s7{ font-family:"宋体"; font-size:14px; color:#ffffff; line-height:24px;font-weight:bold; padding-left:10px;}
+
+.login{ width:800px;  padding:0px; float:none; margin:0px auto 0px auto;}
+.login-left{ width:320px; background-image:url(../images/bg1.jpg); background-repeat:no-repeat; height:236px; float:left; background-position:right;padding-left:80px;}
+.login-right{width:350px; float:left; padding:0px; margin:0px; margin-left:50px; }
+.input-dl{ background-image:url(../images/input.jpg); height:23px; background-repeat:repeat-x; border:1px #D7D7D7 solid; line-height:19px;}
+.input-vc{ background-image:url(../images/input.jpg); height:23px; width:80px; background-repeat:repeat-x; border:1px #D7D7D7 solid; line-height:19px;}
+
+
+.input-dl1{ background-image:url(../images/input.jpg); width:40px; height:23px; background-repeat:repeat-x; border:1px #D7D7D7 solid; line-height:19px;}
+.input-dl2{ background-image:url(../images/input.jpg); width:150px; height:23px; background-repeat:repeat-x; border:1px #D7D7D7 solid; line-height:19px;}
+
+.login1-left{ width:300px; background-image:url(../images/bg.jpg); background-repeat:no-repeat; height:300px;background-position:right;}
+.login1-right{width:600px; float:left; padding:0px; margin:0px; margin-left:10px; padding-top:100px;}
+.login1{ width:910px;  padding:0px; float:none; margin:0px auto 0px auto;}
+.x{ color:#FF0000;}

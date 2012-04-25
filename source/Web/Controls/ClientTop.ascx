@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ClientTop.ascx.cs" Inherits="Controls_ClientTop" %>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="Left" width="50%">> <%=Title %></td><td align="right" width="50%">今日总费用：<span style="color:Maroon;"><%=todayCosts %></span> 元&nbsp;&nbsp;&nbsp;&nbsp;账户余额：<span style="color:Maroon;"><%=balance %></span> 元</td></tr></table>
