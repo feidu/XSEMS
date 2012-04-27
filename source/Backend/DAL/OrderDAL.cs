@@ -52,8 +52,8 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@create_time",order.CreateTime),
                 SqlUtilities.GenerateInputIntParameter("@calculate_type", order.CalculateType),
                 SqlUtilities.GenerateInputNVarcharParameter("@receive_type", 20, order.ReceiveType),
-                SqlUtilities.GenerateInputIntParameter("@create_user_id", order.CreateUser.Id),
-                SqlUtilities.GenerateInputIntParameter("@receive_user_id", order.ReceiveUserId),
+                //SqlUtilities.GenerateInputIntParameter("@create_user_id", order.CreateUser.Id),
+                //SqlUtilities.GenerateInputIntParameter("@receive_user_id", order.ReceiveUserId),
                 SqlUtilities.GenerateInputNVarcharParameter("@remark", 500, order.Remark),
                 SqlUtilities.GenerateInputNVarcharParameter("@to_username", 50, order.ToUsername),
                 SqlUtilities.GenerateInputNVarcharParameter("@to_phone", 50, order.ToPhone),
@@ -64,7 +64,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputNVarcharParameter("@to_postcode", 50, order.ToPostcode),
                 SqlUtilities.GenerateInputParameter("@is_quick_order", SqlDbType.Bit, order.IsQuickOrder)
             };
-            string sql = "INSERT INTO orders(client_id, company_id, company_name, user_id, encode, status, costs, self_costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, is_quick_order) VALUES(@client_id, @company_id, @company_name, @user_id, @encode, @status, @costs, @self_costs, @receive_date, @type,     @create_time, @calculate_type, @receive_type, @create_user_id, @receive_user_id, @remark, @to_username, @to_phone, @to_email, @to_city,              @to_country, @to_address, @to_postcode, @is_quick_order)";
+            string sql = "INSERT INTO orders(client_id, company_id, company_name, user_id, encode, status, costs, self_costs, receive_date, type, create_time, calculate_type, receive_type, remark, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, is_quick_order) VALUES(@client_id, @company_id, @company_name, @user_id, @encode, @status, @costs, @self_costs, @receive_date, @type,     @create_time, @calculate_type, @receive_type, @remark, @to_username, @to_phone, @to_email, @to_city,              @to_country, @to_address, @to_postcode, @is_quick_order)";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 
@@ -90,16 +90,16 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@id", order.Id),
                 SqlUtilities.GenerateInputIntParameter("@user_id", order.UserId),
-                SqlUtilities.GenerateInputIntParameter("@create_user_id", order.CreateUser.Id),
+                //SqlUtilities.GenerateInputIntParameter("@create_user_id", order.CreateUser.Id),
                 SqlUtilities.GenerateInputDateTimeParameter("@receive_date", order.ReceiveDate),
                 SqlUtilities.GenerateInputParameter("@costs", SqlDbType.Money, order.Costs),
                 SqlUtilities.GenerateInputParameter("@self_costs", SqlDbType.Money, order.SelfCosts),
                 SqlUtilities.GenerateInputIntParameter("@calculate_type", order.CalculateType),
                 SqlUtilities.GenerateInputNVarcharParameter("@receive_type", 20, order.ReceiveType),
-                SqlUtilities.GenerateInputIntParameter("@receive_user_id", order.ReceiveUserId),
+                //SqlUtilities.GenerateInputIntParameter("@receive_user_id", order.ReceiveUserId),
                 SqlUtilities.GenerateInputNVarcharParameter("@remark", 500, order.Remark)
             };
-            string sql = "UPDATE orders SET costs = @costs, self_costs= @self_costs, calculate_type = @calculate_type, receive_type = @receive_type, receive_user_id = @receive_user_id, remark = @remark, receive_date = @receive_date, user_id = @user_id, create_user_id = @create_user_id WHERE id =     @id";
+            string sql = "UPDATE orders SET costs = @costs, self_costs= @self_costs, calculate_type = @calculate_type, receive_type = @receive_type,remark = @remark, receive_date = @receive_date, user_id = @user_id  WHERE id =     @id";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 

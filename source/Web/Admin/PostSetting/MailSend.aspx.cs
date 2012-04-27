@@ -16,26 +16,25 @@ using Backend.Authorization;
 
 public partial class Admin_PostSetting_MailSend : System.Web.UI.Page
 {
+    User user = null;
     private static readonly int CONST_TITLE_LENGTH = 100;
     private static readonly int CONST_CONTENT_LENGTH = 2000;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
+        user = UserOperation.GetUserByUsername(cookie.Username);
         if (!IsPostBack)
         {
-            DdlCompanyDataBind();
+            lblCompanyDataBind();
         }
     }
 
-    private void DdlCompanyDataBind()
+    private void lblCompanyDataBind()
     {
-        List<Company> companyResult = CompanyOperation.GetCompany();
-        foreach (Company company in companyResult)
-        {
-            ddlCompany.Items.Add(new ListItem(company.Name, company.Id.ToString()));
-        }
-        ddlCompany.Items.Add(new ListItem("", "0"));
-        ddlCompany.SelectedValue = "0";
+        lblCompany.Text = CompanyOperation.GetCompanyById(user.CompanyId).Name;
+        
+
     }
     protected void btnSend_Click(object sender, EventArgs e)
     {
@@ -53,19 +52,18 @@ public partial class Admin_PostSetting_MailSend : System.Web.UI.Page
             return;
         }
 
-        AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
-        User user = UserOperation.GetUserByUsername(cookie.Username);
-
+        //AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
+        //User user = UserOperation.GetUserByUsername(cookie.Username);
         Company company = CompanyOperation.GetCompanyById(user.CompanyId);
         List<Client> result = new List<Client>();
-        if (ddlCompany.SelectedItem.Value == "0")
-        {
-            result = ClientOperation.GetClient();
-        }
-        else
-        {
-            result = ClientOperation.GetClientByCompanyId(int.Parse(ddlCompany.SelectedItem.Value));
-        }
+        //if (ddlCompany.SelectedItem.Value == "0")
+        //{
+        //    result = ClientOperation.GetClient();
+        //}
+        //else
+        //{
+        //    result = ClientOperation.GetClientByCompanyId(int.Parse(ddlCompany.SelectedItem.Value));
+        //}
 
         List<Client> sendFailed = EmailHelper.SendMailForAnnounce(company, result, title, content);
         if (sendFailed.Count > 0)

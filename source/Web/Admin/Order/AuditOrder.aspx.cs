@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
@@ -44,11 +44,11 @@ public partial class Admin_Order_AuditOrder : System.Web.UI.Page
         lblRemark.Text = order.Remark;
         lblCosts.Text = order.Costs.ToString();
         lblClientName.Text = order.Client.RealName;
-        lblCreateUser.Text = order.CreateUser.RealName;
+        //lblCreateUser.Text = order.CreateUser.RealName;
         lblEncode.Text = order.Encode;
         lblCreateTime.Text = order.CreateTime.ToString();
         lblReceiveType.Text = order.ReceiveType;
-        lblReceiveUser.Text = UserOperation.GetUserById(order.ReceiveUserId).RealName;
+        //lblReceiveUser.Text = UserOperation.GetUserById(order.ReceiveUserId).RealName;
         lblCalculateType.Text = CalculateTypeOperation.GetCalculateTypeById(order.CalculateType).Name;
         lblReceiveDate.Text = order.ReceiveDate.ToShortDateString();
         lblType.Text = EnumConvertor.OrderTypeConvertToString((byte)order.Type);
