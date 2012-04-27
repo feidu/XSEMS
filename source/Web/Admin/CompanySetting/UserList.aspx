@@ -36,7 +36,7 @@
             <th align="center" class="header">邮箱</th>
             <th align="center" class="header">入职时间</th>
             <th align="center" class="header">合同有效期</th>
-            <th align="center" class="header">提成</th>
+           <%-- <th align="center" class="header">提成</th>--%>
             <th align="center" class="header">操作</th>
             <th align="center" class="header">选择</th>
           </tr>
@@ -52,7 +52,7 @@
                 <td align="left"><%# Eval("Email") %></td>
                 <td align="left"><%# Convert.IsDBNull(Eval("JoinDate")) ? "" : Convert.ToDateTime(Eval("JoinDate")).ToShortDateString()%></td>
                 <td align="left"><%# Convert.IsDBNull(Eval("ContractDate")) ? "" : Convert.ToDateTime(Eval("ContractDate")).ToShortDateString()%></td>
-                <td align="left"><asp:TextBox ID="txtCommission" runat="server" Width="70"></asp:TextBox></td>
+               <%-- <td align="left"><asp:TextBox ID="txtCommission" runat="server" Width="70"></asp:TextBox></td>--%>
                 <td align="center"><a href="User.aspx?id=<%# Eval("Id") %>">编辑</a>&nbsp;|&nbsp;<a href="ChangePwd.aspx?id=<%# Eval("Id") %>">修改密码</a>&nbsp;|&nbsp;<a href="UserOpreator.aspx?id=<%# Eval("Id") %>">修改权限</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>
@@ -68,7 +68,7 @@
                 <td align="left"><%# Eval("Email") %></td>
                 <td align="left"><%# Convert.IsDBNull(Eval("JoinDate")) ? "" : Convert.ToDateTime(Eval("JoinDate")).ToShortDateString()%></td>
                 <td align="left"><%# Convert.IsDBNull(Eval("ContractDate")) ? "" : Convert.ToDateTime(Eval("ContractDate")).ToShortDateString()%></td>
-                <td align="left"><asp:TextBox ID="txtCommission" runat="server" Width="70"></asp:TextBox></td>
+                <%--<td align="left"><asp:TextBox ID="txtCommission" runat="server" Width="70"></asp:TextBox></td>--%>
                 <td align="center"><a href="User.aspx?id=<%# Eval("Id") %>">编辑</a>&nbsp;|&nbsp;<a href="ChangePwd.aspx?id=<%# Eval("Id") %>">修改密码</a>&nbsp;|&nbsp;<a href="UserOpreator.aspx?id=<%# Eval("Id") %>">修改权限</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>

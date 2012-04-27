@@ -143,19 +143,19 @@ public partial class Admin_CompanySetting_CreateUser : System.Web.UI.Page
             return;
         }
 
-        if (decimal.TryParse(Request.Form[txtCommission.ID], out commission))
-        {
-            if (commission < 0 || commission > 1)
-            {
-                lblMsg.Text = "提成数字只能在0--1之间！";
-                return;
-            }
-        }
-        else
-        {
-            lblMsg.Text = "提成数字只能在0--1之间！";
-            return;
-        }
+        //if (decimal.TryParse(Request.Form[txtCommission.ID], out commission))
+        //{
+        //    if (commission < 0 || commission > 1)
+        //    {
+        //        lblMsg.Text = "提成数字只能在0--1之间！";
+        //        return;
+        //    }
+        //}
+        //else
+        //{
+        //    lblMsg.Text = "提成数字只能在0--1之间！";
+        //    return;
+        //}
 
         User user = new User();
         user.Username = username;

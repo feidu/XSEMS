@@ -56,7 +56,7 @@
                       <td class="content"><asp:TextBox ID="txtSmtp" runat="server" Width="180"></asp:TextBox>    
                       </td>
                     </tr>  
-                    <tr>
+<%--                    <tr>
                       <td class="label"> 提&nbsp;&nbsp;&nbsp;&nbsp;成: </td>
                       <td class="content"><asp:TextBox ID="txtCommission" runat="server" Width="180" Text="0"></asp:TextBox> (0 - 1之间的数字)
                       </td>
@@ -71,7 +71,7 @@
                           <asp:ListItem Value="4" Text="华北"></asp:ListItem>
                           </asp:DropDownList>                     
                       </td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                       <td class="label"> QQ: </td>
                       <td class="content"><asp:TextBox ID="txtQQ" runat="server" Width="180"></asp:TextBox>

@@ -171,11 +171,11 @@
                       <td class="content"><input type="text" onclick="WdatePicker()" runat="server" id="txtContractDate" size="29" readonly="readonly" />
                       </td>
                     </tr>
-                    <tr>
+                   <%-- <tr>
                       <td class="label"> 提&nbsp;&nbsp;&nbsp;&nbsp;成: </td>
                       <td class="content"><asp:Label ID="lblCommission" runat="server"></asp:Label>
                       </td>
-                    </tr>
+                    </tr>--%>
                     <tr><td colspan="2" align="center"><asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="修 改" OnClick="btnUpdate_Click" />&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='Default.aspx';" /></td></tr>
                 </table>		
         </td>

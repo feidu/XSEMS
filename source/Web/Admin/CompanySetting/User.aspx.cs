@@ -104,19 +104,19 @@ public partial class Admin_CompanySetting_User : System.Web.UI.Page
             lblMsg.Text = "合同有效期不能为空，且只能为时间格式如：2008-08-08 ！";
             return;
         }
-        if (decimal.TryParse(Request.Form[txtCommission.ID], out commission))
-        {
-            if (commission < 0 || commission > 1)
-            {
-                lblMsg.Text = "提成数字只能在0--1之间！";
-                return;
-            }
-        }
-        else
-        {
-            lblMsg.Text = "提成数字只能在0--1之间！";
-            return;
-        }
+        //if (decimal.TryParse(Request.Form[txtCommission.ID], out commission))
+        //{
+        //    if (commission < 0 || commission > 1)
+        //    {
+        //        lblMsg.Text = "提成数字只能在0--1之间！";
+        //        return;
+        //    }
+        //}
+        //else
+        //{
+        //    lblMsg.Text = "提成数字只能在0--1之间！";
+        //    return;
+        //}
 
         user.Address = address;
         user.Email = email;
@@ -145,7 +145,7 @@ public partial class Admin_CompanySetting_User : System.Web.UI.Page
         lblUsername.Text = user.Username;
         txtAddress.Text = user.Address;
         txtBirthday.Value = user.Birthday.ToShortDateString();
-        txtCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
+        //txtCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
         txtContractDate.Value = user.ContractDate.ToShortDateString();
         txtEmail.Text = user.Email;
         txtIdCard.Text = user.IdCard;

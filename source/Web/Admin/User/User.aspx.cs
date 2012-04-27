@@ -130,7 +130,7 @@ public partial class Admin_User_User : System.Web.UI.Page
         lblUsername.Text = user.Username;
         txtAddress.Text = user.Address;
         txtBirthday.Value = user.Birthday.ToShortDateString();
-        lblCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
+        //lblCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
         txtContractDate.Value = user.ContractDate.ToShortDateString();
         txtEmail.Text = user.Email;
         txtIdCard.Text = user.IdCard;

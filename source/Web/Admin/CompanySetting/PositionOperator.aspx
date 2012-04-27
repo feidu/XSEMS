@@ -15,7 +15,7 @@
         <td class="info2">公司设置 > 公司设定 > 职位权限</td>
     </tr>
     <tr>
-        <td class="info"><a href="CreateDepartment.aspx">添加部门</a> | <a href="DepartmentList.aspx">部门列表</a></td>
+        <td class="info"><a href="CreateDepartment.aspx">添加部门</a> | <a href="DepartmentList.aspx">部门列表</a> | <a href="CreatePosition.aspx">添加职位</a> | <a href="PositionList.aspx">职位列表</a></td>
     </tr>
     <tr>
         <td class="seperator"></td>
