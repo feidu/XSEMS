@@ -45,11 +45,11 @@ public partial class Admin_PostSetting_Company : System.Web.UI.Page
         string password = Request.Form[txtPassword.ID].Trim();
         string smtp = Request.Form[txtSmtp.ID].Trim();
         string address = Request.Form[txtAddress.ID].Trim();
-        decimal commission = 0;
+        //decimal commission = 0;
         string qq = Request.Form[txtQQ.ID].Trim();
         string msn = Request.Form[txtMSN.ID].Trim();
 
-        byte area = byte.Parse(Request.Form["ddlAreaCode"]);
+        //byte area = byte.Parse(Request.Form["ddlAreaCode"]);
 
         if (string.IsNullOrEmpty(name) || Validator.IsMatchLessThanChineseCharacter(name, CONST_NAME_LENGTH))
         {
@@ -81,19 +81,19 @@ public partial class Admin_PostSetting_Company : System.Web.UI.Page
             lblMsg.Text = "密码长度不能超过" + CONST_EMAIL_PASSWORD_LENGTH + "个字符！";
             return;
         }
-        if (decimal.TryParse(Request.Form[txtCommission.ID].Trim(), out commission))
-        {
-            if (commission < 0 || commission > 1)
-            {
-                lblMsg.Text = "提成数字只能在0 - 1 之间！";
-                return;
-            }
-        }
-        else
-        {
-            lblMsg.Text = "提成数字只能在0 - 1 之间！";
-            return;
-        }
+        //if (decimal.TryParse(Request.Form[txtCommission.ID].Trim(), out commission))
+        //{
+        //    if (commission < 0 || commission > 1)
+        //    {
+        //        lblMsg.Text = "提成数字只能在0 - 1 之间！";
+        //        return;
+        //    }
+        //}
+        //else
+        //{
+        //    lblMsg.Text = "提成数字只能在0 - 1 之间！";
+        //    return;
+        //}
 
         if (!string.IsNullOrEmpty(qq) && Validator.IsMatchLessThanChineseCharacter(qq, NORMAL_LENGTH))
         {
@@ -121,10 +121,10 @@ public partial class Admin_PostSetting_Company : System.Web.UI.Page
         }
         company.Smtp = smtp;
         company.Address = address;
-        company.Commission = commission;
+        //company.Commission = commission;
         company.QQ = qq;
         company.MSN = msn;        
-        company.AreaCode = EnumConvertor.ConvertToAreaCode(area);
+        //company.AreaCode = EnumConvertor.ConvertToAreaCode(area);
 
         CompanyOperation.UpdateCompany(company);
 
@@ -135,7 +135,7 @@ public partial class Admin_PostSetting_Company : System.Web.UI.Page
     {
         txtName.Text = company.Name;
         txtAddress.Text = company.Address;
-        txtCommission.Text = StringHelper.CurtNumber(company.Commission.ToString());
+        //txtCommission.Text = StringHelper.CurtNumber(company.Commission.ToString());
         txtContactPerson.Text = company.ContactPerson;
         txtEmail.Text = company.Email;
         txtPassword.Text = company.EmailPassword;
@@ -143,7 +143,7 @@ public partial class Admin_PostSetting_Company : System.Web.UI.Page
         txtPhone.Text = company.Phone;
         txtQQ.Text = company.QQ;
         txtMSN.Text = company.MSN;
-        ddlAreaCode.SelectedItem.Text = EnumConvertor.AreaCodeConvertToString((byte)company.AreaCode);
+        //ddlAreaCode.SelectedItem.Text = EnumConvertor.AreaCodeConvertToString((byte)company.AreaCode);
     }
 
 }

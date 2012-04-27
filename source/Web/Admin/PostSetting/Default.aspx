@@ -30,8 +30,8 @@
             <th align="center" class="header">名称</th>
             <th align="center" class="header">联系人</th>
             <th align="center" class="header">联系电话</th>
-            <th align="center" class="header">所属区域</th>
-            <th align="center" class="header">提成</th>
+<%--            <th align="center" class="header">所属区域</th>
+            <th align="center" class="header">提成</th>--%>
             <th align="center" class="header">操作</th>
             <th align="center" class="header">选择</th>
           </tr>
@@ -42,8 +42,8 @@
                 <td align="left"><%# Eval("Name") %></td>
                 <td align="left"><%# Eval("ContactPerson") %></td>
                 <td align="left"><%# Eval("Phone") %></td>
-                <td align="left"><%# Backend.Utilities.EnumConvertor.AreaCodeConvertToString((byte)Eval("AreaCode"))%></td>
-                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Commission"))) %></td>
+<%--                <td align="left"><%# Backend.Utilities.EnumConvertor.AreaCodeConvertToString((byte)Eval("AreaCode"))%></td>
+                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Commission"))) %></td>--%>
                 <td align="center"><a href="Company.aspx?id=<%# Eval("Id") %>">编辑</a>&nbsp;|&nbsp;<a href="CompanyOperator.aspx?id=<%# Eval("Id") %>">修改权限</a>&nbsp;|&nbsp;<a href="CreateUser.aspx?id=<%# Eval("Id") %>">添加员工</a>&nbsp;|&nbsp;<a href="UserList.aspx?id=<%# Eval("Id") %>">员工列表</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>
@@ -54,8 +54,8 @@
                 <td align="left"><%# Eval("Name") %></td>
                 <td align="left"><%# Eval("ContactPerson") %></td>
                 <td align="left"><%# Eval("Phone") %></td>
-                <td align="left"><%# Backend.Utilities.EnumConvertor.AreaCodeConvertToString((byte)Eval("AreaCode"))%></td>
-                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Commission")))%></td>
+<%--                <td align="left"><%# Backend.Utilities.EnumConvertor.AreaCodeConvertToString((byte)Eval("AreaCode"))%></td>
+                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Commission")))%></td>--%>
                 <td align="center"><a href="Company.aspx?id=<%# Eval("Id") %>">编辑</a>&nbsp;|&nbsp;<a href="CompanyOperator.aspx?id=<%# Eval("Id") %>">修改权限</a>&nbsp;|&nbsp;<a href="CreateUser.aspx?id=<%# Eval("Id") %>">添加员工</a>&nbsp;|&nbsp;<a href="UserList.aspx?id=<%# Eval("Id") %>">员工列表</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>

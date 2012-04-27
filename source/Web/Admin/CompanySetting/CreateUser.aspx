@@ -192,11 +192,11 @@
                       <td class="content"><input type="text" onclick="WdatePicker()" runat="server" id="txtContractDate" size="29" readonly="readonly" />
                       </td>
                     </tr>
-                    <tr>
+                    <%--<tr>
                       <td class="label"> 提&nbsp;&nbsp;&nbsp;&nbsp;成: </td>
                       <td class="content"><asp:TextBox ID="txtCommission" runat="server" Width="180"></asp:TextBox>(0 - 1之间的数字)
                       </td>
-                    </tr>
+                    </tr>--%>
                     <tr><td colspan="2" align="center"><asp:Button ID="btnCreate" runat="server" CssClass="button" Text="添 加" OnClick="btnCreate_Click" />&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='UserList.aspx';" /></td></tr>
                 </table>		
         </td>

@@ -53,9 +53,9 @@ public partial class Admin_CompanySetting_UserList : System.Web.UI.Page
     {
         User user = (User)e.Item.DataItem;
         Label lblId = (Label)e.Item.FindControl("lblId");
-        TextBox txtCommission = (TextBox)e.Item.FindControl("txtCommission");
+        //TextBox txtCommission = (TextBox)e.Item.FindControl("txtCommission");
         lblId.Text = user.Id.ToString();
-        txtCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
+        //txtCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
     }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
@@ -63,18 +63,18 @@ public partial class Admin_CompanySetting_UserList : System.Web.UI.Page
         {
             RepeaterItem ri = rpUser.Items[i];
             Label lblId = (Label)ri.FindControl("lblId");
-            TextBox txtCommission = (TextBox)ri.FindControl("txtCommission");
+            //TextBox txtCommission = (TextBox)ri.FindControl("txtCommission");
             int id = int.Parse(lblId.Text);
             User user = UserOperation.GetUserById(id);
-            try
-            {                
-                user.Commission = decimal.Parse(txtCommission.Text);                
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script language='javascript' type='text/javascript'>alert('提成只能为数字！');</script>");
-                return;
-            }
+            //try
+            //{                
+            //    user.Commission = decimal.Parse(txtCommission.Text);                
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.Write("<script language='javascript' type='text/javascript'>alert('提成只能为数字！');</script>");
+            //    return;
+            //}
             if (user.Commission < 0 || user.Commission > 1)
             {
                 Response.Write("<script language='javascript' type='text/javascript'>alert('提成数字只能在0和1之间！');</script>");
