@@ -16,36 +16,49 @@
         <!--头部-->
         <wl:HeaderClient ID="hc" runat="server" />
         <!--内容-->
-        <div class="margin_t" id="main">
-          <div class="left_bar1">
-            <div class="content_t margin_t">
-              <table cellspacing="0" border="0" style="background-color: White; width: 90%; border-collapse: collapse;">
-                <asp:Repeater ID="rpNews" runat="server">
-                 <ItemTemplate>
-                    <tr>
-                      <td align="left"><ul style="margin: 0px; padding: 0px; float:left;">
-                          <li style="list-style-type: none; background-image: url(../images/icon_dot.gif); background-repeat: no-repeat;
-                                padding-left: 20px; font-size: 13px; background-position: 5px; float:left;">
-                            <table width="100%">
-                              <tr>
-                                <td width="80%"><div style="font-size: 14px;"> <a href="Content.aspx?Id=<%# Eval("Id") %>" target="_blank"> <%# Eval("Title") %></a></div></td>
-                                <td width="20%"> <%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString() %> </td>
-                              </tr>
-                            </table>
-                          </li>
-                        </ul></td>
-                    </tr>
-                </ItemTemplate>
-               </asp:Repeater>
-               <tr><td align="center"><wl:Pagination ID="pagi" runat="server"/></td></tr>
-              </table>
-              
-            </div>
-          </div>
-          
-          <!--中间右边部分-->
-           <wl:Right runat="server" ID="right" />
-        </div>
+        <tr>
+            <td><table width="980" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="250" align="center" valign="top" bgcolor="#F3F3F3"><table width="950" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="40" align="left" valign="bottom"><span style="font-family:'宋体'; font-size:16px; color: #0b6398; font-weight: bold;">新闻公告</span></td>
+                  </tr>
+                  <tr>
+                    <td height="10" align="center" valign="middle"><hr style="border:1px dashed #cccccc; height:1px" /></td>
+                  </tr>
+                  <tr>
+                    <td height="140" align="left" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr><td align="left" valign="top">
+                                <table cellspacing="0" border="0" style="background-color: White; width: 100%; border-collapse: collapse;">
+                                <asp:Repeater ID="rpNews" runat="server">
+                                 <ItemTemplate>
+                                    <tr>
+                                      <td align="left" valign="top"><ul style="margin: 0px; padding: 0px; float:left;">
+                                          <li style="list-style-type: none; background-image: url(../images/icon_dot.gif); background-repeat: no-repeat;
+                                                padding-left: 20px; font-size: 13px; background-position: 5px; float:left;">
+                                            <table width="100%">
+                                              <tr>
+                                                <td width="80%"><div style="font-size: 14px;"> <a href="Content.aspx?Id=<%# Eval("Id") %>" target="_blank"> <%# Eval("Title") %></a></div></td>
+                                                <td width="20%"> <%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString() %> </td>
+                                              </tr>
+                                            </table>
+                                          </li>
+                                        </ul></td>
+                                    </tr>
+                                </ItemTemplate>
+                               </asp:Repeater>
+                               <tr><td align="center"><wl:Pagination ID="pagi" runat="server"/></td></tr>
+                              </table>
+                            </td>                            
+                            </tr>               
+                        </table>                        
+                    </td>
+                  </tr>
+                </table></td>
+                </tr>
+            </table></td>
+          </tr>        
         <!--尾部-->
         <wl:Footer ID="footer" runat="server" />
       </div>

@@ -42,17 +42,11 @@ public partial class Admin_DataQuery_Order : System.Web.UI.Page
     {
         lblRemark.Text = order.Remark;
         lblCosts.Text = order.Costs.ToString();
-        lblClientName.Text = order.Client.RealName;
-        lblCreateUser.Text = order.CreateUser.RealName;
+        lblClientName.Text = order.Client.RealName;       
         lblEncode.Text = order.Encode;
-        lblCreateTime.Text = order.CreateTime.ToString();
-        lblReceiveType.Text = order.ReceiveType;
-        lblReceiveUser.Text = UserOperation.GetUserById(order.ReceiveUserId).RealName;
-        lblCalculateType.Text = CalculateTypeOperation.GetCalculateTypeById(order.CalculateType).Name;
+        lblCreateTime.Text = order.CreateTime.ToString();   
         lblReceiveDate.Text = order.ReceiveDate.ToShortDateString();
-        lblType.Text = EnumConvertor.OrderTypeConvertToString((byte)order.Type);
-        lblUserName.Text = UserOperation.GetUserById(order.UserId).RealName;
-
+     
         if (order.Reason != null && order.Reason.Length > 0)
         {
             if (order.CheckUserId != 0 && order.CheckTime != DateTime.MinValue)

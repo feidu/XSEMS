@@ -119,7 +119,7 @@ public partial class Admin_Statistic_ClientStatistics : System.Web.UI.Page
             userId = 0;
         }
 
-        List<Client> result = ClientOperation.GetClientStatistic(startDate, endDate, companyId, userId);
+        List<Client> result = ClientOperation.GetClientStatistic(startDate, endDate);
 
 
         string fileName = StringHelper.GetEncodeNumber("KH");

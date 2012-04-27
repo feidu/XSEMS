@@ -36,7 +36,7 @@ public partial class Admin_Client_ClientList : System.Web.UI.Page
     {
         AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
         User user = UserOperation.GetUserByUsername(cookie.Username);
-        PaginationQueryResult<Client> result = ClientOperation.GetClientByCompanyId(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId);
+        PaginationQueryResult<Client> result = ClientOperation.GetClient(PaginationHelper.GetCurrentPaginationQueryCondition(Request));
         rpClient.DataSource = result.Results;
         rpClient.DataBind();
 

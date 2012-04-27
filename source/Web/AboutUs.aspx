@@ -20,7 +20,7 @@
               <tr>
                 <td height="250" align="center" valign="top" bgcolor="#F3F3F3"><table width="950" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td height="40" align="left" valign="bottom"><span style="font-family:&quot;宋体&quot;; font-size:16px; color: #0b6398; font-weight: bold;">亿度物流</span></td>
+                    <td height="40" align="left" valign="bottom"><span style="font-family:'宋体'; font-size:16px; color: #0b6398; font-weight: bold;">萧山EMS</span></td>
                   </tr>
                   <tr>
                     <td height="10" align="center" valign="middle"><hr style="border:1px dashed #cccccc; height:1px" /></td>

@@ -60,11 +60,6 @@ namespace Backend.BAL
             return dal.GetClientByRealName(realName);
         }
 
-        public static Client GetClientByRealNameAndCompanyId(string realName, int companyId)
-        {
-            return dal.GetClientByRealNameAndCompanyId(realName, companyId);
-        }
-
         public static PaginationQueryResult<Client> GetClient(PaginationQueryCondition condition)
         {
             return dal.GetClient(condition);
@@ -75,24 +70,24 @@ namespace Backend.BAL
             return dal.GetClient();
         }
 
-        public static PaginationQueryResult<Client> GetClientByCompanyId(PaginationQueryCondition condition, int companyId)
+        public static PaginationQueryResult<Client> GetClientByCompanyId(PaginationQueryCondition condition)
         {
-            return dal.GetClientByCompanyId(condition ,companyId);
+            return dal.GetClient(condition);
         }
 
-        public static PaginationQueryResult<Client> GetClientByParameters(PaginationQueryCondition condition, int companyId, string keyword)
+        public static PaginationQueryResult<Client> GetClientByParameters(PaginationQueryCondition condition, string keyword)
         {
-            return dal.GetClientByParameters(condition, companyId, keyword);
+            return dal.GetClientByParameters(condition, keyword);
         }
 
-        public static List<Client> GetClientByCompanyId(int companyId)
+        public static List<Client> GetClientList()
         {
-            return dal.GetClientByCompanyId(companyId);
+            return dal.GetClientList();
         }
 
-        public static List<Client> GetClientByParameters(int companyId, string searchKey)
+        public static List<Client> GetClientByParameters(string searchKey)
         {
-            return dal.GetClientByParameters(companyId, searchKey);
+            return dal.GetClientByParameters(searchKey);
         }
 
         public static void UpdateClientPwd(Client client)
@@ -133,9 +128,9 @@ namespace Backend.BAL
             }
         }
 
-        public static List<Client> GetClientStatistic(DateTime startDate, DateTime endDate, int companyId, int userId)
+        public static List<Client> GetClientStatistic(DateTime startDate, DateTime endDate)
         {
-            return dal.GetClientStatistic(startDate, endDate, companyId, userId);
+            return dal.GetClientStatistic(startDate, endDate);
         }
     }
 }

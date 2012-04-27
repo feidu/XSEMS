@@ -30,7 +30,7 @@ public partial class Admin_Main_Default : System.Web.UI.Page
     "<td width=\"60\" onClick=\"menuClickMe(this,'/Admin/Statistic/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 统计分析</td>",
     "<td width=\"60\" onClick=\"menuClickMe(this,'/Admin/User/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 员工管理</td>", 
     "<td width=\"60\" onClick=\"menuClickMe(this,'/Admin/CompanySetting/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 公司设置</td>",
-    "<td width=\"60\" onClick=\"menuClickMe(this,'/Admin/PostSetting/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 物流设置</td>",
+    "<td width=\"60\" onClick=\"menuClickMe(this,'/Admin/PostSetting/CarrierList.aspx?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 物流设置</td>",
     "<td width=\"60\" onClick=\"menuClickMe(this,'/Admin/WebSetting/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 网站管理</td>"
     };
 

@@ -15,20 +15,9 @@ using System.Collections.Generic;
 public partial class Config_ClientList : System.Web.UI.Page
 {
     protected List<Client> result = null;
-    int companyId = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (int.TryParse(Request.QueryString["id"], out companyId))
-        {
-            if (companyId == 0)
-            {
-                result = ClientOperation.GetClientByParameters(companyId, "");
-            }
-            else
-            {
-                result = ClientOperation.GetClientByCompanyId(companyId);
-            }
-        }        
+        result = ClientOperation.GetClientList();
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
@@ -38,6 +27,6 @@ public partial class Config_ClientList : System.Web.UI.Page
         {
             return;
         }
-        result = ClientOperation.GetClientByParameters(companyId, searchKey);
+        result = ClientOperation.GetClientByParameters(searchKey);
     }
 }

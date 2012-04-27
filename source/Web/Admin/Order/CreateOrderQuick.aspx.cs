@@ -55,7 +55,7 @@ public partial class Admin_Order_CreateOrderQuick : System.Web.UI.Page
             lblMsg.Text = "客户姓名不能为空，且长度不能超过" + NORMAL_LENGTH + "个字符！";
             return;
         }
-        Client client = ClientOperation.GetClientByRealNameAndCompanyId(clientName, user.CompanyId);
+        Client client = ClientOperation.GetClientByRealName(clientName);
         if (client == null)
         {
             lblMsg.Text = "客户不存在！";
