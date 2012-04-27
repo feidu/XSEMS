@@ -54,31 +54,36 @@ function checkDetailCount()
             <td width="23%" class="content"><asp:Label ID="lblType" runat="server" Text=""></asp:Label></td>
           </tr>
           <tr>
-            <td class="label" >客户姓名:</td>
+           <td class="label" >客户姓名:</td>
             <td class="content"><asp:Label ID="lblClientName" runat="server" Text=""></asp:Label></td>
-            <td class="label" >收货方式:</td>
+            <%--<td class="label" >收货方式:</td>
             <td class="content"><select id="slReceiveType" name="slReceiveType" runat="server">
                                             <option value="上门收件">上门收件</option>
                                             <option value="客户送货">客户送货</option>
                                             <option value="快递送货">快递送货</option>
-                                            </select></td>
+                                            </select></td>--%>
+            <td class="label" >制单时间:</td>
+            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>   
+
             <td class="label" >结算方式:</td>
             <td class="content"><wl:CalculateTypeDropDownList ID="ddlCalculateType" runat="server"/></td>
           </tr>
           <tr>
             <td class="label" >业 务 员:</td>
             <td class="content"><asp:Label ID="lblUserName" runat="server" Text=""></asp:Label></td>
-            <td class="label" >收 件 人:</td>
-            <td class="content"><asp:DropDownList ID="ddlCompanyUsers" runat="server"></asp:DropDownList></td>
+           <%-- <td class="label" >收 件 人:</td>
+            <td class="content"><asp:DropDownList ID="ddlCompanyUsers" runat="server"></asp:DropDownList></td>--%>
+            <td class="label" >应收总计:</td>
+            <td class="content"><input type="text" id="txtCosts" name="txtCosts" style="color:Blue;" runat="server" readonly="readonly" value="0" />元</td>
             <td class="label" >制 单 人:</td>
             <td class="content"><asp:Label ID="lblCreateUser" runat="server" Text=""></asp:Label></td>                
           </tr>
-          <tr>
+         <%-- <tr>
             <td class="label" >应收总计:</td>
             <td class="content" colspan="3"><input type="text" id="txtCosts" name="txtCosts" style="color:Blue;" runat="server" readonly="readonly" value="0" />元</td>
             <td class="label" >制单时间:</td>
             <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>                
-          </tr>
+          </tr>--%>
           <tr>
             <td class="label" >备&nbsp;&nbsp;&nbsp;&nbsp;注:</td>
             <td class="content" colspan="5"><asp:TextBox TextMode="multiLine" Rows="2" Width="100%" runat="server" ID="txtRemark"></asp:TextBox></td>          

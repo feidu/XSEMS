@@ -12,12 +12,12 @@ public partial class Client_CreateOrder : System.Web.UI.Page
 {
     private static readonly int NORMAL_LENGTH = 50;
     protected int companyId = 0;
-    ClientSession clientSession;
+    private ClientSession clientSession; 
     protected void Page_Load(object sender, EventArgs e)
     {
         seo.Title = "在线录单";
         clientSession = (ClientSession)AuthorizationManager.GetCurrentSessionObject(Context, false);
-        companyId = clientSession.CompanyId;
+               
         if (!IsPostBack)
         {
             DdlCarrierDataBind();
@@ -37,6 +37,12 @@ public partial class Client_CreateOrder : System.Web.UI.Page
 
     protected void btnCreate_Click(object sender, EventArgs e)
     {
+
+        Client client = ClientOperation.GetClientById(clientSession.Id);
+        if (client != null)
+        {
+            companyId = client.CompanyId;
+        }
         string countryName = Request.Form[txtToCountry.ID].Trim();
         string barCode = Request.Form[txtBarCode.ID].Trim();
         string remark = Request.Form[txtRemark.ID].Trim();
@@ -91,8 +97,8 @@ public partial class Client_CreateOrder : System.Web.UI.Page
         }
 
         Carrier carrier = CarrierOperation.GetCarrierByEncode(ddlCarrier.SelectedItem.Value);
-        CarrierCharge clientCarrierCharge = ChargeStandardOperation.GetClientCarrierChargeByParameter(country.Id, weight, 1, 1, carrier.Id, clientSession.Id);
-        CarrierCharge selfCarrierCharge = ChargeStandardOperation.GetSelfCarrierChargeByParameter(country.Id, weight, 1, 1, carrier.Id, clientSession.Id);
+        CarrierCharge clientCarrierCharge = ChargeStandardOperation.GetClientCarrierChargeByParameter(country.Id, weight, 1, 1, carrier.Id, client.Id);
+        CarrierCharge selfCarrierCharge = ChargeStandardOperation.GetSelfCarrierChargeByParameter(country.Id, weight, 1, 1, carrier.Id, client.Id);
         if (clientCarrierCharge == null || selfCarrierCharge == null)
         {
             lblMsg.Text = "承运商不抵达此国家或重量超过承运商限定范围！";
@@ -100,18 +106,24 @@ public partial class Client_CreateOrder : System.Web.UI.Page
         }
 
         Order order = null;
-        order = OrderOperation.GetTodayClientOrderByParameters(clientSession.Id, createDate);
+        order = OrderOperation.GetTodayClientOrderByParameters(client.Id, createDate);
         if (order == null)
         {
             order = new Order();
             string encode = StringHelper.GetEncodeNumber("SJ");
             order.CompanyId = companyId;
-            order.CompanyName = CompanyOperation.GetCompanyById(clientSession.CompanyId).Name;
+            
+            Company company=CompanyOperation.GetCompanyById(companyId);
+            if (company != null)
+            {
+                order.CompanyName = company.Name;
+            }
             order.Encode = encode;
             
-            order.ReceiveUserId = clientSession.Id;
+            //order.ReceiveUserId = client.Id;
             order.Status = OrderStatus.WAIT_SUBMIT;
             order.Type = OrderType.COMPANY_ORDER;
+            order.Client = client;
             order.CalculateType = 1;            
             order.ReceiveType = "上门收件";
             order.CreateTime = new DateTime(createDate.Year, createDate.Month, createDate.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
@@ -125,6 +137,7 @@ public partial class Client_CreateOrder : System.Web.UI.Page
             order.ToEmail = "";
             order.ToPhone = "";
             order.ToUsername = "";
+            
             order.IsQuickOrder = true;
 
             OrderOperation.CreateOrder(order);
@@ -155,7 +168,7 @@ public partial class Client_CreateOrder : System.Web.UI.Page
         od.TotalCosts = clientCarrierCharge.ClientTotalCost;
         od.Encode = StringHelper.GetEncodeNumber("YD"); ;
         od.Type = 1;
-        od.UserId = clientSession.Id;
+        od.UserId = client.Id;
         od.Weight = weight;
         od.Remark = remark;
         od.ToAddress = "";

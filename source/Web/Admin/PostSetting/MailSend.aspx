@@ -25,8 +25,8 @@
       <td><table class="grid">  
                     <tr>
                         <td class="label" width="12%">所属公司:</td>   
-                        <td class="content" width="88%"><asp:DropDownList ID="ddlCompany" runat="server"></asp:DropDownList>
-                        </td>
+                        <%--<td class="content" width="88%"><asp:DropDownList ID="ddlCompany" runat="server"></asp:DropDownList>--%>
+                        <td class ="content"  width = "88%" ><asp:Label ID="lblCompany" runat="server" Text="" ForeColor="maroon"></asp:Label></td>
                     </tr>     
                     <tr>
                       <td class="label"> 邮件标题: </td>

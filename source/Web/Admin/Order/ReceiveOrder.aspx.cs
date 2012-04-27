@@ -43,10 +43,10 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
 
     private void FormDataBind()
     {
-        ddlCompanyUsers.DataSource = UserOperation.GetLightUserByCompanyId(order.CompanyId);
-        ddlCompanyUsers.DataTextField = "RealName";
-        ddlCompanyUsers.DataValueField = "Id";
-        ddlCompanyUsers.DataBind();
+        //ddlCompanyUsers.DataSource = UserOperation.GetLightUserByCompanyId(order.CompanyId);
+        //ddlCompanyUsers.DataTextField = "RealName";
+        //ddlCompanyUsers.DataValueField = "Id";
+        //ddlCompanyUsers.DataBind();
 
         txtRemark.Text = order.Remark;
         txtCosts.Value = order.Costs.ToString();
@@ -57,8 +57,8 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
         }
         lblEncode.Text = order.Encode;
         lblCreateTime.Text = order.CreateTime.ToString();
-        slReceiveType.Value = order.ReceiveType;
-        ddlCompanyUsers.SelectedValue = order.ReceiveUserId.ToString();
+        //slReceiveType.Value = order.ReceiveType;
+        //ddlCompanyUsers.SelectedValue = order.ReceiveUserId.ToString();
         ddlCalculateType.SelectedValue = order.CalculateType.ToString();
         if (order.ReceiveDate > DateTime.MinValue)
         {
@@ -101,9 +101,9 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
             order.UserId = user.Id;
             order.CreateUser = user;
         }
-        order.ReceiveType = slReceiveType.Value;
+        //order.ReceiveType = slReceiveType.Value;
         order.ReceiveDate = receiveDate;
-        order.ReceiveUserId = int.Parse(ddlCompanyUsers.SelectedItem.Value);
+        //order.ReceiveUserId = int.Parse(ddlCompanyUsers.SelectedItem.Value);
         order.CalculateType = int.Parse(ddlCalculateType.SelectedItem.Value);
         OrderOperation.UpdateOrder(order);
         lblMsg.Text = "修改成功！";

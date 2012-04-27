@@ -14,9 +14,9 @@
     <tr>
         <td class="info2">物流设置 > 公司设定 > 公司详情</td>
     </tr>
-    <tr>
+<%--    <tr>
         <td class="info"><a href="CreateCompany.aspx">添加公司</a> | <a href="Default.aspx">公司列表</a></td>
-    </tr>
+    </tr>--%>
     <tr>
         <td class="seperator"></td>
     </tr>

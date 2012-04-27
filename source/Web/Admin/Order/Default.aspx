@@ -15,7 +15,7 @@
         <td class="info2">业务管理 > 收件计划</td>
     </tr>
     <tr>
-        <td class="info"><a href="CreateReceiveOrder.aspx">添加收件计划</a>&nbsp;&nbsp;&nbsp;<a href="CreateOrderQuick.aspx">快捷开单</a>&nbsp;&nbsp;&nbsp;日期范围：<input class="Wdate" type="text" onclick="WdatePicker()" runat="server" id="txtStartDate" readonly="readonly"/> 至 <input class="Wdate" type="text" onclick="WdatePicker()" runat="server" id="txtEndDate" readonly="readonly"/>&nbsp;&nbsp;&nbsp;&nbsp;单号：<input id="txtEncode" runat="server" size="15" class="textBox" /> <asp:Button
+        <td class="info"><%--<a href="CreateReceiveOrder.aspx">添加收件计划</a>&nbsp;&nbsp;&nbsp;<a href="CreateOrderQuick.aspx">快捷开单</a>&nbsp;&nbsp;&nbsp;--%>日期范围：<input class="Wdate" type="text" onclick="WdatePicker()" runat="server" id="txtStartDate" readonly="readonly"/> 至 <input class="Wdate" type="text" onclick="WdatePicker()" runat="server" id="txtEndDate" readonly="readonly"/>&nbsp;&nbsp;&nbsp;&nbsp;单号：<input id="txtEncode" runat="server" size="15" class="textBox" /> <asp:Button
         ID="btnSearch" runat="server" Text="查 询" CssClass="button" OnClick="btnSearch_Click"/></td>
     </tr>
     <tr>
