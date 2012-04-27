@@ -2,7 +2,7 @@
 <style type="text/css">
 body {
 	margin-bottom: 0px;
-	background-image: url(../Images/index_bg.png);
+	background-image: url(../Images/index_bg.gif);
 	background-repeat: repeat-x;
 	margin-left: 0px;
 	margin-top: 0px;

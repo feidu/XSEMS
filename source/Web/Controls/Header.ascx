@@ -2,7 +2,7 @@
 <style type="text/css">
 body {
 	margin-bottom: 0px;
-	background-image: url(../Images/index_bg.png);
+	background-image: url(../Images/index_bg.gif);
 	background-repeat: repeat-x;
 	margin-left: 0px;
 	margin-top: 0px;
@@ -70,7 +70,7 @@ playTransition();
 theTimer=setTimeout("nextAd()", 4000); //4√Î÷”«–ªª“ª’≈Õº∆¨
 }                          
 </script>
-<script language="JavaScript" type="text/javascript">nextAd();</script>
+<script language="JavaScript" type="text/javascript">nextAd()</script>
 </div>
     </td></tr></table></td>        
   </tr>
