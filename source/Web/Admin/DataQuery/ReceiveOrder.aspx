@@ -47,41 +47,22 @@ function checkDetailCount()
       	 <table class="grid">
           <tr>
             <td width="10%" class="label" >收件单号:</td>
-            <td width="23%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
+            <td width="40%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
             <td width="10%" class="label" >收件日期:</td>
-            <td width="24%" class="content"><input type="text" onclick="WdatePicker()" class="Wdate" runat="server" id="txtReceivedDate" name="txtDate" readonly="readonly" /></td>
-            <td width="10%" class="label" >下单类型:</td>
-            <td width="23%" class="content"><asp:Label ID="lblType" runat="server" Text=""></asp:Label></td>
+            <td width="40%" class="content"><input type="text" onclick="WdatePicker()" class="Wdate" runat="server" id="txtReceivedDate" name="txtDate" readonly="readonly" /></td>            
           </tr>
           <tr>
             <td class="label" >客户姓名:</td>
             <td class="content"><asp:Label ID="lblClientName" runat="server" Text=""></asp:Label></td>
-            <td class="label" >收货方式:</td>
-            <td class="content"><select id="slReceiveType" name="slReceiveType" runat="server">
-                                            <option value="上门收件">上门收件</option>
-                                            <option value="客户送货">客户送货</option>
-                                            <option value="快递送货">快递送货</option>
-                                            </select></td>
-            <td class="label" >结算方式:</td>
-            <td class="content"><wl:CalculateTypeDropDownList ID="ddlCalculateType" runat="server"/></td>
-          </tr>
-          <tr>
-            <td class="label" >业 务 员:</td>
-            <td class="content"><asp:Label ID="lblUserName" runat="server" Text=""></asp:Label></td>
-            <td class="label" >收 件 人:</td>
-            <td class="content"><asp:DropDownList ID="ddlCompanyUsers" runat="server"></asp:DropDownList></td>
-            <td class="label" >制 单 人:</td>
-            <td class="content"><asp:Label ID="lblCreateUser" runat="server" Text=""></asp:Label></td>                
-          </tr>
-          <tr>
             <td class="label" >应收总计:</td>
             <td class="content" colspan="3"><input type="text" id="txtCosts" name="txtCosts" style="color:Blue;" runat="server" readonly="readonly" value="0" />元</td>
-            <td class="label" >制单时间:</td>
-            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>                
-          </tr>
+          </tr>         
           <tr>
+            
+            <td class="label" >制单时间:</td>
+            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>               
             <td class="label" >备&nbsp;&nbsp;&nbsp;&nbsp;注:</td>
-            <td class="content" colspan="5"><asp:TextBox TextMode="multiLine" Rows="2" Width="100%" runat="server" ID="txtRemark"></asp:TextBox></td>          
+            <td class="content"><asp:TextBox TextMode="multiLine" Rows="2" Width="100%" runat="server" ID="txtRemark"></asp:TextBox></td>          
           </tr>
           <tr id="trReturnReason" runat="server" visible="false">
             <td class="label" style="color:Red; height:24px;">审核退回原因:</td>
@@ -95,7 +76,9 @@ function checkDetailCount()
       	 <table class="grid">
           <tr>
             <td align="center" class="headers">序号</td>
+            <td align="left" class="headers">国家</td>
             <td align="left" class="headers">承运商</td>
+            <td align="left" class="headers">追踪号</td>
             <td align="left" class="headers">邮件数量</td>           
             <td align="left" class="headers">计费重量</td>
             <td align="left" class="headers">每千克价</td>   
@@ -119,7 +102,9 @@ function checkDetailCount()
                %>
               <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
                 <td align="center"><%=i%></td>
-                <td align="left"><%=od.CarrierEncode%></td>
+                <td align="left"><%=od.ToCountry%></td>
+                <td align="left"><%=od.CarrierEncode%></td>    
+                <td align="left"><%=od.BarCode%></td>  
                 <td align="left"><%=od.Count%></td>
                 <td align="left"><%=od.Weight%></td>
                 <td align="left"><%=od.KgPrice%></td>

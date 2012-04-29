@@ -80,7 +80,7 @@ public partial class Admin_CompanySetting_QuoteList : System.Web.UI.Page
         {
             endDate = new DateTime(1999, 1, 1);
         }
-        PaginationQueryResult<Quote> result = QuoteOperation.GetQuoteByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, startDate, endDate, strStatus, keyword);
+        PaginationQueryResult<Quote> result = QuoteOperation.GetQuoteByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), startDate, endDate, strStatus, keyword);
         rpQuote.DataSource = result.Results;
         rpQuote.DataBind();
 

@@ -26,7 +26,7 @@ public partial class Admin_Order_CheckOrderList : System.Web.UI.Page
     {
         AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
         user = UserOperation.GetUserByUsername(cookie.Username);
-        PaginationQueryResult<Order> result = OrderOperation.GetOrderByCompanyIdAndStatus(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, OrderStatus.WAIT_CHECK);
+        PaginationQueryResult<Order> result = OrderOperation.GetOrderByStatus(PaginationHelper.GetCurrentPaginationQueryCondition(Request), OrderStatus.WAIT_CHECK);
         rpOrder.DataSource = result.Results;
         rpOrder.DataBind();
 
@@ -40,7 +40,7 @@ public partial class Admin_Order_CheckOrderList : System.Web.UI.Page
         string encode = Request.Form[txtEncode.ID].Trim();
         if (!string.IsNullOrEmpty(encode))
         {
-            PaginationQueryResult<Order> result = OrderOperation.GetOrderByCompanyIdStatusAndEncode(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, OrderStatus.WAIT_CHECK, encode);
+            PaginationQueryResult<Order> result = OrderOperation.GetOrderByStatusAndEncode(PaginationHelper.GetCurrentPaginationQueryCondition(Request), OrderStatus.WAIT_CHECK, encode);
             rpOrder.DataSource = result.Results;
             rpOrder.DataBind();
         }
@@ -64,7 +64,7 @@ public partial class Admin_Order_CheckOrderList : System.Web.UI.Page
             {
                 endDate = new DateTime(1999, 1, 1);
             }
-            PaginationQueryResult<Order> result = OrderOperation.GetOrderByCompanyIdStatusAndDate(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, OrderStatus.WAIT_CHECK, startDate, endDate);
+            PaginationQueryResult<Order> result = OrderOperation.GetOrderByStatusAndDate(PaginationHelper.GetCurrentPaginationQueryCondition(Request), OrderStatus.WAIT_CHECK, startDate, endDate);
             rpOrder.DataSource = result.Results;
             rpOrder.DataBind();
 

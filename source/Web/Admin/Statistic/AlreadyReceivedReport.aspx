@@ -31,12 +31,7 @@
     <tr><td align="center">
         <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="red"></asp:Label></td></tr>
     <tr>
-      <td><table class="grid">  
-              <tr>
-                <td class="label" >所属公司:</td>   
-                <td class="content"><asp:DropDownList ID="ddlCompany" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged"></asp:DropDownList>
-                <input id="hdCompanyId" name="hdCompanyId" type="hidden" value="<%=companyId %>" /></td>
-              </tr>
+      <td><table class="grid">                
               <tr>
                 <td class="label" width="9%">开始日期:</td>
                 <td class="content" width="91%"><input type="text" class="Wdate" onclick="WdatePicker()" runat="server" id="txtStartDate" readonly="readonly" /></td>
@@ -51,34 +46,7 @@
                 <tr>
                 <td align="left" width="14%"><input id="txtClientName" type="text" style="width:98%;color:#555555;" runat="server" readonly="readonly"/></td>
                 <td align="left" width="86%"><input type="image" src="../Images/btn_bg1.gif" onclick="openClientWindow()" /></td></tr></table></td>
-              </tr>  
-              <tr>
-                <td class="label" >业 务 员:</td>
-                <td class="content"><asp:DropDownList ID="ddlCompanyUsers" runat="server"></asp:DropDownList></td>
-              </tr> 
-              <tr>
-                <td class="label" >收 款 人:</td>
-                <td class="content"><asp:DropDownList ID="ddlReceiveUsers" runat="server"></asp:DropDownList></td>
-              </tr>
-              <tr>
-                <td class="label" >付款方式:</td>
-                <td class="content">
-                <% foreach (Backend.Models.PaymentMethod pm in result)
-                   {
-                %>
-                        <input type="checkbox" id="chkPaymentMethod" name="chkPaymentMethod" value="<%=pm.Id %>" /><%=pm.Name %>&nbsp;&nbsp;        
-                 <%
-                   } 
-                 %>
-                </td>
-              </tr>
-              <tr>
-                <td class="label" >报表类型:</td>
-                <td class="content"><asp:DropDownList ID="ddlReportType" runat="server">
-                <asp:ListItem Text="PDF" Value="1"></asp:ListItem>
-                <asp:ListItem Text="Excel" Value="0" Selected="true"></asp:ListItem>
-                </asp:DropDownList></td>
-              </tr> 
+              </tr>               
               <tr><td colspan="2" align="center"><asp:Button ID="btnArStatistic" CssClass="button" runat="server" Text="收款汇总" OnClick="btnArStatistic_Click" />&nbsp;&nbsp;&nbsp;<asp:Button ID="btnArDetailStatistic" CssClass="button" runat="server" Text="收款明细" OnClick="btnArDetailStatistic_Click" /></td></tr>
             </table>		
 		</td>

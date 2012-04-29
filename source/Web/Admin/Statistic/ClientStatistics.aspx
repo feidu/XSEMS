@@ -25,12 +25,7 @@
     <tr><td align="center">
         <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="red"></asp:Label></td></tr>
     <tr>
-      <td><table class="grid">  
-              <tr>
-                <td class="label" >所属公司:</td>   
-                <td class="content"><asp:DropDownList ID="ddlCompany" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged"></asp:DropDownList>
-                </td>
-              </tr> 
+      <td><table class="grid">             
               <tr>
                 <td class="label" width="9%">开始日期:</td>
                 <td class="content" width="91%"><input type="text" class="Wdate" onclick="WdatePicker()" runat="server" id="txtStartDate" readonly="readonly" /></td>
@@ -38,18 +33,8 @@
               <tr>
                 <td class="label" >结束日期:</td>
                 <td class="content"><input type="text" class="Wdate" onclick="WdatePicker()" runat="server" id="txtEndDate" readonly="readonly" /></td>
-              </tr>                            
-              <tr>
-                <td class="label" >业 务 员:</td>
-                <td class="content"><asp:DropDownList ID="ddlCompanyUsers" runat="server"></asp:DropDownList></td>
-              </tr> 
-              <tr>
-                <td class="label" >报表类型:</td>
-                <td class="content"><asp:DropDownList ID="ddlReportType" runat="server">
-                <asp:ListItem Text="PDF" Value="1"></asp:ListItem>
-                <asp:ListItem Text="Excel" Value="0" Selected="true"></asp:ListItem></asp:DropDownList></td>
-              </tr> 
-                <tr><td colspan="2" align="center"><asp:Button ID="btnClientStatistic" runat="server" CssClass="button" Text="客户统计" OnClick="btnClientStatistic_Click"/></td></tr>
+              </tr>         
+              <tr><td colspan="2" align="center"><asp:Button ID="btnClientStatistic" runat="server" CssClass="button" Text="客户统计" OnClick="btnClientStatistic_Click"/></td></tr>
             </table>		
 		</td>
     </tr>

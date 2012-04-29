@@ -1,6 +1,4 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Admin_Default" %>
-<%@ Register Assembly="Backend" Namespace="Backend.Utilities" TagPrefix="mf" %>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
@@ -17,7 +15,7 @@ body {
 
 -->
 </style>
-<script src="/Admin/Js/Validator.js" language="javascript" type="text/javascript"></script>
+<script src="Js/Validator.js" language="javascript" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 function ClearAll()
 {
@@ -70,7 +68,7 @@ function ClearAll()
                             </tr>
                             <tr>
                               <td height="35" align="right" valign="middle" class="font-s3"> 验证码： &nbsp; </td>
-                              <td height="35" align="left" valign="middle"><mf:VerifyCode ID="vc" runat="server" InputClass="input-vc" CssClass="verify-code" />
+                              <td height="35" align="left" valign="middle"><wl:VerifyCode ID="vc" runat="server" InputClass="input-vc" CssClass="verify-code" />
                               </td>
                             </tr>
                             <tr>

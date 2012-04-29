@@ -45,12 +45,12 @@ public partial class Admin_Order_CheckOrder : System.Web.UI.Page
         //lblCreateUser.Text = order.CreateUser.RealName;
         lblEncode.Text = order.Encode;
         lblCreateTime.Text = order.CreateTime.ToString();
-        lblReceiveType.Text = order.ReceiveType;
+        //lblReceiveType.Text = order.ReceiveType;
         //lblReceiveUser.Text = UserOperation.GetUserById(order.ReceiveUserId).RealName;
-        lblCalculateType.Text = CalculateTypeOperation.GetCalculateTypeById(order.CalculateType).Name;
-        lblReceiveDate.Text = order.ReceiveDate.ToShortDateString();
-        lblType.Text = EnumConvertor.OrderTypeConvertToString((byte)order.Type);
-        lblUserName.Text = UserOperation.GetUserById(order.UserId).RealName;
+        //lblCalculateType.Text = CalculateTypeOperation.GetCalculateTypeById(order.CalculateType).Name;
+        //lblReceiveDate.Text = order.ReceiveDate.ToShortDateString();
+        //lblType.Text = EnumConvertor.OrderTypeConvertToString((byte)order.Type);
+        //lblUserName.Text = UserOperation.GetUserById(order.UserId).RealName;
         lblAuditUser.Text = UserOperation.GetUserById(order.AuditUserId).RealName;
         lblAuditTime.Text = order.AuditTime.ToString();
     }

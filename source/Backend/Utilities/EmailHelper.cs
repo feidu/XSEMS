@@ -9,8 +9,9 @@ namespace Backend.Utilities
 {
     public class EmailHelper
     {
-        public static bool SendMail(Company company, Client client, string title, string content, out string msg)
+        public static bool SendMail(Client client, string title, string content, out string msg)
         {
+            Company company = CompanyOperation.GetCompanyById(1);
             string mailFrom = company.Email;
             string mailAccount = mailFrom.Substring(0, mailFrom.IndexOf('@'));
             string mailPwd = company.EmailPassword;
@@ -75,14 +76,14 @@ namespace Backend.Utilities
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您本次发货欠款" + money.ToString() + " 元，您当前的账户余额为RMB " + client.Balance.ToString() + " 元，请及时充值，以免影响您下次发货和信用额度的增加！");
-            return SendMail(company, client, "欠款通知", sb.ToString(), out msg);
+            return SendMail(client, "欠款通知", sb.ToString(), out msg);
         }
 
         public static bool SendMailForReceiveMoney(Company company, Client client, decimal money, out string msg)
         {
             StringBuilder sb = new StringBuilder();                       
             sb.Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我司已收到您本次付款RMB "+money.ToString()+" 元，您当前的账户余额为RMB "+client.Balance.ToString()+" 元，请核对，有问题请与您的业务人员联系！");
-            return SendMail(company, client, "收款通知", sb.ToString(), out msg); 
+            return SendMail(client, "收款通知", sb.ToString(), out msg); 
         }
 
         public static List<Client> SendMailForAnnounce(Company company, List<Client> result, string title, string content)
@@ -94,7 +95,7 @@ namespace Backend.Utilities
                 foreach (Client client in result)
                 {
                     string msg = "";
-                    if (!SendMail(company, client, title, content, out msg))
+                    if (!SendMail(client, title, content, out msg))
                     {
                         listClients.Add(client);
                     }
@@ -103,7 +104,7 @@ namespace Backend.Utilities
             return listClients;
         }
 
-        public static bool SendMailForBill(DateTime startDate, DateTime endDate, Company company, Client client, List<SearchOrderDetail> result, out string msg)
+        public static bool SendMailForBill(DateTime startDate, DateTime endDate, Client client, List<SearchOrderDetail> result, out string msg)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以下是您 "+startDate.ToShortDateString()+" 至 "+endDate.ToShortDateString()+" 的对账单：<br/><br/>");
@@ -128,7 +129,7 @@ namespace Backend.Utilities
             }
             sb.Append("<tr style='font-weight:bold;'><td align='left'>&nbsp;合计：</td><td colspan='5'>&nbsp;</td><td align='right'>&nbsp;" + totalMoney.ToString() + "</td></tr>");
             sb.Append("</table>");
-            return SendMail(company, client, "对账单", sb.ToString(), out msg);
+            return SendMail(client, "对账单", sb.ToString(), out msg);
         }
 
         public static bool SendMailForService(Company company, Client client, WrongOrderDetail wod, out string msg)
@@ -142,7 +143,7 @@ namespace Backend.Utilities
             sb.Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;处理结果："+wod.Result+"<br/>");
             sb.Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;处理人："+UserOperation.GetUserById(wod.CreateUserId).RealName+"<br/>");
 
-            return SendMail(company, client, "客户服务有更新", sb.ToString(), out msg);
+            return SendMail(client, "客户服务有更新", sb.ToString(), out msg);
         }
 
         public static bool SendMailForConsign(Company company, Client client, Order order, out string msg)
@@ -201,7 +202,7 @@ namespace Backend.Utilities
             sb.Append("&nbsp;货物的跟踪条码可在我们网站(<a href='http://www.eadu.com.cn' target='_blank'>http://www.eadu.com.cn</a>)上查询. <br />");
             sb.Append("&nbsp;您的账户余额: <span style='color:#0000FF;'>" + client.Balance.ToString() + "</span> 元 </td></tr></table>");
 
-            return SendMail(company, client, "货运单", sb.ToString(), out msg);
+            return SendMail(client, "货运单", sb.ToString(), out msg);
 
         }
     }

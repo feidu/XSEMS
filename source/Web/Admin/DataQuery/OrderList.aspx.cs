@@ -33,9 +33,7 @@ public partial class Admin_DataQuery_OrderList : System.Web.UI.Page
         {
             //RpOrderDataBind("", -1, "", "", "", minTime, minTime, 0);
             DdlCarrierDataBind();
-            ddlCompany.Items.Add(new System.Web.UI.WebControls.ListItem("", "0"));
-            ddlCompany.SelectedValue = "0";      
-
+            
             string sDate = Request.QueryString["sd"];
             string eDate = Request.QueryString["ed"];
 
@@ -64,13 +62,6 @@ public partial class Admin_DataQuery_OrderList : System.Web.UI.Page
             string encode = Request.QueryString["e"];
             string ydEncode = Request.QueryString["y"];
             string barCode = Request.QueryString["b"];
-            int companyId = 0;
-            string strCompanyId=Request.QueryString["co"];
-            if (!string.IsNullOrEmpty(strCompanyId))
-            {
-                companyId = int.Parse(strCompanyId);
-            }
-
             int clientId = 0;
             string clientName = Request.QueryString["cn"];
             if (!string.IsNullOrEmpty(clientName))
@@ -111,7 +102,7 @@ public partial class Admin_DataQuery_OrderList : System.Web.UI.Page
                 clientName = "";
             }
 
-            RpOrderDataBind(carrierEncode, clientId, encode, ydEncode, barCode, startDate, endDate, status, companyId);
+            RpOrderDataBind(carrierEncode, clientId, encode, ydEncode, barCode, startDate, endDate, status);
             txtStartDate.Value = sDate;
             txtEndDate.Value = eDate;
             ddlCarrier.SelectedValue = carrierEncode;
@@ -120,13 +111,12 @@ public partial class Admin_DataQuery_OrderList : System.Web.UI.Page
             txtClientName.Value = clientName;
             txtEncode.Value = encode;
             ddlStatus.SelectedValue = status.ToString();
-            ddlCompany.SelectedValue = companyId.ToString();
         }
     }
 
-    private void RpOrderDataBind(string carrierEncode, int clientId, string encode, string ydEncode, string barCode, DateTime startDate, DateTime endDate,byte status, int companyId)
+    private void RpOrderDataBind(string carrierEncode, int clientId, string encode, string ydEncode, string barCode, DateTime startDate, DateTime endDate,byte status)
     {
-        PaginationQueryResult<SearchOrder> result = OrderOperation.GetSearchOrderByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), carrierEncode, clientId, encode, ydEncode, barCode, startDate, endDate, status, companyId);
+        PaginationQueryResult<SearchOrder> result = OrderOperation.GetSearchOrderByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), carrierEncode, clientId, encode, ydEncode, barCode, startDate, endDate, status);
         rpOrder.DataSource = result.Results;
         rpOrder.DataBind();
 
@@ -188,10 +178,8 @@ public partial class Admin_DataQuery_OrderList : System.Web.UI.Page
         else
         {
             clientId = -1;
-        }
-        string strCompanyId = ddlCompany.SelectedItem.Value;
-        int companyId = int.Parse(strCompanyId);
-        Response.Redirect("OrderList.aspx?sd="+sDate+"&ed="+eDate+"&cr="+carrierEncode+"&e="+encode+"&y="+ydEncode+"&b="+barCode+"&cn="+clientName+"&s="+ddlStatus.SelectedValue+"&co="+strCompanyId);
+        }        
+        Response.Redirect("OrderList.aspx?sd="+sDate+"&ed="+eDate+"&cr="+carrierEncode+"&e="+encode+"&y="+ydEncode+"&b="+barCode+"&cn="+clientName+"&s="+ddlStatus.SelectedValue);
     }
 
     private void CancelOrderDetails()

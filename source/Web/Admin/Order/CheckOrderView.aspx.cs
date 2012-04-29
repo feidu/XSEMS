@@ -50,7 +50,7 @@ public partial class Admin_Order_CheckOrderView : System.Web.UI.Page
         lblDisposalCosts.Text = od.DisposalCosts.ToString();
         lblFetchCosts.Text = od.FetchCosts.ToString();
         lblInsureCosts.Text = od.InsureCosts.ToString();
-        lblKgPrice.Text = od.KgPrice.ToString();
+        //lblKgPrice.Text = od.KgPrice.ToString();
         lblMaterialCosts.Text = od.MaterialCosts.ToString();
         lblOtherCosts.Text = od.OtherCosts.ToString();
         lblOtherCostsNote.Text = od.OtherCostsNote;

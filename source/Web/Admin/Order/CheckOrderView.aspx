@@ -38,12 +38,12 @@
             <td class="content" colspan="3"><asp:Label ID="lblCarrier" runat="server"></asp:Label></td>
           </tr>
           <tr>
-            <td class="label" >每千克价:</td>
-            <td class="content"><asp:Label ID="lblKgPrice" runat="server"></asp:Label> 元</td>
+           
             <td class="label" >运费合计:</td>
             <td class="content"><asp:Label ID="lblPostCosts" runat="server" ForeColor="darkBlue"></asp:Label> 元</td>
             <td class="label" >挂 号 费:</td>
-            <td class="content"><asp:Label ID="lblRegisterCosts" runat="server"></asp:Label> 元</td>                
+            <td class="content"><asp:Label ID="lblRegisterCosts" runat="server"></asp:Label> 元</td> 
+            <td colspan="2"></td>               
           </tr>
           <tr>
             <td class="label">处 理 费:</td>

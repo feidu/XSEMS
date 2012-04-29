@@ -5,13 +5,13 @@
 <head id="Head1" runat="server">
 <title></title>
 <link href="../Css/Style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/ClientList.js"></script>
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/ClientList.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/Calendar/WdatePicker.js"></script>
 <script language="javascript" type="text/javascript">
 
 function openClientWindow()
 {
-    window.open("../../Config/ClientList.aspx?id="+document.getElementById('hdCompanyId').value+"","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
+    window.open("../../Config/ClientList.aspx","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
 }  
 </script>
 </head>
@@ -40,8 +40,7 @@ function openClientWindow()
             <td width="23%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
             <td width="10%" class="label" >报价日期:</td>
             <td width="24%" class="content"><input type="text" onclick="WdatePicker()" class="Wdate" runat="server" id="txtQuoteTime" readonly="readonly" /></td>
-            <td width="10%" class="label" >所属公司:</td>
-            <td width="23%" class="content"><asp:Label ID="lblCompanyName" runat="server" Text=""></asp:Label></td>
+            
           </tr>
           <tr>
             <td class="label" >客户姓名:</td>
@@ -49,7 +48,7 @@ function openClientWindow()
                     <tr>
                     <td align="left" width="85%"><input id="txtClientName" type="text" style="width:95%;color:#555555;" runat="server"  /></td>
                     <td align="left" width="15%"><input type="image" src="../Images/btn_bg1.gif" onclick="openClientWindow()" />
-                    <input id="hdCompanyId" name="hdCompanyId" type="hidden" value="<%=companyId %>" /></td></tr></table></td>            
+                    </td></tr></table></td>            
             <td class="label" >制 单 人:</td>
             <td class="content"><asp:Label ID="lblCreateUser" runat="server" Text=""></asp:Label></td>     
             <td class="label" >制单时间:</td>

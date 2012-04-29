@@ -15,6 +15,6 @@ public partial class Admin_Logout : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         RuleAuthorizationManager.UnAuthorize(Context);
-        Response.Redirect("/Admin/");
+        Response.Redirect("../");
     }
 }

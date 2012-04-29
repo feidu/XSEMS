@@ -18,8 +18,7 @@ public partial class Admin_Order_Quote : System.Web.UI.Page
 {
     protected int id = 0;
     Quote quote = null;
-    User user = null;
-    protected string companyId = "0";
+    User user = null;    
     protected List<QuoteDetail> result = null;
     protected int quoteDetailCount = 0;
     private static readonly int CLIENT_NAME_LENGTH = 50;
@@ -28,8 +27,7 @@ public partial class Admin_Order_Quote : System.Web.UI.Page
     {
         if (int.TryParse(Request.QueryString["id"], out id))
         {
-            quote = QuoteOperation.GetQuoteById(id);
-            companyId = quote.CompanyId.ToString();
+            quote = QuoteOperation.GetQuoteById(id);           
             result = QuoteOperation.GetQuoteDetailByQuoteId(id);
             quoteDetailCount = result.Count;
         }
@@ -44,8 +42,7 @@ public partial class Admin_Order_Quote : System.Web.UI.Page
     private void FormDataBind()
     {
         txtRemark.Text = quote.Remark;
-        lblEncode.Text = quote.Encode;
-        lblCompanyName.Text = quote.CompanyName;
+        lblEncode.Text = quote.Encode;       
         txtClientName.Value = quote.Client.RealName;
         txtQuoteTime.Value = quote.QuoteTime.ToShortDateString();
         lblCreateUser.Text = quote.User.RealName;

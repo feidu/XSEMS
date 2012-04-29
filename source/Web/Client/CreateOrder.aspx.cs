@@ -111,21 +111,21 @@ public partial class Client_CreateOrder : System.Web.UI.Page
         {
             order = new Order();
             string encode = StringHelper.GetEncodeNumber("SJ");
-            order.CompanyId = companyId;
+            //order.CompanyId = companyId;
             
-            Company company=CompanyOperation.GetCompanyById(companyId);
-            if (company != null)
-            {
-                order.CompanyName = company.Name;
-            }
+            //Company company=CompanyOperation.GetCompanyById(companyId);
+            //if (company != null)
+            //{
+            //    order.CompanyName = company.Name;
+            //}
             order.Encode = encode;
             
             //order.ReceiveUserId = client.Id;
             order.Status = OrderStatus.WAIT_SUBMIT;
-            order.Type = OrderType.COMPANY_ORDER;
+            //order.Type = OrderType.COMPANY_ORDER;
             order.Client = client;
-            order.CalculateType = 1;            
-            order.ReceiveType = "上门收件";
+            //order.CalculateType = 1;            
+            //order.ReceiveType = "上门收件";
             order.CreateTime = new DateTime(createDate.Year, createDate.Month, createDate.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
             order.Costs = 0;
             order.ReceiveDate = new DateTime(createDate.Year, createDate.Month, createDate.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);

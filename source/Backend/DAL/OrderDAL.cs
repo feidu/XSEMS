@@ -40,18 +40,18 @@ namespace Backend.DAL
         {
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@client_id", order.Client.Id),
-                SqlUtilities.GenerateInputIntParameter("@company_id", order.CompanyId),
-                SqlUtilities.GenerateInputNVarcharParameter("@company_name", 50, order.CompanyName),
-                SqlUtilities.GenerateInputIntParameter("@user_id", order.UserId),
+                //SqlUtilities.GenerateInputIntParameter("@company_id", order.CompanyId),
+                //SqlUtilities.GenerateInputNVarcharParameter("@company_name", 50, order.CompanyName),
+                //SqlUtilities.GenerateInputIntParameter("@user_id", order.UserId),
                 SqlUtilities.GenerateInputVarcharParameter("@encode", 50,order.Encode),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)order.Status),
                 SqlUtilities.GenerateInputParameter("@costs", SqlDbType.Money, order.Costs),
                 SqlUtilities.GenerateInputParameter("@self_costs", SqlDbType.Money, order.SelfCosts),
                 SqlUtilities.GenerateInputDateTimeParameter("@receive_date",order.ReceiveDate),
-                SqlUtilities.GenerateInputParameter("@type", SqlDbType.TinyInt, (byte)order.Type),
+                //SqlUtilities.GenerateInputParameter("@type", SqlDbType.TinyInt, (byte)order.Type),
                 SqlUtilities.GenerateInputDateTimeParameter("@create_time",order.CreateTime),
-                SqlUtilities.GenerateInputIntParameter("@calculate_type", order.CalculateType),
-                SqlUtilities.GenerateInputNVarcharParameter("@receive_type", 20, order.ReceiveType),
+                //SqlUtilities.GenerateInputIntParameter("@calculate_type", order.CalculateType),
+                //SqlUtilities.GenerateInputNVarcharParameter("@receive_type", 20, order.ReceiveType),
                 //SqlUtilities.GenerateInputIntParameter("@create_user_id", order.CreateUser.Id),
                 //SqlUtilities.GenerateInputIntParameter("@receive_user_id", order.ReceiveUserId),
                 SqlUtilities.GenerateInputNVarcharParameter("@remark", 500, order.Remark),
@@ -64,7 +64,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputNVarcharParameter("@to_postcode", 50, order.ToPostcode),
                 SqlUtilities.GenerateInputParameter("@is_quick_order", SqlDbType.Bit, order.IsQuickOrder)
             };
-            string sql = "INSERT INTO orders(client_id, company_id, company_name, user_id, encode, status, costs, self_costs, receive_date, type, create_time, calculate_type, receive_type, remark, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, is_quick_order) VALUES(@client_id, @company_id, @company_name, @user_id, @encode, @status, @costs, @self_costs, @receive_date, @type,     @create_time, @calculate_type, @receive_type, @remark, @to_username, @to_phone, @to_email, @to_city,              @to_country, @to_address, @to_postcode, @is_quick_order)";
+            string sql = "INSERT INTO orders(client_id, encode, status, costs, self_costs, receive_date, create_time, remark, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, is_quick_order) VALUES(@client_id, @encode, @status, @costs, @self_costs, @receive_date, @create_time, @remark, @to_username, @to_phone, @to_email, @to_city, @to_country, @to_address, @to_postcode, @is_quick_order)";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 
@@ -81,7 +81,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputNVarcharParameter("@to_postcode", 50, order.ToPostcode),
                 SqlUtilities.GenerateInputNVarcharParameter("@remark", 500, order.Remark)
             };
-            string sql = "UPDATE orders SET to_username = @to_username, to_phone = @to_phone, to_email = @to_email, to_city =           @to_city, remark = @remark, to_country = @to_country, to_address = @to_address, to_postcode = @to_postcode WHERE id = @id";
+            string sql = "UPDATE orders SET to_username = @to_username, to_phone = @to_phone, to_email = @to_email, to_city = @to_city, remark = @remark, to_country = @to_country, to_address = @to_address, to_postcode = @to_postcode WHERE id = @id";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 
@@ -89,17 +89,14 @@ namespace Backend.DAL
         {
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@id", order.Id),
-                SqlUtilities.GenerateInputIntParameter("@user_id", order.UserId),
                 //SqlUtilities.GenerateInputIntParameter("@create_user_id", order.CreateUser.Id),
-                SqlUtilities.GenerateInputDateTimeParameter("@receive_date", order.ReceiveDate),
+                //SqlUtilities.GenerateInputDateTimeParameter("@receive_date", order.ReceiveDate),
                 SqlUtilities.GenerateInputParameter("@costs", SqlDbType.Money, order.Costs),
                 SqlUtilities.GenerateInputParameter("@self_costs", SqlDbType.Money, order.SelfCosts),
-                SqlUtilities.GenerateInputIntParameter("@calculate_type", order.CalculateType),
-                SqlUtilities.GenerateInputNVarcharParameter("@receive_type", 20, order.ReceiveType),
                 //SqlUtilities.GenerateInputIntParameter("@receive_user_id", order.ReceiveUserId),
                 SqlUtilities.GenerateInputNVarcharParameter("@remark", 500, order.Remark)
             };
-            string sql = "UPDATE orders SET costs = @costs, self_costs= @self_costs, calculate_type = @calculate_type, receive_type = @receive_type,remark = @remark, receive_date = @receive_date, user_id = @user_id  WHERE id =     @id";
+            string sql = "UPDATE orders SET costs = @costs, self_costs= @self_costs, remark = @remark WHERE id = @id";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 
@@ -170,7 +167,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@id", id)
             };
-            string sql = "SELECT id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE id = @id";
+            string sql = "SELECT id, client_id, encode, status, costs, receive_date, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE id = @id";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -178,63 +175,45 @@ namespace Backend.DAL
                     order = new Order();
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
-                    order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
+                    order.Client = client;      
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    if (!dr.IsDBNull(5))
                     {
-                        order.UserId = dr.GetInt32(4);
+                        order.ReceiveDate = dr.GetDateTime(5);
                     }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
+                    order.CreateTime = dr.GetDateTime(6);                                      
+                    order.Remark = dr.GetString(7);
+                    order.IsMailSend = dr.GetBoolean(8);
+                    if (!dr.IsDBNull(9))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(9);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
+                    if (!dr.IsDBNull(10))
+                    {
+                        order.AuditTime = dr.GetDateTime(10);
+                    }
+                    if (!dr.IsDBNull(11))
+                    {
+                        order.CheckUserId = dr.GetInt32(11);
+                    }
+                    if (!dr.IsDBNull(12))
+                    {
+                        order.CheckTime = dr.GetDateTime(12);
+                    }
                     if (!dr.IsDBNull(13))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.Reason = dr.GetString(13);
                     }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
-                    }
-                    if (!dr.IsDBNull(21))
-                    {
-                        order.Reason = dr.GetString(21);
-                    }
-                    order.ToUsername = dr.GetString(22);
-                    order.ToPhone = dr.GetString(23);
-                    order.ToEmail = dr.GetString(24);
-                    order.ToCity = dr.GetString(25);
-                    order.ToCountry = dr.GetString(26);
-                    order.ToAddress = dr.GetString(27);
-                    order.ToPostcode = dr.GetString(28);
-                    order.SelfCosts = dr.GetDecimal(29);
+                    order.ToUsername = dr.GetString(14);
+                    order.ToPhone = dr.GetString(14);
+                    order.ToEmail = dr.GetString(16);
+                    order.ToCity = dr.GetString(17);
+                    order.ToCountry = dr.GetString(18);
+                    order.ToAddress = dr.GetString(19);
+                    order.ToPostcode = dr.GetString(20);
+                    order.SelfCosts = dr.GetDecimal(21);
                 }
             }
             return order;
@@ -246,7 +225,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, encode)
             };
-            string sql = "SELECT id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE encode = @encode";
+            string sql = "SELECT id, client_id, encode, status, costs, receive_date, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE encode = @encode";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -255,62 +234,44 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    if (!dr.IsDBNull(5))
                     {
-                        order.UserId = dr.GetInt32(4);
+                        order.ReceiveDate = dr.GetDateTime(5);
                     }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
+                    order.CreateTime = dr.GetDateTime(6);
+                    order.Remark = dr.GetString(7);
+                    order.IsMailSend = dr.GetBoolean(8);
+                    if (!dr.IsDBNull(9))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(9);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
+                    if (!dr.IsDBNull(10))
+                    {
+                        order.AuditTime = dr.GetDateTime(10);
+                    }
+                    if (!dr.IsDBNull(11))
+                    {
+                        order.CheckUserId = dr.GetInt32(11);
+                    }
+                    if (!dr.IsDBNull(12))
+                    {
+                        order.CheckTime = dr.GetDateTime(12);
+                    }
                     if (!dr.IsDBNull(13))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.Reason = dr.GetString(13);
                     }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
-                    }
-                    if (!dr.IsDBNull(21))
-                    {
-                        order.Reason = dr.GetString(21);
-                    }
-                    order.ToUsername = dr.GetString(22);
-                    order.ToPhone = dr.GetString(23);
-                    order.ToEmail = dr.GetString(24);
-                    order.ToCity = dr.GetString(25);
-                    order.ToCountry = dr.GetString(26);
-                    order.ToAddress = dr.GetString(27);
-                    order.ToPostcode = dr.GetString(28);
-                    order.SelfCosts = dr.GetDecimal(29);
+                    order.ToUsername = dr.GetString(14);
+                    order.ToPhone = dr.GetString(14);
+                    order.ToEmail = dr.GetString(16);
+                    order.ToCity = dr.GetString(17);
+                    order.ToCountry = dr.GetString(18);
+                    order.ToAddress = dr.GetString(19);
+                    order.ToPostcode = dr.GetString(20);
+                    order.SelfCosts = dr.GetDecimal(21);
                 }
             }
             return order;
@@ -323,7 +284,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
                 SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, encode)
             };
-            string sql = "SELECT id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE is_delete = 0 AND client_id = @client_id AND encode = @encode";
+            string sql = "SELECT id, client_id, encode, status, costs, receive_date, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE is_delete = 0 AND client_id = @client_id AND encode = @encode";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -332,62 +293,44 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    if (!dr.IsDBNull(5))
                     {
-                        order.UserId = dr.GetInt32(4);
+                        order.ReceiveDate = dr.GetDateTime(5);
                     }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
+                    order.CreateTime = dr.GetDateTime(6);
+                    order.Remark = dr.GetString(7);
+                    order.IsMailSend = dr.GetBoolean(8);
+                    if (!dr.IsDBNull(9))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(9);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
+                    if (!dr.IsDBNull(10))
+                    {
+                        order.AuditTime = dr.GetDateTime(10);
+                    }
+                    if (!dr.IsDBNull(11))
+                    {
+                        order.CheckUserId = dr.GetInt32(11);
+                    }
+                    if (!dr.IsDBNull(12))
+                    {
+                        order.CheckTime = dr.GetDateTime(12);
+                    }
                     if (!dr.IsDBNull(13))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.Reason = dr.GetString(13);
                     }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
-                    }
-                    if (!dr.IsDBNull(21))
-                    {
-                        order.Reason = dr.GetString(21);
-                    }
-                    order.ToUsername = dr.GetString(22);
-                    order.ToPhone = dr.GetString(23);
-                    order.ToEmail = dr.GetString(24);
-                    order.ToCity = dr.GetString(25);
-                    order.ToCountry = dr.GetString(26);
-                    order.ToAddress = dr.GetString(27);
-                    order.ToPostcode = dr.GetString(28);
-                    order.SelfCosts = dr.GetDecimal(29);
+                    order.ToUsername = dr.GetString(14);
+                    order.ToPhone = dr.GetString(14);
+                    order.ToEmail = dr.GetString(16);
+                    order.ToCity = dr.GetString(17);
+                    order.ToCountry = dr.GetString(18);
+                    order.ToAddress = dr.GetString(19);
+                    order.ToPostcode = dr.GetString(20);
+                    order.SelfCosts = dr.GetDecimal(21);
                 }
             }
             return order;
@@ -401,7 +344,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)status),
                 SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, encode)
             };
-            string sql = "SELECT id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE is_delete = 0 AND client_id = @client_id AND encode = @encode AND status = @status";
+            string sql = "SELECT id, client_id, encode, status, costs, receive_date, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE is_delete = 0 AND client_id = @client_id AND encode = @encode AND status = @status";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -410,62 +353,44 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    if (!dr.IsDBNull(5))
                     {
-                        order.UserId = dr.GetInt32(4);
+                        order.ReceiveDate = dr.GetDateTime(5);
                     }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
+                    order.CreateTime = dr.GetDateTime(6);
+                    order.Remark = dr.GetString(7);
+                    order.IsMailSend = dr.GetBoolean(8);
+                    if (!dr.IsDBNull(9))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(9);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
+                    if (!dr.IsDBNull(10))
+                    {
+                        order.AuditTime = dr.GetDateTime(10);
+                    }
+                    if (!dr.IsDBNull(11))
+                    {
+                        order.CheckUserId = dr.GetInt32(11);
+                    }
+                    if (!dr.IsDBNull(12))
+                    {
+                        order.CheckTime = dr.GetDateTime(12);
+                    }
                     if (!dr.IsDBNull(13))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.Reason = dr.GetString(13);
                     }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
-                    }
-                    if (!dr.IsDBNull(21))
-                    {
-                        order.Reason = dr.GetString(21);
-                    }
-                    order.ToUsername = dr.GetString(22);
-                    order.ToPhone = dr.GetString(23);
-                    order.ToEmail = dr.GetString(24);
-                    order.ToCity = dr.GetString(25);
-                    order.ToCountry = dr.GetString(26);
-                    order.ToAddress = dr.GetString(27);
-                    order.ToPostcode = dr.GetString(28);
-                    order.SelfCosts = dr.GetDecimal(29);
+                    order.ToUsername = dr.GetString(14);
+                    order.ToPhone = dr.GetString(14);
+                    order.ToEmail = dr.GetString(16);
+                    order.ToCity = dr.GetString(17);
+                    order.ToCountry = dr.GetString(18);
+                    order.ToAddress = dr.GetString(19);
+                    order.ToPostcode = dr.GetString(20);
+                    order.SelfCosts = dr.GetDecimal(21);
                 }
             }
             return order;
@@ -479,7 +404,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@startTime", new DateTime(dtToday.Year, dtToday.Month, dtToday.Day, 0, 0, 0)),
                 SqlUtilities.GenerateInputDateTimeParameter("@endTime", new DateTime(dtToday.Year, dtToday.Month, dtToday.Day, 23, 59, 59))
             };
-            string sql = "SELECT id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE is_delete = 0 AND client_id = @client_id AND is_quick_order = 1 AND create_time BETWEEN @startTime AND @endTime AND status = 1";
+            string sql = "SELECT id, client_id, encode, status, costs, receive_date, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, reason, to_username, to_phone, to_email, to_city, to_country, to_address, to_postcode, self_costs FROM orders WHERE is_delete = 0 AND client_id = @client_id AND is_quick_order = 1 AND create_time BETWEEN @startTime AND @endTime AND status = 1";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -488,62 +413,44 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    if (!dr.IsDBNull(5))
                     {
-                        order.UserId = dr.GetInt32(4);
+                        order.ReceiveDate = dr.GetDateTime(5);
                     }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
+                    order.CreateTime = dr.GetDateTime(6);
+                    order.Remark = dr.GetString(7);
+                    order.IsMailSend = dr.GetBoolean(8);
+                    if (!dr.IsDBNull(9))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(9);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
+                    if (!dr.IsDBNull(10))
+                    {
+                        order.AuditTime = dr.GetDateTime(10);
+                    }
+                    if (!dr.IsDBNull(11))
+                    {
+                        order.CheckUserId = dr.GetInt32(11);
+                    }
+                    if (!dr.IsDBNull(12))
+                    {
+                        order.CheckTime = dr.GetDateTime(12);
+                    }
                     if (!dr.IsDBNull(13))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.Reason = dr.GetString(13);
                     }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
-                    }
-                    if (!dr.IsDBNull(21))
-                    {
-                        order.Reason = dr.GetString(21);
-                    }
-                    order.ToUsername = dr.GetString(22);
-                    order.ToPhone = dr.GetString(23);
-                    order.ToEmail = dr.GetString(24);
-                    order.ToCity = dr.GetString(25);
-                    order.ToCountry = dr.GetString(26);
-                    order.ToAddress = dr.GetString(27);
-                    order.ToPostcode = dr.GetString(28);
-                    order.SelfCosts = dr.GetDecimal(29);
+                    order.ToUsername = dr.GetString(14);
+                    order.ToPhone = dr.GetString(14);
+                    order.ToEmail = dr.GetString(16);
+                    order.ToCity = dr.GetString(17);
+                    order.ToCountry = dr.GetString(18);
+                    order.ToAddress = dr.GetString(19);
+                    order.ToPostcode = dr.GetString(20);
+                    order.SelfCosts = dr.GetDecimal(21);
                 }
             }
             return order;
@@ -986,7 +893,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@client_id", cId)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id";
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id";
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND client_id = @client_id ORDER BY id DESC) AS O) ";
@@ -999,50 +906,28 @@ namespace Backend.DAL
                     Order order = new Order();
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
-                    order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
+                    order.Client = client;                   
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);                    
+                    order.CreateTime = dr.GetDateTime(5);
+                    order.Remark = dr.GetString(6);
+                    order.IsMailSend = dr.GetBoolean(7);
                     if (!dr.IsDBNull(8))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(8);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
+                    if (!dr.IsDBNull(9))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.AuditTime = dr.GetDateTime(9);
                     }
-                    if (!dr.IsDBNull(14))
+                    if (!dr.IsDBNull(10))
                     {
-                        order.ReceiveUserId = dr.GetInt32(14);
+                        order.CheckUserId = dr.GetInt32(10);
                     }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
+                    if (!dr.IsDBNull(11))
                     {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
+                        order.CheckTime = dr.GetDateTime(11);
                     }
                     result.Results.Add(order);
                 }
@@ -1062,7 +947,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)status)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id AND status = @status";
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id AND status = @status";
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND client_id = @client_id AND status = @status ORDER BY id DESC) AS O) ";
@@ -1076,49 +961,27 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    order.CreateTime = dr.GetDateTime(5);
+                    order.Remark = dr.GetString(6);
+                    order.IsMailSend = dr.GetBoolean(7);
                     if (!dr.IsDBNull(8))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(8);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
+                    if (!dr.IsDBNull(9))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.AuditTime = dr.GetDateTime(9);
                     }
-                    if (!dr.IsDBNull(14))
+                    if (!dr.IsDBNull(10))
                     {
-                        order.ReceiveUserId = dr.GetInt32(14);
+                        order.CheckUserId = dr.GetInt32(10);
                     }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
+                    if (!dr.IsDBNull(11))
                     {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
+                        order.CheckTime = dr.GetDateTime(11);
                     }
                     result.Results.Add(order);
                 }
@@ -1153,7 +1016,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id "+sqlTime ;
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id "+sqlTime ;
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND client_id = @client_id "+sqlTime+" ORDER BY id DESC) AS O) ";
@@ -1167,49 +1030,27 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    order.CreateTime = dr.GetDateTime(5);
+                    order.Remark = dr.GetString(6);
+                    order.IsMailSend = dr.GetBoolean(7);
                     if (!dr.IsDBNull(8))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(8);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
+                    if (!dr.IsDBNull(9))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.AuditTime = dr.GetDateTime(9);
                     }
-                    if (!dr.IsDBNull(14))
+                    if (!dr.IsDBNull(10))
                     {
-                        order.ReceiveUserId = dr.GetInt32(14);
+                        order.CheckUserId = dr.GetInt32(10);
                     }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
+                    if (!dr.IsDBNull(11))
                     {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
+                        order.CheckTime = dr.GetDateTime(11);
                     }
                     result.Results.Add(order);
                 }
@@ -1245,7 +1086,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)status)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id AND status = @status "+sqlTime;
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs,  create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND client_id = @client_id AND status = @status "+sqlTime;
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND client_id = @client_id AND status = @status "+sqlTime+" ORDER BY id DESC) AS O) ";
@@ -1259,49 +1100,27 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    order.CreateTime = dr.GetDateTime(5);
+                    order.Remark = dr.GetString(6);
+                    order.IsMailSend = dr.GetBoolean(7);
                     if (!dr.IsDBNull(8))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(8);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
+                    if (!dr.IsDBNull(9))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.AuditTime = dr.GetDateTime(9);
                     }
-                    if (!dr.IsDBNull(14))
+                    if (!dr.IsDBNull(10))
                     {
-                        order.ReceiveUserId = dr.GetInt32(14);
+                        order.CheckUserId = dr.GetInt32(10);
                     }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
+                    if (!dr.IsDBNull(11))
                     {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
+                        order.CheckTime = dr.GetDateTime(11);
                     }
                     result.Results.Add(order);
                 }
@@ -1314,19 +1133,18 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Order> GetOrderByCompanyIdAndStatus(PaginationQueryCondition condition, int compId, OrderStatus status)
+        public PaginationQueryResult<Order> GetOrderByStatus(PaginationQueryCondition condition, OrderStatus status)
         {
             PaginationQueryResult<Order> result = new PaginationQueryResult<Order>();
             SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)status)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status";
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time, create_time FROM orders WHERE is_delete = 0 AND status = @status";
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status ORDER BY id DESC) AS O) ";
+                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0  AND status = @status ORDER BY id DESC) AS O) ";
             }
-            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE company_id = @company_id AND status = @status";
+            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE is_delete = 0 AND status = @status";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -1335,50 +1153,29 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    order.CreateTime = dr.GetDateTime(5);
+                    order.Remark = dr.GetString(6);
+                    order.IsMailSend = dr.GetBoolean(7);
                     if (!dr.IsDBNull(8))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(8);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
+                    if (!dr.IsDBNull(9))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.AuditTime = dr.GetDateTime(9);
                     }
-                    if (!dr.IsDBNull(14))
+                    if (!dr.IsDBNull(10))
                     {
-                        order.ReceiveUserId = dr.GetInt32(14);
+                        order.CheckUserId = dr.GetInt32(10);
                     }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
+                    if (!dr.IsDBNull(11))
                     {
-                        order.AuditUserId = dr.GetInt32(17);
+                        order.CheckTime = dr.GetDateTime(11);
                     }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
-                    }
+                    order.CreateTime = dr.GetDateTime(12);
                     result.Results.Add(order);
                 }
                 dr.NextResult();
@@ -1390,20 +1187,19 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Order> GetOrderByCompanyIdStatusAndEncode(PaginationQueryCondition condition, int compId, OrderStatus status, string encode)
+        public PaginationQueryResult<Order> GetOrderByStatusAndEncode(PaginationQueryCondition condition, OrderStatus status, string encode)
         {
             PaginationQueryResult<Order> result = new PaginationQueryResult<Order>();
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, encode), 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)status)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status AND encode = @encode";
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND status = @status AND encode = @encode";
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status AND encode = @encode ORDER BY id DESC) AS O) ";
+                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND status = @status AND encode = @encode ORDER BY id DESC) AS O) ";
             }
-            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE company_id = @company_id AND status = @status AND encode = @encode";
+            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE AND status = @status AND encode = @encode";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -1412,49 +1208,27 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    order.CreateTime = dr.GetDateTime(5);
+                    order.Remark = dr.GetString(6);
+                    order.IsMailSend = dr.GetBoolean(7);
                     if (!dr.IsDBNull(8))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(8);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
+                    if (!dr.IsDBNull(9))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.AuditTime = dr.GetDateTime(9);
                     }
-                    if (!dr.IsDBNull(14))
+                    if (!dr.IsDBNull(10))
                     {
-                        order.ReceiveUserId = dr.GetInt32(14);
+                        order.CheckUserId = dr.GetInt32(10);
                     }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
+                    if (!dr.IsDBNull(11))
                     {
-                        order.AuditUserId = dr.GetInt32(17);
-                    }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
+                        order.CheckTime = dr.GetDateTime(11);
                     }
                     result.Results.Add(order);
                 }
@@ -1467,7 +1241,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Order> GetOrderByCompanyIdStatusAndDate(PaginationQueryCondition condition, int compId, OrderStatus status, DateTime startDate, DateTime endDate)
+        public PaginationQueryResult<Order> GetOrderByStatusAndDate(PaginationQueryCondition condition, OrderStatus status, DateTime startDate, DateTime endDate)
         {
             DateTime minTime = new DateTime(1999, 1, 1);
             string sqlTime = "";
@@ -1487,15 +1261,14 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)status)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status "+sqlTime;
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark, is_mail_send, audit_user_id, audit_time, check_user_id, check_time FROM orders WHERE is_delete = 0 AND status = @status "+sqlTime;
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status "+sqlTime+" ORDER BY id DESC) AS O) ";
+                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND status = @status "+sqlTime+" ORDER BY id DESC) AS O) ";
             }
-            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE company_id = @company_id AND status = @status "+sqlTime;
+            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE status = @status "+sqlTime;
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -1504,50 +1277,29 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);
+                    order.CreateTime = dr.GetDateTime(5);
+                    order.Remark = dr.GetString(6);
+                    order.IsMailSend = dr.GetBoolean(7);
                     if (!dr.IsDBNull(8))
                     {
-                        order.ReceiveDate = dr.GetDateTime(8);
+                        order.AuditUserId = dr.GetInt32(8);
                     }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
+                    if (!dr.IsDBNull(9))
                     {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
+                        order.AuditTime = dr.GetDateTime(9);
                     }
-                    if (!dr.IsDBNull(14))
+                    if (!dr.IsDBNull(10))
                     {
-                        order.ReceiveUserId = dr.GetInt32(14);
+                        order.CheckUserId = dr.GetInt32(10);
                     }
-                    order.Remark = dr.GetString(15);
-                    order.IsMailSend = dr.GetBoolean(16);
-                    if (!dr.IsDBNull(17))
+                    if (!dr.IsDBNull(11))
                     {
-                        order.AuditUserId = dr.GetInt32(17);
+                        order.CheckTime = dr.GetDateTime(11);
                     }
-                    if (!dr.IsDBNull(18))
-                    {
-                        order.AuditTime = dr.GetDateTime(18);
-                    }
-                    if (!dr.IsDBNull(19))
-                    {
-                        order.CheckUserId = dr.GetInt32(19);
-                    }
-                    if (!dr.IsDBNull(20))
-                    {
-                        order.CheckTime = dr.GetDateTime(20);
-                    }
+                    result.Results.Add(order);
                     result.Results.Add(order);
                 }
                 dr.NextResult();
@@ -1559,39 +1311,38 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Order> GetAuditOrderByCompanyIdAndConsignType(PaginationQueryCondition condition, int compId, int consignType)
+        public PaginationQueryResult<Order> GetAuditOrderByConsignType(PaginationQueryCondition condition, int consignType)
         {
             PaginationQueryResult<Order> result = new PaginationQueryResult<Order>();
             SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)OrderStatus.WAIT_AUDIT)
             };
             string sql = "";
             switch (consignType)
             {
                 case 1:
-                    sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status";
+                    sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark FROM orders WHERE is_delete = 0 AND status = @status";
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status ORDER BY id DESC) AS O) ";
+                        sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND status = @status ORDER BY id DESC) AS O) ";
                     }
-                    sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE company_id = @company_id AND status = @status";
+                    sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE status = @status";
                     break;
                 case 2:
-                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.company_id, OS.company_name, OS.user_id, OS.encode,             OS.status, OS.costs, OS.receive_date, OS.type, OS.create_time, OS.calculate_type, OS.receive_type, OS.create_user_id, OS.receive_user_id,           OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs";
+                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.encode, OS.status, OS.costs, OS.create_time, OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs";
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs ORDER BY OS.id DESC) AS O) ";
+                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs ORDER BY OS.id DESC) AS O) ";
                     }
-                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE         OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs";
+                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs";
                     break;
                 case 3:
-                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.company_id, OS.company_name, OS.user_id, OS.encode,             OS.status, OS.costs, OS.receive_date, OS.type, OS.create_time, OS.calculate_type, OS.receive_type, OS.create_user_id, OS.receive_user_id,           OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs";
+                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.encode, OS.status, OS.costs, OS.create_time, OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs";
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs ORDER BY OS.id DESC) AS O) ";
+                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs ORDER BY OS.id DESC) AS O) ";
                     }
-                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE         OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs";
+                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs";
                     break;
             }          
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
@@ -1601,34 +1352,12 @@ namespace Backend.DAL
                     Order order = new Order();
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
-                    order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
-                    {
-                        order.ReceiveDate = dr.GetDateTime(8);
-                    }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
-                    {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
-                    }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
+                    order.Client = client;                   
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);                   
+                    order.CreateTime = dr.GetDateTime(5);                   
+                    order.Remark = dr.GetString(6);
                     result.Results.Add(order);
                 }
                 dr.NextResult();
@@ -1640,11 +1369,10 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Order> GetAuditOrderByCompIdConsignTypeAndEncode(PaginationQueryCondition condition, int compId, int consignType, string encode)
+        public PaginationQueryResult<Order> GetAuditOrderByConsignTypeAndEncode(PaginationQueryCondition condition, int consignType, string encode)
         {
             PaginationQueryResult<Order> result = new PaginationQueryResult<Order>();
             SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, encode),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)OrderStatus.WAIT_AUDIT)
             };
@@ -1652,28 +1380,28 @@ namespace Backend.DAL
             switch (consignType)
             {
                 case 1:
-                    sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status AND encode = @encode";
+                    sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark FROM orders WHERE is_delete = 0 AND status = @status AND encode = @encode";
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status AND encode = @encode ORDER BY id DESC) AS O) ";
+                        sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND status = @status AND encode = @encode ORDER BY id DESC) AS O) ";
                     }
-                    sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE company_id = @company_id AND status = @status AND encode = @encode";
+                    sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE status = @status AND encode = @encode";
                     break;
                 case 2:
-                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.company_id, OS.company_name, OS.user_id, OS.encode,             OS.status, OS.costs, OS.receive_date, OS.type, OS.create_time, OS.calculate_type, OS.receive_type, OS.create_user_id, OS.receive_user_id,           OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) >= OS.costs";
+                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.encode, OS.status, OS.costs, OS.create_time, OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) >= OS.costs";
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) >=       OS.costs ORDER BY   OS.id DESC) AS O) ";
+                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) >= OS.costs ORDER BY   OS.id DESC) AS O) ";
                     }
-                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE         OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) >= OS.costs";
+                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) >= OS.costs";
                     break;
                 case 3:
-                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.company_id, OS.company_name, OS.user_id, OS.encode,             OS.status, OS.costs, OS.receive_date, OS.type, OS.create_time, OS.calculate_type, OS.receive_type, OS.create_user_id, OS.receive_user_id,           OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) < OS.costs";
+                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.encode, OS.status, OS.costs, OS.create_time, OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) < OS.costs";
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) < OS.costs ORDER BY    OS.id DESC) AS O) ";
+                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) < OS.costs ORDER BY OS.id DESC) AS O) ";
                     }
-                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE         OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) < OS.costs";
+                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND OS.encode = @encode AND (CS.balance + CS.credit) < OS.costs";
                     break;
             }
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
@@ -1683,34 +1411,12 @@ namespace Backend.DAL
                     Order order = new Order();
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
-                    order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
-                    {
-                        order.ReceiveDate = dr.GetDateTime(8);
-                    }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
-                    {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
-                    }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
+                    order.Client = client;                    
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);                 
+                    order.CreateTime = dr.GetDateTime(5);                    
+                    order.Remark = dr.GetString(6);
                     result.Results.Add(order);
                 }
                 dr.NextResult();
@@ -1722,7 +1428,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Order> GetAuditOrderByCompanyIdConsignTypeAndDate(PaginationQueryCondition condition, int compId, int consignType, DateTime startDate, DateTime endDate)
+        public PaginationQueryResult<Order> GetAuditOrderByConsignTypeAndDate(PaginationQueryCondition condition, int consignType, DateTime startDate, DateTime endDate)
         {
             DateTime minTime = new DateTime(1999, 1, 1);
             string sqlTime = "";
@@ -1746,35 +1452,34 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)OrderStatus.WAIT_AUDIT)
             };
             string sql = "";
             switch (consignType)
             {
                 case 1:
-                    sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, company_name, user_id, encode, status, costs, receive_date, type, create_time, calculate_type, receive_type, create_user_id, receive_user_id, remark FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status"+sqlTime;
+                    sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, status, costs, create_time, remark FROM orders WHERE is_delete = 0 AND status = @status"+sqlTime;
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND company_id = @company_id AND status = @status "+sqlTime+" ORDER BY id DESC) AS O) ";
+                        sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM orders WHERE is_delete = 0 AND status = @status "+sqlTime+" ORDER BY id DESC) AS O) ";
                     }
-                    sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE company_id = @company_id AND status = @status"+sqlTime;
+                    sql += " ORDER BY id DESC; SELECT COUNT(*) FROM orders WHERE status = @status"+sqlTime;
                     break;
                 case 2:
-                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.company_id, OS.company_name, OS.user_id, OS.encode,             OS.status, OS.costs, OS.receive_date, OS.type, OS.create_time, OS.calculate_type, OS.receive_type, OS.create_user_id, OS.receive_user_id,           OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs" + sqlTimes;
+                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.encode, OS.status, OS.costs, OS.create_time, OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs" + sqlTimes;
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status " + sqlTimes + " AND (CS.balance + CS.credit) >= OS.costs ORDER BY OS.id DESC) AS O) ";
+                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.status = @status " + sqlTimes + " AND (CS.balance + CS.credit) >= OS.costs ORDER BY OS.id DESC) AS O) ";
                     }
-                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE         OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs" + sqlTimes;
+                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) >= OS.costs" + sqlTimes;
                     break;
                 case 3:
-                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.company_id, OS.company_name, OS.user_id, OS.encode,             OS.status, OS.costs, OS.receive_date, OS.type, OS.create_time, OS.calculate_type, OS.receive_type, OS.create_user_id, OS.receive_user_id,           OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs" + sqlTimes;
+                    sql = "SELECT TOP " + condition.PageSize + " OS.id, OS.client_id, OS.encode, OS.status, OS.costs, OS.create_time, OS.remark, CS.balance FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs" + sqlTimes;
                     if (condition.CurrentPage > 1)
                     {
-                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status " + sqlTimes + " AND (CS.balance + CS.credit) < OS.costs ORDER BY OS.id DESC) AS O) ";
+                        sql += " AND OS.id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " OS.id FROM orders WHERE OS.is_delete = 0 AND OS.status = @status " + sqlTimes + " AND (CS.balance + CS.credit) < OS.costs ORDER BY OS.id DESC) AS O) ";
                     }
-                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE         OS.is_delete = 0 AND OS.company_id = @company_id AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs" + sqlTimes;
+                    sql += " ORDER BY OS.id DESC; SELECT COUNT(*) FROM orders AS OS INNER JOIN clients AS CS ON  OS.client_id = CS.id WHERE OS.is_delete = 0 AND OS.status = @status AND (CS.balance + CS.credit) < OS.costs" + sqlTimes;
                     break;
             }
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
@@ -1785,33 +1490,11 @@ namespace Backend.DAL
                     order.Id = dr.GetInt32(0);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(1));
                     order.Client = client;
-                    order.CompanyId = dr.GetInt32(2);
-                    order.CompanyName = dr.GetString(3);
-                    if (!dr.IsDBNull(4))
-                    {
-                        order.UserId = dr.GetInt32(4);
-                    }
-                    order.Encode = dr.GetString(5);
-                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(6));
-                    order.Costs = dr.GetDecimal(7);
-                    if (!dr.IsDBNull(8))
-                    {
-                        order.ReceiveDate = dr.GetDateTime(8);
-                    }
-                    order.Type = EnumConvertor.ConvertToOrderType(dr.GetByte(9));
-                    order.CreateTime = dr.GetDateTime(10);
-                    order.CalculateType = dr.GetInt32(11);
-                    order.ReceiveType = dr.GetString(12);
-                    if (!dr.IsDBNull(13))
-                    {
-                        User user = new UserDAL().GetUserById(dr.GetInt32(13));
-                        order.CreateUser = user;
-                    }
-                    if (!dr.IsDBNull(14))
-                    {
-                        order.ReceiveUserId = dr.GetInt32(14);
-                    }
-                    order.Remark = dr.GetString(15);
+                    order.Encode = dr.GetString(2);
+                    order.Status = EnumConvertor.ConvertToOrderStatus(dr.GetByte(3));
+                    order.Costs = dr.GetDecimal(4);                    
+                    order.CreateTime = dr.GetDateTime(5);                
+                    order.Remark = dr.GetString(6);
                     result.Results.Add(order);
                 }
                 dr.NextResult();
@@ -1823,7 +1506,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<SearchOrder> GetSearchOrderByParameters(PaginationQueryCondition condition, string carrierEncode, int clientId, string encode, string ydEncode, string barCode, DateTime startDate, DateTime endDate, byte status, int companyId)
+        public PaginationQueryResult<SearchOrder> GetSearchOrderByParameters(PaginationQueryCondition condition, string carrierEncode, int clientId, string encode, string ydEncode, string barCode, DateTime startDate, DateTime endDate, byte status)
         {
             PaginationQueryResult<SearchOrder> result = new PaginationQueryResult<SearchOrder>();
 
@@ -1835,8 +1518,7 @@ namespace Backend.DAL
                     SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, encode),
                     SqlUtilities.GenerateInputNVarcharParameter("@yd_encode", 50, ydEncode),
                     SqlUtilities.GenerateInputNVarcharParameter("@bar_code", 50, barCode),
-                    SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, status),
-                    SqlUtilities.GenerateInputIntParameter("@company_id", companyId)
+                    SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, status)
                 };
 
             string sqlParam = "";
@@ -1876,11 +1558,7 @@ namespace Backend.DAL
             if (status != 0)
             {
                 sqlParam += " AND O.status = @status";
-            }
-            if (companyId > 0)
-            {
-                sqlParam += " AND O.company_id = @company_id";
-            }
+            }          
             string sql = "SELECT TOP " + condition.PageSize + " O.id, O.create_time, O.encode, O.client_id, OD.carrier_encode, OD.to_country,       OD.to_username, OD.bar_code, OD.id, O.status FROM orders AS O inner JOIN order_details AS OD ON O.id = OD.order_id WHERE O.is_delete = 0 AND        OD.is_delete = 0 " + sqlParam;
             if (condition.CurrentPage > 1)
             {
@@ -1926,7 +1604,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<SearchOrder> GetReceiveOrderStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public List<SearchOrder> GetReceiveOrderStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode)
         {
             List<SearchOrder> result = new List<SearchOrder>();
 
@@ -1934,9 +1612,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId)
+                SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode)
             };
 
             string sqlParam = "";
@@ -1953,19 +1629,11 @@ namespace Backend.DAL
             {
                 sqlParam += " AND O.create_time <= @end_date";
             }       
-
-            if(companyId>0)
-            {
-                sqlParam += " AND O.company_id = @company_id";
-            }
             if (clientId >= 0)
             {
                 sqlParam += " AND O.client_id = @client_id";
             }
-            if (userId > 0)
-            {
-                sqlParam += " AND O.user_id = @user_id";
-            }
+            
             if(!string.IsNullOrEmpty(carrierEncode))
             {
                 sqlParam += " AND OD.carrier_encode = @carrier_encode";
@@ -1989,7 +1657,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<SearchOrderDetail> GetReceiveOrderDetailStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public List<SearchOrderDetail> GetReceiveOrderDetailStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode)
         {
             List<SearchOrderDetail> result = new List<SearchOrderDetail>();
 
@@ -1997,9 +1665,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId)
+                SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode)
             };
 
             string sqlParam = "";
@@ -2016,19 +1682,10 @@ namespace Backend.DAL
             {
                 sqlParam += " AND O.create_time <= @end_date";
             }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND O.company_id = @company_id";
-            }
             if (clientId >= 0)
             {
                 sqlParam += " AND O.client_id = @client_id";
-            }
-            if (userId > 0)
-            {
-                sqlParam += " AND O.user_id = @user_id";
-            }
+            }        
             if (!string.IsNullOrEmpty(carrierEncode))
             {
                 sqlParam += " AND OD.carrier_encode = @carrier_encode";
@@ -2064,7 +1721,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<SearchOrderDetail> GetEaduOrderDetailStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public List<SearchOrderDetail> GetEaduOrderDetailStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode)
         {
             List<SearchOrderDetail> result = new List<SearchOrderDetail>();
 
@@ -2072,9 +1729,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId)
+                SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode)
             };
 
             string sqlParam = "";
@@ -2091,19 +1746,11 @@ namespace Backend.DAL
             {
                 sqlParam += " AND O.create_time <= @end_date";
             }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND O.company_id = @company_id";
-            }
             if (clientId >= 0)
             {
                 sqlParam += " AND O.client_id = @client_id";
             }
-            if (userId > 0)
-            {
-                sqlParam += " AND O.user_id = @user_id";
-            }
+          
             if (!string.IsNullOrEmpty(carrierEncode))
             {
                 sqlParam += " AND OD.carrier_encode = @carrier_encode";
@@ -2164,7 +1811,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<SearchOrderDetail> GetFetchCostsStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public List<SearchOrderDetail> GetFetchCostsStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode, int userId)
         {
             List<SearchOrderDetail> result = new List<SearchOrderDetail>();
 
@@ -2172,7 +1819,6 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
                 SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode),
                 SqlUtilities.GenerateInputIntParameter("@user_id", userId)
             };
@@ -2190,11 +1836,6 @@ namespace Backend.DAL
             else if (startDate <= minTime && endDate > minTime)
             {
                 sqlParam += " AND O.create_time <= @end_date";
-            }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND O.company_id = @company_id";
             }
             if (clientId >= 0)
             {
@@ -2228,7 +1869,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<SearchOrderDetail> GetNotOnlineOrderDetail(DateTime startDate, int judgeDays, int companyId, int clientId, string carrierEncode)
+        public List<SearchOrderDetail> GetNotOnlineOrderDetail(DateTime startDate, int judgeDays, int clientId, string carrierEncode)
         {
             List<SearchOrderDetail> result = new List<SearchOrderDetail>();
 
@@ -2237,17 +1878,12 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@judge_time", judgeTime),                
                 SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
                 SqlUtilities.GenerateInputNVarcharParameter("@carrier_encode", 50, carrierEncode)
             };
 
             string sqlParam = "";
 
             sqlParam += " AND O.audit_time <= @judge_time";
-            if (companyId > 0)
-            {
-                sqlParam += " AND O.company_id = @company_id";
-            }
             if (clientId > 0)
             {
                 sqlParam += " AND O.client_id = @client_id";

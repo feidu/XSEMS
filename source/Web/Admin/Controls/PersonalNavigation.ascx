@@ -8,7 +8,7 @@
       <td colspan="2" class="line"></td>
     </tr>
     <tr>
-      <td colspan="2" class="info"><a href="/Admin/Personal/">我的信息</a> | <a href="/Admin/Personal/ChangePwd.aspx">修改密码</a></td>
+      <td colspan="2" class="info"><a href="../Personal/">我的信息</a> | <a href="../Personal/ChangePwd.aspx">修改密码</a></td>
     </tr>
     <tr>
       <td colspan="2" class="seperator"></td>

@@ -18,7 +18,7 @@ namespace Backend.BAL
 
         public static List<Recharge> GetRechargeStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId, int receiveUserId, string pmIds)
         {
-            return dal.GetRechargeStatistic(startDate, endDate, companyId, clientId, userId, receiveUserId, pmIds);
+            return dal.GetRechargeStatistic(startDate, endDate, clientId, pmIds);
         }
 
         public static PaginationQueryResult<Recharge> GetRechargeByClientId(PaginationQueryCondition condition, int clientId)

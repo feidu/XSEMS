@@ -45,7 +45,7 @@ public partial class Admin_Client_MailSend : System.Web.UI.Page
 
         Company company = CompanyOperation.GetCompanyById(user.CompanyId);
         
-        List<Client> result = ClientOperation.GetClientByCompanyId(user.CompanyId);
+        List<Client> result = ClientOperation.GetClientList();
         
 
         List<Client> sendFailed = EmailHelper.SendMailForAnnounce(company, result, title, content);

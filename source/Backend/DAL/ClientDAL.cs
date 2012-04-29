@@ -21,18 +21,13 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputNVarcharParameter("@phone", 50, client.Phone),
                 SqlUtilities.GenerateInputNVarcharParameter("@mobile", 50, client.Mobile),
                 SqlUtilities.GenerateInputNVarcharParameter("@email", 50, client.Email),
-                SqlUtilities.GenerateInputNVarcharParameter("@company_id", 50, client.CompanyId),
                 SqlUtilities.GenerateInputNVarcharParameter("@address", 200, client.Address),
-                SqlUtilities.GenerateInputNVarcharParameter("@province", 50, client.Province),
-                SqlUtilities.GenerateInputNVarcharParameter("@city", 50, client.City),
                 SqlUtilities.GenerateInputParameter("@credit", SqlDbType.Decimal, client.Credit),
                 SqlUtilities.GenerateInputParameter("@is_message", SqlDbType.Bit, client.IsMessage),
-                SqlUtilities.GenerateInputParameter("@is_fetch_goods", SqlDbType.Bit, client.IsFetchGoods),
-                SqlUtilities.GenerateInputDateTimeParameter("@create_date", client.CreateDate),
-                SqlUtilities.GenerateInputIntParameter("@user_id", client.UserId)
+                SqlUtilities.GenerateInputDateTimeParameter("@create_date", client.CreateDate)
             };
 
-            string sql = "INSERT INTO clients(username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city,  credit, is_message, is_fetch_goods, create_date, user_id) VALUES(@username, @password, @real_name, @id_card, @phone, @mobile, @email, @company_id,      @address, @province, @city, @credit, @is_message, @is_fetch_goods, @create_date, @user_id)";
+            string sql = "INSERT INTO clients(username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date) VALUES(@username, @password, @real_name, @id_card, @phone, @mobile, @email, @address, @credit, @is_message, @create_date)";
 
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
@@ -48,15 +43,10 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputNVarcharParameter("@phone", 50, client.Phone),
                 SqlUtilities.GenerateInputNVarcharParameter("@mobile", 50, client.Mobile),
                 SqlUtilities.GenerateInputNVarcharParameter("@email", 50, client.Email),
-                SqlUtilities.GenerateInputNVarcharParameter("@company_id", 50, client.CompanyId),
                 SqlUtilities.GenerateInputNVarcharParameter("@address", 200, client.Address),
-                SqlUtilities.GenerateInputNVarcharParameter("@province", 50, client.Province),
-                SqlUtilities.GenerateInputNVarcharParameter("@city", 50, client.City),
                 SqlUtilities.GenerateInputParameter("@credit", SqlDbType.Decimal, client.Credit),
                 SqlUtilities.GenerateInputParameter("@is_message", SqlDbType.Bit, client.IsMessage),
-                SqlUtilities.GenerateInputParameter("@is_fetch_goods", SqlDbType.Bit, client.IsFetchGoods),
-                SqlUtilities.GenerateInputParameter("@balance", SqlDbType.Decimal, client.Balance),
-                SqlUtilities.GenerateInputIntParameter("@user_id", client.UserId)
+                SqlUtilities.GenerateInputParameter("@balance", SqlDbType.Decimal, client.Balance)
             };
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
@@ -69,7 +59,7 @@ namespace Backend.DAL
 
         public void UpdateClientInfo(Client client)
         {
-            string sql = "UPDATE clients SET real_name = @real_name, id_card = @id_card, phone = @phone, mobile = @mobile, email = @email,           company_id = @company_id, address = @address, province = @province, city = @city, credit = @credit, is_message = @is_message, is_fetch_goods = @is_fetch_goods, user_id = @user_id WHERE id = @id ";
+            string sql = "UPDATE clients SET real_name = @real_name, id_card = @id_card, phone = @phone, mobile = @mobile, email = @email, address = @address, credit = @credit, is_message = @is_message WHERE id = @id ";
             UpdateClient(client, sql);
         }
 
@@ -100,7 +90,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@id", id)
             };
-            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE id = @id ";
+            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE id = @id ";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -114,19 +104,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                 }
             }
             return client;
@@ -138,7 +120,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputNVarcharParameter("@username", 50, username)
             };
-            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE username = @username AND is_delete = 0 ";
+            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message , create_date, balance FROM clients WHERE username = @username AND is_delete = 0 ";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -152,19 +134,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                 }
             }
             return client;
@@ -176,7 +150,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputNVarcharParameter("@real_name", 50, realName)
             };
-            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE real_name = @real_name ";
+            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE real_name = @real_name ";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -190,32 +164,23 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                 }
             }
             return client;
         }
 
-        public Client GetClientByRealNameAndCompanyId(string realName, int companyId)
+        public Client GetClientByRealNameAndCompanyId(string realName)
         {
             Client client = null;
             SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputNVarcharParameter("@real_name", 50, realName),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId)
+                SqlUtilities.GenerateInputNVarcharParameter("@real_name", 50, realName)
             };
-            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE real_name = @real_name AND company_id = @company_id";
+            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, address, province, city, credit, is_message, create_date, balance FROM clients WHERE real_name = @real_name";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -229,19 +194,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                 }
             }
             return client;
@@ -250,7 +207,7 @@ namespace Backend.DAL
         public List<Client> GetClient()
         {
             List<Client> result = new List<Client>();
-            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE is_delete = 0 ";
+            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0 ";
 
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, null))
             {
@@ -265,19 +222,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                     result.Add(client);
                 }
             }
@@ -287,7 +236,7 @@ namespace Backend.DAL
         public PaginationQueryResult<Client> GetClient(PaginationQueryCondition condition)
         {
             PaginationQueryResult<Client> result = new PaginationQueryResult<Client>();
-            string sql = "SELECT TOP " + condition.PageSize + " id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE is_delete = 0 ";
+            string sql = "SELECT TOP " + condition.PageSize + " id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0 ";
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id<(SELECT MIN(id) FROM(SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM clients WHERE is_delete = 0 ORDER BY id DESC) AS D)";
@@ -306,19 +255,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                     result.Results.Add(client);
                 }
                 dr.NextResult();
@@ -330,19 +271,16 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Client> GetClientByCompanyId(PaginationQueryCondition condition, int companyId)
+        public PaginationQueryResult<Client> GetClientByCompanyId(PaginationQueryCondition condition)
         {
-            SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id",companyId)
-            };
             PaginationQueryResult<Client> result = new PaginationQueryResult<Client>();
-            string sql = "SELECT TOP " + condition.PageSize + " id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE is_delete = 0 AND company_id = @company_id";
+            string sql = "SELECT TOP " + condition.PageSize + " id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance, user_id FROM clients WHERE is_delete = 0 AND company_id = @company_id";
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id<(SELECT MIN(id) FROM(SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM clients  WHERE is_delete = 0 AND company_id = @company_id ORDER BY id DESC) AS D)";
             }
-            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM clients WHERE is_delete = 0 AND company_id = @company_id";
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
+            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM clients WHERE is_delete = 0";
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, null))
             {
                 while (dr.Read())
                 {
@@ -355,19 +293,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                     result.Results.Add(client);
                 }
                 dr.NextResult();
@@ -379,24 +309,21 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Client> GetClientByParameters(PaginationQueryCondition condition, int companyId, string keyword)
+        public PaginationQueryResult<Client> GetClientByParameters(PaginationQueryCondition condition, string keyword)
         {
-            SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id",companyId),                
-            };
             string sqlParam = "";
             if (!string.IsNullOrEmpty(keyword))
             {
                 sqlParam = " AND username LIKE '%" + keyword + "%' OR real_name LIKE '%" + keyword + "%'";
             }
             PaginationQueryResult<Client> result = new PaginationQueryResult<Client>();
-            string sql = "SELECT TOP " + condition.PageSize + " id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE is_delete = 0 AND company_id = @company_id"+sqlParam;
+            string sql = "SELECT TOP " + condition.PageSize + " id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0 "+sqlParam;
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id<(SELECT MIN(id) FROM(SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM clients  WHERE is_delete = 0 AND company_id = @company_id "+sqlParam+" ORDER BY id DESC) AS D)";
+                sql += " AND id<(SELECT MIN(id) FROM(SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM clients  WHERE is_delete = 0 "+sqlParam+" ORDER BY id DESC) AS D)";
             }
-            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM clients WHERE is_delete = 0 AND company_id = @company_id" + sqlParam;
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
+            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM clients WHERE is_delete = 0" + sqlParam;
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, null))
             {
                 while (dr.Read())
                 {
@@ -409,19 +336,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                     result.Results.Add(client);
                 }
                 dr.NextResult();
@@ -433,15 +352,12 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<Client> GetClientByCompanyId(int companyId)
+        public List<Client> GetClientList()
         {
-            SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id",companyId)
-            };
             List<Client> result = new List<Client>();
-            string sql = "SELECT  id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE is_delete = 0 AND company_id = @company_id";
+            string sql = "SELECT  id, username, password, real_name, id_card, phone, mobile, email, address, province, city, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0";
            
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, null))
             {
                 while (dr.Read())
                 {
@@ -454,39 +370,21 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                     result.Add(client);
                 }                
             }
             return result;
         }
       
-        public List<Client> GetClientByParameters(int companyId, string searchKey)
+        public List<Client> GetClientByParameters(string searchKey)
         {
-            string sqlParam = "";
-            if (companyId > 0)
-            {
-                sqlParam += " AND company_id = @company_id";
-            }
-
-            SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id",companyId)
-            };
-
-            string sql = "SELECT  id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance FROM clients WHERE is_delete = 0 "+sqlParam;
-            DataTable dtClient = SqlHelper.ExecuteDataTable(CommandType.Text, sql, param);
+            string sql = "SELECT  id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0 ";
+            DataTable dtClient = SqlHelper.ExecuteDataTable(CommandType.Text, sql, null);
 
             DataTable dtSearchClient = new DataTable();
             dtSearchClient.Columns.Add("real_name", typeof(string));
@@ -516,15 +414,13 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<Client> GetClientStatistic(DateTime startDate, DateTime endDate, int companyId, int userId)
+        public List<Client> GetClientStatistic(DateTime startDate, DateTime endDate)
         {
             List<Client> result = new List<Client>();
 
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
-                SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId)
+                SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate)
             };
 
             string sqlParam = "";
@@ -541,18 +437,8 @@ namespace Backend.DAL
             {
                 sqlParam += " AND create_date <= @end_date";
             }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND company_id = @company_id";
-            }
-
-            if (userId > 0)
-            {
-                sqlParam += " AND user_id = @user_id";
-            }
-
-            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, company_id, address, province, city, credit, is_message, is_fetch_goods, create_date, balance, user_id FROM clients WHERE is_delete = 0 " + sqlParam;
+            
+            string sql = "SELECT id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0 " + sqlParam;
 
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
@@ -567,19 +453,11 @@ namespace Backend.DAL
                     client.Phone = dr.GetString(5);
                     client.Mobile = dr.GetString(6);
                     client.Email = dr.GetString(7);
-                    client.CompanyId = dr.GetInt32(8);
-                    client.Address = dr.GetString(9);
-                    client.Province = dr.GetString(10);
-                    client.City = dr.GetString(11);
-                    client.Credit = dr.GetDecimal(12);
-                    client.IsMessage = dr.GetBoolean(13);
-                    client.IsFetchGoods = dr.GetBoolean(14);
-                    client.CreateDate = dr.GetDateTime(15);
-                    client.Balance = dr.GetDecimal(16);
-                    if (!dr.IsDBNull(17))
-                    {
-                        client.UserId = dr.GetInt32(17);
-                    }
+                    client.Address = dr.GetString(8);
+                    client.Credit = dr.GetDecimal(9);
+                    client.IsMessage = dr.GetBoolean(10);
+                    client.CreateDate = dr.GetDateTime(11);
+                    client.Balance = dr.GetDecimal(12);
                     result.Add(client);
                 }
             }

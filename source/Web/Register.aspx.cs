@@ -27,14 +27,6 @@ public partial class Register : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         seo.Title = "客户注册";
-
-        if (!IsPostBack)
-        {
-            ddlCompany.DataSource = CompanyOperation.GetCompany();
-            ddlCompany.DataTextField = "Name";
-            ddlCompany.DataValueField = "Id";
-            ddlCompany.DataBind();
-        }
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)
@@ -47,12 +39,9 @@ public partial class Register : System.Web.UI.Page
         string password = Request.Form[txtPassword.ID];
         string phone = Request.Form[txtPhone.ID].Trim();
         string realName = Request.Form[txtRealName.ID].Trim();
-        string rePassword = Request.Form[txtRePassword.ID];
-        string province = Request.Form["slProvince"].Trim();
-        string city=Request.Form["slCity"].Trim();
+        string rePassword = Request.Form[txtRePassword.ID];       
 
         bool isMessage = chkIsMessage.Checked;
-        bool isFetchGoods = chkIsFetchGoods.Checked;
 
         if (string.IsNullOrEmpty(username) || Validator.IsMatchLessThanChineseCharacter(username, CONST_USERNAEM_LENGTH))
         {
@@ -99,33 +88,22 @@ public partial class Register : System.Web.UI.Page
             lblMsg.Text = "电子邮件不能为空，且不能超过" + CONST_EMAIL_LENGTH + "个字符！";
             return;
         }   
-        if (province == "0" || city == "0")
-        {
-            lblMsg.Text = "请选择所在地区！";
-            return;
-        }
         if (string.IsNullOrEmpty(address) || Validator.IsMatchLessThanChineseCharacter(address, CONST_ADDRESS_LENGTH))
         {
             lblMsg.Text = "地址不能为空，且不能超过" + CONST_ADDRESS_LENGTH + "个字符！";
             return;
         }
                 
-        Client client = new Client();
-        client.UserId = 0;
+        Client client = new Client();   
         client.Username = username;
         client.Address = address;
-        client.CompanyId = int.Parse(ddlCompany.SelectedItem.Value);
         client.Email = email;
         client.IdCard = idCard;
         client.Mobile = mobile;
         client.Password = password;
         client.Phone = phone;
         client.RealName = realName;
-        client.IsFetchGoods = isFetchGoods;
         client.IsMessage = isMessage;
-        client.Province = province;
-        client.City = city;
-        client.Discount = 100;
         client.Credit = 0;
         client.CreateDate = DateTime.Now;
 

@@ -16,7 +16,7 @@
     return;  
     string sResult = "";
     
-    List<Client> result = ClientOperation.GetClientByCompanyId(compId);
+    List<Client> result = ClientOperation.GetClientList();
     DataTable dt = new DataTable();
 
     dt.Columns.Add("uname", typeof(string));

@@ -18,7 +18,7 @@ namespace Backend.Utilities
         protected override void Render(HtmlTextWriter writer)
         {
             writer.Write("<script type=\"text/javascript\" src=\"");
-            writer.Write("/Admin/Js/VerifyCode.js");
+            writer.Write("Js/VerifyCode.js");
             writer.Write("\"></script>");
             writer.Write("<div class=\"");
             writer.Write(_CssClass);

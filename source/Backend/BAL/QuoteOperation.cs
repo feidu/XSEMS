@@ -61,14 +61,14 @@ namespace Backend.BAL
             }
         }
 
-        public static PaginationQueryResult<Quote> GetQuoteByCompanyId(PaginationQueryCondition condition, int compId)
+        public static PaginationQueryResult<Quote> GetQuote(PaginationQueryCondition condition)
         {
-            return dal.GetQuoteByCompanyId(condition, compId);
+            return dal.GetQuote(condition);
         }
 
-        public static PaginationQueryResult<Quote> GetQuoteByParameters(PaginationQueryCondition condition, int compId, DateTime startDate, DateTime endDate, string strStatus, string keyword)
+        public static PaginationQueryResult<Quote> GetQuoteByParameters(PaginationQueryCondition condition, DateTime startDate, DateTime endDate, string strStatus, string keyword)
         {
-            return dal.GetQuoteByParameters(condition, compId, startDate, endDate, strStatus, keyword);
+            return dal.GetQuoteByParameters(condition, startDate, endDate, strStatus, keyword);
         }
 
         public static List<QuoteDetail> GetQuoteDetailByQuoteId(int id)

@@ -30,7 +30,7 @@ public partial class Admin_Order_AuditOrderList : System.Web.UI.Page
     private void RpOrderDataBind()
     {
         
-        PaginationQueryResult<Order> result = OrderOperation.GetAuditOrderByCompanyIdAndConsignType(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, int.Parse(ddlConsinType.SelectedItem.Value));
+        PaginationQueryResult<Order> result = OrderOperation.GetAuditOrderByConsignType(PaginationHelper.GetCurrentPaginationQueryCondition(Request), int.Parse(ddlConsinType.SelectedItem.Value));
         rpOrder.DataSource = result.Results;
         rpOrder.DataBind();
 
@@ -49,7 +49,7 @@ public partial class Admin_Order_AuditOrderList : System.Web.UI.Page
         string encode = Request.Form[txtEncode.ID].Trim();
         if (!string.IsNullOrEmpty(encode))
         {
-            PaginationQueryResult<Order> result = OrderOperation.GetAuditOrderByCompIdConsignTypeAndEncode(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, int.Parse(ddlConsinType.SelectedItem.Value), encode);
+            PaginationQueryResult<Order> result = OrderOperation.GetAuditOrderByConsignTypeAndEncode(PaginationHelper.GetCurrentPaginationQueryCondition(Request), int.Parse(ddlConsinType.SelectedItem.Value), encode);
             rpOrder.DataSource = result.Results;
             rpOrder.DataBind();
         }
@@ -73,7 +73,7 @@ public partial class Admin_Order_AuditOrderList : System.Web.UI.Page
             {
                 endDate = new DateTime(1999, 1, 1);
             }
-            PaginationQueryResult<Order> result = OrderOperation.GetAuditOrderByCompanyIdConsignTypeAndDate(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, int.Parse(ddlConsinType.SelectedItem.Value), startDate, endDate);
+            PaginationQueryResult<Order> result = OrderOperation.GetAuditOrderByConsignTypeAndDate(PaginationHelper.GetCurrentPaginationQueryCondition(Request), int.Parse(ddlConsinType.SelectedItem.Value), startDate, endDate);
             rpOrder.DataSource = result.Results;
             rpOrder.DataBind();
 

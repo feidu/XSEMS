@@ -38,7 +38,7 @@ public partial class Admin_Default : System.Web.UI.Page
                 RuleAuthorizationManager.Authorize(Context, cookie);
                 if (StringHelper.IsEmpty(url))
                 {
-                    Response.Redirect("/Admin/Main");
+                    Response.Redirect("Main");
                 }
                 else
                 {

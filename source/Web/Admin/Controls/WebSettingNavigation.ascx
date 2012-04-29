@@ -8,7 +8,7 @@
       <td colspan="2" class="line"></td>
     </tr>
     <tr>
-      <td colspan="2" class="info"><a href="/Admin/WebSetting/">网站配置</a> | <a href="/Admin/News/">信息分类</a> | <a href="/Admin/News/NewsList.aspx">信息列表</a> | <a href="/Admin/News/Create.aspx">添加信息</a> | <a href="/Admin/WebSetting/SwitchImage.aspx">广告图片</a></td>
+      <td colspan="2" class="info"><a href="../WebSetting/">网站配置</a> | <a href="../News/">信息分类</a> | <a href="../News/NewsList.aspx">信息列表</a> | <a href="../News/Create.aspx">添加信息</a> | <a href="../WebSetting/SwitchImage.aspx">广告图片</a></td>
     </tr>
     <tr>
       <td colspan="2" class="seperator"></td>

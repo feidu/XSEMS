@@ -33,7 +33,6 @@
             <th align="center" class="header">编号</th>
             <th align="center" class="header">用户名</th>
             <th align="center" class="header">真实姓名</th>
-            <th align="center" class="header">地区</th>
             <th align="center" class="header">手机</th>
             <th align="center" class="header">邮箱</th>
             <th align="center" class="header">余额</th>
@@ -47,7 +46,6 @@
                 <td align="center"><asp:Label ID="lblId" runat="server"></asp:Label></td>
                 <td align="left"><%# Eval("Username") %></td>
                 <td align="left"><%# Eval("RealName") %></td>
-                <td align="left"><%# Eval("Province").ToString()+" "+Eval("City").ToString() %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
                 <td align="left"><%# Eval("Balance") %> 元</td>
@@ -61,7 +59,6 @@
                 <td align="center"><asp:Label ID="lblId" runat="server"></asp:Label></td>
                 <td align="left"><%# Eval("Username") %></td>
                 <td align="left"><%# Eval("RealName") %></td>
-                <td align="left"><%# Eval("Province").ToString()+" "+Eval("City").ToString() %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
                 <td align="left"><%# Eval("Balance") %> 元</td>

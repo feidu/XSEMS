@@ -42,7 +42,7 @@ public partial class Admin_CompanySetting_ClientList : System.Web.UI.Page
 
         AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
         User user = UserOperation.GetUserByUsername(cookie.Username);
-        PaginationQueryResult<Client> result = ClientOperation.GetClientByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, keyword);
+        PaginationQueryResult<Client> result = ClientOperation.GetClientByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), keyword);
         rpClient.ItemDataBound += new RepeaterItemEventHandler(rpClient_ItemDataBound);
         rpClient.DataSource = result.Results;
         rpClient.DataBind();

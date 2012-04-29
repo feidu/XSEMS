@@ -98,9 +98,9 @@ public partial class Admin_CompanySetting_CreateUser : System.Web.UI.Page
             lblMsg.Text = "真实姓名不能为空，且不能超过" + CONST_REAL_NAME_LENGTH + "个字符！";
             return;
         }
-        if (string.IsNullOrEmpty(idCard) || Validator.IsMatchLessThanChineseCharacter(idCard, CONST_IDCARD_LENGTH))
+        if (Validator.IsMatchLessThanChineseCharacter(idCard, CONST_IDCARD_LENGTH))
         {
-            lblMsg.Text = "身份证号不能为空，且不能超过" + CONST_IDCARD_LENGTH + "个字符！";
+            lblMsg.Text = "身份证号不能超过" + CONST_IDCARD_LENGTH + "个字符！";
             return;
         }
         if (!string.IsNullOrEmpty(phone) && Validator.IsMatchLessThanChineseCharacter(phone, CONST_PHONE_LENGTH))
@@ -108,38 +108,38 @@ public partial class Admin_CompanySetting_CreateUser : System.Web.UI.Page
             lblMsg.Text = "联系电话不能超过" + CONST_PHONE_LENGTH + "个字符！";
             return;
         }
-        if (string.IsNullOrEmpty(mobile) || Validator.IsMatchLessThanChineseCharacter(mobile, CONST_MOBILE_LENGTH))
+        if (Validator.IsMatchLessThanChineseCharacter(mobile, CONST_MOBILE_LENGTH))
         {
-            lblMsg.Text = "手机号码不能为空，且不能超过" + CONST_MOBILE_LENGTH + "个字符！";
+            lblMsg.Text = "手机号码不能超过" + CONST_MOBILE_LENGTH + "个字符！";
             return;
         }
-        if (string.IsNullOrEmpty(email) || Validator.IsMatchLessThanChineseCharacter(email, CONST_EMAIL_LENGTH))
+        if (Validator.IsMatchLessThanChineseCharacter(email, CONST_EMAIL_LENGTH))
         {
-            lblMsg.Text = "电子邮件不能为空，且不能超过" + CONST_EMAIL_LENGTH + "个字符！";
+            lblMsg.Text = "电子邮件不能超过" + CONST_EMAIL_LENGTH + "个字符！";
             return;
         }
 
-        if (string.IsNullOrEmpty(address) || Validator.IsMatchLessThanChineseCharacter(address, CONST_ADDRESS_LENGTH))
+        if (Validator.IsMatchLessThanChineseCharacter(address, CONST_ADDRESS_LENGTH))
         {
-            lblMsg.Text = "地址不能为空，且不能超过" + CONST_ADDRESS_LENGTH + "个字符！";
+            lblMsg.Text = "地址不能超过" + CONST_ADDRESS_LENGTH + "个字符！";
             return;
         }
         DateTime birthday = CONST_MIN_DATE;
-        if (string.IsNullOrEmpty(strBirthday) || !DateTime.TryParse(strBirthday, out birthday))
+        if (!string.IsNullOrEmpty(strBirthday) && !DateTime.TryParse(strBirthday, out birthday))
         {
-            lblMsg.Text = "出生日期不能为空，且只能为时间格式如：2008-08-08 ！";
+            lblMsg.Text = "出生日期只能为时间格式如：2008-08-08 ！";
             return;
         }
         DateTime joinDate = CONST_MIN_DATE;
-        if (string.IsNullOrEmpty(strJoinDate) || !DateTime.TryParse(strJoinDate, out joinDate))
+        if (!string.IsNullOrEmpty(strJoinDate) && !DateTime.TryParse(strJoinDate, out joinDate))
         {
-            lblMsg.Text = "入职日期不能为空，且只能为时间格式如：2008-08-08 ！";
+            lblMsg.Text = "入职日期只能为时间格式如：2008-08-08 ！";
             return;
         }
         DateTime contractDate = CONST_MIN_DATE;
-        if (string.IsNullOrEmpty(strContractDate) || !DateTime.TryParse(strContractDate, out contractDate))
+        if (!string.IsNullOrEmpty(strContractDate) && !DateTime.TryParse(strContractDate, out contractDate))
         {
-            lblMsg.Text = "合同有效期不能为空，且只能为时间格式如：2008-08-08 ！";
+            lblMsg.Text = "合同有效期只能为时间格式如：2008-08-08 ！";
             return;
         }
 

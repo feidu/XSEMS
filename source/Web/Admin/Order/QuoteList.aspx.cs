@@ -38,7 +38,7 @@ public partial class Admin_Order_QuoteList : System.Web.UI.Page
 
     private void RpQuoteDataBind()
     {
-        PaginationQueryResult<Quote> result = QuoteOperation.GetQuoteByCompanyId(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId);
+        PaginationQueryResult<Quote> result = QuoteOperation.GetQuote(PaginationHelper.GetCurrentPaginationQueryCondition(Request));
         rpQuote.DataSource = result.Results;
         rpQuote.DataBind();
     }
@@ -62,7 +62,7 @@ public partial class Admin_Order_QuoteList : System.Web.UI.Page
         {
             endDate = new DateTime(1999, 1, 1);
         }
-        PaginationQueryResult<Quote> result = QuoteOperation.GetQuoteByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, startDate, endDate, "0","");
+        PaginationQueryResult<Quote> result = QuoteOperation.GetQuoteByParameters(PaginationHelper.GetCurrentPaginationQueryCondition(Request), startDate, endDate, "0","");
         rpQuote.DataSource = result.Results;
         rpQuote.DataBind();
 
