@@ -220,7 +220,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, encode, client_id, company_id, company_name, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE is_delete = 0 " + sqlParam;
+            string sql = "SELECT TOP " + condition.PageSize + " id, encode, client_id, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE is_delete = 0 " + sqlParam;
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id< (SELECT MIN(id) FROM ( SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM quote WHERE is_delete = 0 " + sqlParam + " ORDER BY ID DESC)AS Q) ";
