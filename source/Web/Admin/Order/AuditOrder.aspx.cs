@@ -50,7 +50,7 @@ public partial class Admin_Order_AuditOrder : System.Web.UI.Page
         //lblReceiveType.Text = order.ReceiveType;
         //lblReceiveUser.Text = UserOperation.GetUserById(order.ReceiveUserId).RealName;
         //lblCalculateType.Text = CalculateTypeOperation.GetCalculateTypeById(order.CalculateType).Name;
-        lblReceiveDate.Text = order.ReceiveDate.ToShortDateString();
+        //lblReceiveDate.Text = order.ReceiveDate.ToShortDateString();
         //lblType.Text = EnumConvertor.OrderTypeConvertToString((byte)order.Type);
         //lblUserName.Text = UserOperation.GetUserById(order.UserId).RealName;
 
@@ -98,7 +98,7 @@ public partial class Admin_Order_AuditOrder : System.Web.UI.Page
             sr.ClientId = order.Client.Id;
             sr.CompanyId = user.CompanyId;
             sr.CreateTime = DateTime.Now;
-            sr.ReceiveTime = order.ReceiveDate;
+            sr.ReceiveTime = order.CreateTime;
             sr.Order = order;
             sr.Status = true;
             sr.Encode = StringHelper.GetEncodeNumber("SK");

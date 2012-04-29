@@ -175,16 +175,14 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<ShouldReceive> GetShouldReceiveStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId)
+        public List<ShouldReceive> GetShouldReceiveStatistic(DateTime startDate, DateTime endDate, int clientId)
         {
             List<ShouldReceive> result = new List<ShouldReceive>();
 
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
-                SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId)
+                SqlUtilities.GenerateInputIntParameter("@client_id", clientId)
             };
 
             string sqlParam = "";
@@ -201,20 +199,11 @@ namespace Backend.DAL
             {
                 sqlParam += " AND create_time <= @end_date";
             }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND company_id = @company_id";
-            }
             if (clientId >= 0)
             {
                 sqlParam += " AND client_id = @client_id";
             }
-            if (userId > 0)
-            {
-                sqlParam += " AND user_id = @user_id";
-            }
-
+          
             string sql = "SELECT client_id, SUM(money) AS money FROM should_receive WHERE is_delete = 0 AND status = 0 " + sqlParam + " GROUP BY client_id";
 
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
@@ -231,17 +220,14 @@ namespace Backend.DAL
             return result;
         }
 
-        public List<Recharge> GetRechargeStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId, int receiveUserId, string pmIds)
+        public List<Recharge> GetRechargeStatistic(DateTime startDate, DateTime endDate, int clientId, string pmIds)
         {
             List<Recharge> result = new List<Recharge>();
 
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
-                SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId),
-                SqlUtilities.GenerateInputIntParameter("@receive_user_id", receiveUserId),
+                SqlUtilities.GenerateInputIntParameter("@client_id", clientId)
             };
 
             string sqlParam = "";
@@ -258,29 +244,16 @@ namespace Backend.DAL
             {
                 sqlParam += " AND create_time <= @end_date";
             }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND company_id = @company_id";
-            }
             if (clientId >= 0)
             {
                 sqlParam += " AND client_id = @client_id";
-            }
-            if (userId > 0)
-            {
-                sqlParam += " AND user_id = @user_id";
-            }
-            if (receiveUserId > 0)
-            {
-                sqlParam += " AND user_id = @receive_user_id";
-            }
+            }           
             if (!string.IsNullOrEmpty(pmIds))
             {
                 sqlParam += " AND payment_method_id IN(" + pmIds + ")";
             }
 
-            string sql = "SELECT id, client_id, company_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0" + sqlParam; 
+            string sql = "SELECT id, client_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0" + sqlParam; 
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -289,42 +262,38 @@ namespace Backend.DAL
                     recharge.Id = dr.GetInt32(0);
                     recharge.ClientId = dr.GetInt32(1);
                     Client client = new ClientDAL().GetClientById(recharge.ClientId);
-                    recharge.ClientName = client.RealName;
-                    recharge.CompanyId = dr.GetInt32(2);
-                    recharge.Encode = dr.GetString(3);
-                    recharge.Money = dr.GetDecimal(4);
-                    recharge.Account = dr.GetString(5);
-                    recharge.ReceiveTime = dr.GetDateTime(6);
-                    recharge.CreateTime = dr.GetDateTime(7);
-                    recharge.UserId = dr.GetInt32(8);
+                    recharge.ClientName = client.RealName;                 
+                    recharge.Encode = dr.GetString(2);
+                    recharge.Money = dr.GetDecimal(3);
+                    recharge.Account = dr.GetString(4);
+                    recharge.ReceiveTime = dr.GetDateTime(5);
+                    recharge.CreateTime = dr.GetDateTime(6);
+                    recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
                     recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(9);
+                    recharge.PaymentMethodId = dr.GetInt32(8);
                     PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
                     recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(10));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(11));
-                    recharge.Remark = dr.GetString(12);
-                    recharge.Paid = dr.GetDecimal(13);
-                    recharge.ExchangeRate = dr.GetDecimal(14);
-                    recharge.Invoice = dr.GetString(15);
+                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(9));
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(10));
+                    recharge.Remark = dr.GetString(11);
+                    recharge.Paid = dr.GetDecimal(12);
+                    recharge.ExchangeRate = dr.GetDecimal(13);
+                    recharge.Invoice = dr.GetString(14);
                     result.Add(recharge);
                 }
             }
             return result;
         }
 
-        public List<ClientRecharge> GetRechargeDetailStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId, int receiveUserId, string pmIds)
+        public List<ClientRecharge> GetRechargeDetailStatistic(DateTime startDate, DateTime endDate, int clientId, string pmIds)
         {
             List<ClientRecharge> result = new List<ClientRecharge>();
 
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
-                SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId),
-                SqlUtilities.GenerateInputIntParameter("@receive_user_id", receiveUserId),
+                SqlUtilities.GenerateInputIntParameter("@client_id", clientId)
             };
 
             string sqlParam = "";
@@ -341,23 +310,10 @@ namespace Backend.DAL
             {
                 sqlParam += " AND create_time <= @end_date";
             }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND company_id = @company_id";
-            }
             if (clientId >= 0)
             {
                 sqlParam += " AND client_id = @client_id";
-            }
-            if (userId > 0)
-            {
-                sqlParam += " AND user_id = @user_id";
-            }
-            if (receiveUserId > 0)
-            {
-                sqlParam += " AND user_id = @receive_user_id";
-            }
+            }         
             if (!string.IsNullOrEmpty(pmIds))
             {
                 sqlParam += " AND payment_method_id IN(" + pmIds + ")";
@@ -371,7 +327,7 @@ namespace Backend.DAL
                     ClientRecharge cr = new ClientRecharge();
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(0));
                     cr.Client = client;
-                    List<Recharge> rechargeResult = new RechargeDAL().GetRechargeStatistic(startDate, endDate, companyId, client.Id, userId, receiveUserId, pmIds);
+                    List<Recharge> rechargeResult = new RechargeDAL().GetRechargeStatistic(startDate, endDate, client.Id, pmIds);
                     cr.RechargeList = rechargeResult;
                     result.Add(cr);
                 }

@@ -5,8 +5,8 @@
 <head id="Head1" runat="server">
 <title></title>
 <link href="../Css/Style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/ClientList.js"></script>
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/ClientList.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/Calendar/WdatePicker.js"></script>
 <style type="text/css" >  
     <! --   
 
@@ -56,7 +56,7 @@
 <script language="javascript" type="text/javascript">
 function openClientWindow()
     {
-        window.open("../../Config/ClientList.aspx?id="+document.getElementById('hdCompanyId').value+"","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
+        window.open("../../Config/ClientList.aspx","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
     }  
 
 </script>
@@ -85,7 +85,7 @@ function openClientWindow()
                     <tr>
                     <td align="left" width="20%"><input id="txtClientName" type="text" style="width:96%;color:#555555;" runat="server" readonly="readonly" /></td>
                     <td align="left" width="80%"><input type="image" src="../Images/btn_bg1.gif" onclick="openClientWindow()" />
-                    <input id="hdCompanyId" name="hdCompanyId" type="hidden" value="<%=companyId %>" /></td></tr></table>
+                    </td></tr></table>
                   </td>
                 </tr>              
                 <tr>

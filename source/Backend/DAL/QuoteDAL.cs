@@ -15,16 +15,14 @@ namespace Backend.DAL
         {
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, quote.Encode),
-                SqlUtilities.GenerateInputIntParameter("@client_id", quote.Client.Id),
-                SqlUtilities.GenerateInputIntParameter("@company_id", quote.CompanyId),
-                SqlUtilities.GenerateInputNVarcharParameter("@company_name", 50, quote.CompanyName),                
+                SqlUtilities.GenerateInputIntParameter("@client_id", quote.Client.Id),               
                 SqlUtilities.GenerateInputParameter("@status", SqlDbType.Bit, quote.Status),
                 SqlUtilities.GenerateInputDateTimeParameter("@quote_time", quote.QuoteTime),
                 SqlUtilities.GenerateInputIntParameter("@user_id", quote.User.Id),
                 SqlUtilities.GenerateInputDateTimeParameter("@create_time", quote.CreateTime),
                 SqlUtilities.GenerateInputNVarcharParameter("@remark", 500, quote.Remark)
             };
-            string sql = "INSERT INTO quote(encode, client_id, company_id, company_name, status, quote_time, user_id, create_time, remark) VALUES(      @encode, @client_id, @company_id, @company_name, @status, @quote_time, @user_id, @create_time, @remark)";
+            string sql = "INSERT INTO quote(encode, client_id, status, quote_time, user_id, create_time, remark) VALUES(@encode, @client_id, @status, @quote_time, @user_id, @create_time, @remark)";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 
@@ -76,7 +74,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@id", id)
             };
-            string sql = "SELECT id, encode, client_id, company_id, company_name, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE id = @id";
+            string sql = "SELECT id, encode, client_id, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE id = @id";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -85,22 +83,20 @@ namespace Backend.DAL
                     quote.Id = dr.GetInt32(0);
                     quote.Encode = dr.GetString(1);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(2));
-                    quote.Client = client;
-                    quote.CompanyId = dr.GetInt32(3);
-                    quote.CompanyName = dr.GetString(4);
-                    quote.Status = dr.GetBoolean(5);
-                    quote.QuoteTime = dr.GetDateTime(6);
-                    User user = new UserDAL().GetUserById(dr.GetInt32(7));
+                    quote.Client = client;                    
+                    quote.Status = dr.GetBoolean(3);
+                    quote.QuoteTime = dr.GetDateTime(4);
+                    User user = new UserDAL().GetUserById(dr.GetInt32(5));
                     quote.User = user;
-                    quote.CreateTime = dr.GetDateTime(8);
-                    quote.Remark = dr.GetString(9);
-                    if (!dr.IsDBNull(10))
+                    quote.CreateTime = dr.GetDateTime(6);
+                    quote.Remark = dr.GetString(7);
+                    if (!dr.IsDBNull(8))
                     {
-                        quote.AuditUserId = dr.GetInt32(10);
+                        quote.AuditUserId = dr.GetInt32(8);
                     }
-                    if (!dr.IsDBNull(11))
+                    if (!dr.IsDBNull(9))
                     {
-                        quote.AuditTime = dr.GetDateTime(11);
+                        quote.AuditTime = dr.GetDateTime(9);
                     }
                 }
             }
@@ -113,7 +109,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputNVarcharParameter("@encode", 50, encode)
             };
-            string sql = "SELECT id, encode, client_id, company_id, company_name, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE encode = @encode";
+            string sql = "SELECT id, encode, client_id, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE encode = @encode";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -122,41 +118,37 @@ namespace Backend.DAL
                     quote.Id = dr.GetInt32(0);
                     quote.Encode = dr.GetString(1);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(2));
-                    quote.Client = client;
-                    quote.CompanyId = dr.GetInt32(3);
-                    quote.CompanyName = dr.GetString(4);
-                    quote.Status = dr.GetBoolean(5);
-                    quote.QuoteTime = dr.GetDateTime(6);
-                    User user = new UserDAL().GetUserById(dr.GetInt32(7));
+                    quote.Client = client;                    
+                    quote.Status = dr.GetBoolean(3);
+                    quote.QuoteTime = dr.GetDateTime(4);
+                    User user = new UserDAL().GetUserById(dr.GetInt32(5));
                     quote.User = user;
-                    quote.CreateTime = dr.GetDateTime(8);
-                    quote.Remark = dr.GetString(9);
-                    if (!dr.IsDBNull(10))
+                    quote.CreateTime = dr.GetDateTime(6);
+                    quote.Remark = dr.GetString(7);
+                    if (!dr.IsDBNull(8))
                     {
-                        quote.AuditUserId = dr.GetInt32(10);
+                        quote.AuditUserId = dr.GetInt32(8);
                     }
-                    if (!dr.IsDBNull(11))
+                    if (!dr.IsDBNull(9))
                     {
-                        quote.AuditTime = dr.GetDateTime(11);
+                        quote.AuditTime = dr.GetDateTime(9);
                     }
                 }
             }
             return quote;
         }
 
-        public PaginationQueryResult<Quote> GetQuoteByCompanyId(PaginationQueryCondition condition, int compId)
+        public PaginationQueryResult<Quote> GetQuote(PaginationQueryCondition condition)
         {
             PaginationQueryResult<Quote> result = new PaginationQueryResult<Quote>();
-            SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId)
-            };
-            string sql = "SELECT TOP " + condition.PageSize + " id, encode, client_id, company_id, company_name, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE company_id = @company_id AND is_delete = 0 ";
+            
+            string sql = "SELECT TOP " + condition.PageSize + " id, encode, client_id, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE is_delete = 0 ";
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id< (SELECT MIN(id) FROM ( SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM quote WHERE  company_id = @company_id AND is_delete = 0 ORDER BY ID DESC)AS Q) ";
+                sql += " AND id< (SELECT MIN(id) FROM ( SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM quote WHERE is_delete = 0 ORDER BY ID DESC)AS Q) ";
             }
-            sql += " ORDER BY ID DESC; SELECT COUNT(*) FROM quote WHERE company_id = @company_id AND is_delete = 0 ";
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
+            sql += " ORDER BY ID DESC; SELECT COUNT(*) FROM quote WHERE is_delete = 0 ";
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, null))
             {
                 while (dr.Read())
                 {
@@ -164,22 +156,20 @@ namespace Backend.DAL
                     quote.Id = dr.GetInt32(0);
                     quote.Encode = dr.GetString(1);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(2));
-                    quote.Client = client;
-                    quote.CompanyId = dr.GetInt32(3);
-                    quote.CompanyName = dr.GetString(4);
-                    quote.Status = dr.GetBoolean(5);
-                    quote.QuoteTime = dr.GetDateTime(6);
-                    User user = new UserDAL().GetUserById(dr.GetInt32(7));
+                    quote.Client = client;                  
+                    quote.Status = dr.GetBoolean(3);
+                    quote.QuoteTime = dr.GetDateTime(4);
+                    User user = new UserDAL().GetUserById(dr.GetInt32(5));
                     quote.User = user;
-                    quote.CreateTime = dr.GetDateTime(8);
-                    quote.Remark = dr.GetString(9);
-                    if (!dr.IsDBNull(10))
+                    quote.CreateTime = dr.GetDateTime(6);
+                    quote.Remark = dr.GetString(7);
+                    if (!dr.IsDBNull(8))
                     {
-                        quote.AuditUserId = dr.GetInt32(10);
+                        quote.AuditUserId = dr.GetInt32(8);
                     }
-                    if (!dr.IsDBNull(11))
+                    if (!dr.IsDBNull(9))
                     {
-                        quote.AuditTime = dr.GetDateTime(11);
+                        quote.AuditTime = dr.GetDateTime(9);
                     }
                     result.Results.Add(quote);
                 }
@@ -192,7 +182,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Quote> GetQuoteByParameters(PaginationQueryCondition condition, int compId, DateTime startDate, DateTime endDate, string strStatus, string keyword)
+        public PaginationQueryResult<Quote> GetQuoteByParameters(PaginationQueryCondition condition, DateTime startDate, DateTime endDate, string strStatus, string keyword)
         {
             DateTime minTime = new DateTime(1999, 1, 1);
             string sqlParam = "";
@@ -227,16 +217,15 @@ namespace Backend.DAL
             }
             PaginationQueryResult<Quote> result = new PaginationQueryResult<Quote>();
             SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate)
             };
-            string sql = "SELECT TOP " + condition.PageSize + " id, encode, client_id, company_id, company_name, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE company_id = @company_id AND is_delete = 0 " + sqlParam;
+            string sql = "SELECT TOP " + condition.PageSize + " id, encode, client_id, company_id, company_name, status, quote_time, user_id, create_time, remark, audit_user_id, audit_time FROM quote WHERE is_delete = 0 " + sqlParam;
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id< (SELECT MIN(id) FROM ( SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM quote WHERE  company_id = @company_id AND is_delete = 0 " + sqlParam + " ORDER BY ID DESC)AS Q) ";
+                sql += " AND id< (SELECT MIN(id) FROM ( SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM quote WHERE is_delete = 0 " + sqlParam + " ORDER BY ID DESC)AS Q) ";
             }
-            sql += " ORDER BY ID DESC; SELECT COUNT(*) FROM quote WHERE company_id = @company_id AND is_delete = 0 " + sqlParam;
+            sql += " ORDER BY ID DESC; SELECT COUNT(*) FROM quote WHERE is_delete = 0 " + sqlParam;
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -245,22 +234,20 @@ namespace Backend.DAL
                     quote.Id = dr.GetInt32(0);
                     quote.Encode = dr.GetString(1);
                     Client client = new ClientDAL().GetClientById(dr.GetInt32(2));
-                    quote.Client = client;
-                    quote.CompanyId = dr.GetInt32(3);
-                    quote.CompanyName = dr.GetString(4);
-                    quote.Status = dr.GetBoolean(5);
-                    quote.QuoteTime = dr.GetDateTime(6);
-                    User user = new UserDAL().GetUserById(dr.GetInt32(7));
+                    quote.Client = client;                    
+                    quote.Status = dr.GetBoolean(3);
+                    quote.QuoteTime = dr.GetDateTime(4);
+                    User user = new UserDAL().GetUserById(dr.GetInt32(5));
                     quote.User = user;
-                    quote.CreateTime = dr.GetDateTime(8);
-                    quote.Remark = dr.GetString(9);
-                    if (!dr.IsDBNull(10))
+                    quote.CreateTime = dr.GetDateTime(6);
+                    quote.Remark = dr.GetString(7);
+                    if (!dr.IsDBNull(8))
                     {
-                        quote.AuditUserId = dr.GetInt32(10);
+                        quote.AuditUserId = dr.GetInt32(8);
                     }
-                    if (!dr.IsDBNull(11))
+                    if (!dr.IsDBNull(9))
                     {
-                        quote.AuditTime = dr.GetDateTime(11);
+                        quote.AuditTime = dr.GetDateTime(9);
                     }
                     result.Results.Add(quote);
                 }

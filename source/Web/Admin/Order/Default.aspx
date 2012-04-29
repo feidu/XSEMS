@@ -5,7 +5,7 @@
 <head id="Head1" runat="server">
 <title></title>
 <link href="../Css/Style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/Calendar/WdatePicker.js"></script>
 </head>
 <body>
 <form id="form1" runat="server">   
@@ -28,39 +28,30 @@
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">收件单号</th>
-                <th align="center" class="header">收件公司</th>           
-                <th align="center" class="header">收件日期</th>
-                <th align="center" class="header">客户姓名</th>   
-                <th align="center" class="header">下单类型</th>        
-                <th align="center" class="header">制单人</th>
-                <th align="center" class="header">制单时间</th>
+                <th align="left" class="header">收件单号</th>          
+                <th align="left" class="header">制单时间</th>
+                <th align="left" class="header">客户姓名</th>
+                <th align="left" class="header">订单费用</th>    
                 <th align="center" class="header">操作</th>
                 <th align="center" class="header">选择</th>
               </tr>
               <asp:Repeater ID="rpOrder" runat="server">
                 <ItemTemplate>
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                    <td align="center"><%# Eval("Encode")%></td>
-                    <td align="center"><%# Eval("CompanyName")%></td>          
-                    <td align="center"><%# Convert.ToDateTime(Eval("ReceiveDate")) > DateTime.MinValue ? Convert.ToDateTime(Eval("ReceiveDate")).ToShortDateString() : "————"%></td>
-                    <td align="center"><%# Eval("Client.RealName")%></td>       
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.OrderTypeConvertToString(Convert.ToByte(Eval("Type")))%></td>               
-                    <td align="center"><%# Convert.ToString(Eval("CreateUser.RealName")).Length <= 0 ? "———" : Eval("CreateUser.RealName")%></td>
-                    <td align="center"><%# Eval("CreateTime")%></td>                    
+                    <td align="left"><%# Eval("Encode")%></td>     
+                    <td align="left"><%# Eval("CreateTime")%></td> 
+                    <td align="left"><%# Eval("Client.RealName")%></td> 
+                    <td align="left"><%# Eval("Costs")%></td>                      
                     <td align="center"><a href="ReceiveOrder.aspx?id=<%# Eval("Id") %>">编辑</a></td>       
                     <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>                                        
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                    <td align="center"><%# Eval("Encode")%></td>
-                    <td align="center"><%# Eval("CompanyName")%></td>          
-                    <td align="center"><%# Convert.ToDateTime(Eval("ReceiveDate")) > DateTime.MinValue ? Convert.ToDateTime(Eval("ReceiveDate")).ToShortDateString() : "————"%></td>
-                    <td align="center"><%# Eval("Client.RealName")%></td>       
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.OrderTypeConvertToString(Convert.ToByte(Eval("Type")))%></td>               
-                    <td align="center"><%# Convert.ToString(Eval("CreateUser.RealName")).Length<= 0 ? "———" : Eval("CreateUser.RealName")%></td>
-                    <td align="center"><%# Eval("CreateTime")%></td>                    
+                    <td align="left"><%# Eval("Encode")%></td>        
+                    <td align="left"><%# Eval("CreateTime")%></td> 
+                    <td align="left"><%# Eval("Client.RealName")%></td>   
+                    <td align="left"><%# Eval("Costs")%></td>  
                     <td align="center"><a href="ReceiveOrder.aspx?id=<%# Eval("Id") %>">编辑</a></td>  
                     <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>    
                   </tr>

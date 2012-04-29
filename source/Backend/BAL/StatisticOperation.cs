@@ -25,19 +25,19 @@ namespace Backend.BAL
             return dal.GetCompanySalesStatistic(startDate, endDate, companyId, userId);
         }
 
-        public static List<ShouldReceive> GetShouldReceiveStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId)
+        public static List<ShouldReceive> GetShouldReceiveStatistic(DateTime startDate, DateTime endDate, int clientId)
         {
-            return dal.GetShouldReceiveStatistic(startDate, endDate, companyId, clientId, userId);
+            return dal.GetShouldReceiveStatistic(startDate, endDate, clientId);
         }
 
-        public static List<Recharge> GetRechargeStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId, int receiveUserId, string pmIds)
+        public static List<Recharge> GetRechargeStatistic(DateTime startDate, DateTime endDate, int clientId, string pmIds)
         {
-            return dal.GetRechargeStatistic(startDate, endDate, companyId, clientId, userId, receiveUserId, pmIds);
+            return dal.GetRechargeStatistic(startDate, endDate, clientId, pmIds);
         }
 
-        public static List<ClientRecharge> GetRechargeDetailStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId, int receiveUserId, string pmIds)
+        public static List<ClientRecharge> GetRechargeDetailStatistic(DateTime startDate, DateTime endDate, int clientId, string pmIds)
         {
-            return dal.GetRechargeDetailStatistic(startDate, endDate, companyId, clientId, userId, receiveUserId, pmIds);
+            return dal.GetRechargeDetailStatistic(startDate, endDate,  clientId, pmIds);
         }
     }
 }

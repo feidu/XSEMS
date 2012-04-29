@@ -25,12 +25,7 @@
     <tr><td align="center">
         <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="red"></asp:Label></td></tr>
     <tr>
-      <td><table class="grid">  
-              <tr>
-                <td class="label" >所属公司:</td>   
-                <td class="content"><asp:DropDownList ID="ddlCompany" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged"></asp:DropDownList>
-                </td>
-              </tr> 
+      <td><table class="grid">              
               <tr>
                 <td class="label" width="9%">开始日期:</td>
                 <td class="content" width="91%"><input type="text" class="Wdate" onclick="WdatePicker()" runat="server" id="txtStartDate" readonly="readonly" /></td>

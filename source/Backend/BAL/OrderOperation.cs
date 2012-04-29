@@ -152,64 +152,64 @@ namespace Backend.BAL
             return dal.GetOrderByClientIdStatusAndDate(condition, clientId, status, startDate, endDate);
         }
 
-        public static PaginationQueryResult<Order> GetOrderByCompanyIdAndStatus(PaginationQueryCondition condition, int compId, OrderStatus status)
+        public static PaginationQueryResult<Order> GetOrderByStatus(PaginationQueryCondition condition, OrderStatus status)
         {
-            return dal.GetOrderByCompanyIdAndStatus(condition, compId, status);
+            return dal.GetOrderByStatus(condition, status);
         }
 
-        public static PaginationQueryResult<Order> GetOrderByCompanyIdStatusAndEncode(PaginationQueryCondition condition, int compId, OrderStatus status, string encode)
+        public static PaginationQueryResult<Order> GetOrderByStatusAndEncode(PaginationQueryCondition condition, OrderStatus status, string encode)
         {
-            return dal.GetOrderByCompanyIdStatusAndEncode(condition, compId, status, encode);
+            return dal.GetOrderByStatusAndEncode(condition, status, encode);
         }
 
-        public static PaginationQueryResult<Order> GetOrderByCompanyIdStatusAndDate(PaginationQueryCondition condition, int compId, OrderStatus status, DateTime startDate, DateTime endDate)
+        public static PaginationQueryResult<Order> GetOrderByStatusAndDate(PaginationQueryCondition condition, OrderStatus status, DateTime startDate, DateTime endDate)
         {
-            return dal.GetOrderByCompanyIdStatusAndDate(condition, compId, status, startDate, endDate);
+            return dal.GetOrderByStatusAndDate(condition, status, startDate, endDate);
         }
 
-        public static PaginationQueryResult<Order> GetAuditOrderByCompanyIdAndConsignType(PaginationQueryCondition condition, int compId, int consignType)
+        public static PaginationQueryResult<Order> GetAuditOrderByConsignType(PaginationQueryCondition condition, int consignType)
         {
-            return dal.GetAuditOrderByCompanyIdAndConsignType(condition, compId, consignType);
+            return dal.GetAuditOrderByConsignType(condition, consignType);
         }
 
-        public static PaginationQueryResult<Order> GetAuditOrderByCompIdConsignTypeAndEncode(PaginationQueryCondition condition, int compId, int consignType, string encode)
+        public static PaginationQueryResult<Order> GetAuditOrderByConsignTypeAndEncode(PaginationQueryCondition condition, int consignType, string encode)
         {
-            return dal.GetAuditOrderByCompIdConsignTypeAndEncode(condition, compId, consignType, encode);
+            return dal.GetAuditOrderByConsignTypeAndEncode(condition, consignType, encode);
         }
 
-        public static PaginationQueryResult<Order> GetAuditOrderByCompanyIdConsignTypeAndDate(PaginationQueryCondition condition, int compId, int consignType, DateTime startDate, DateTime endDate)
+        public static PaginationQueryResult<Order> GetAuditOrderByConsignTypeAndDate(PaginationQueryCondition condition, int consignType, DateTime startDate, DateTime endDate)
         {
-            return dal.GetAuditOrderByCompanyIdConsignTypeAndDate(condition, compId, consignType, startDate, endDate);
+            return dal.GetAuditOrderByConsignTypeAndDate(condition, consignType, startDate, endDate);
         }
 
-        public static PaginationQueryResult<SearchOrder> GetSearchOrderByParameters(PaginationQueryCondition condition, string carrierEncode, int clientId, string encode, string ydEncode, string barCode, DateTime startDate, DateTime endDate, byte status, int companyId)
+        public static PaginationQueryResult<SearchOrder> GetSearchOrderByParameters(PaginationQueryCondition condition, string carrierEncode, int clientId, string encode, string ydEncode, string barCode, DateTime startDate, DateTime endDate, byte status)
         {
-            return dal.GetSearchOrderByParameters(condition, carrierEncode, clientId, encode, ydEncode, barCode, startDate, endDate, status, companyId);
+            return dal.GetSearchOrderByParameters(condition, carrierEncode, clientId, encode, ydEncode, barCode, startDate, endDate, status);
         }
 
-        public static List<SearchOrder> GetReceiveOrderStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public static List<SearchOrder> GetReceiveOrderStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode)
         {
-            return dal.GetReceiveOrderStatistic(startDate, endDate, companyId, clientId, carrierEncode, userId);
+            return dal.GetReceiveOrderStatistic(startDate, endDate, clientId, carrierEncode);
         }
 
-        public static List<SearchOrderDetail> GetReceiveOrderDetailStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public static List<SearchOrderDetail> GetReceiveOrderDetailStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode)
         {
-            return dal.GetReceiveOrderDetailStatistic(startDate, endDate, companyId, clientId, carrierEncode, userId);
+            return dal.GetReceiveOrderDetailStatistic(startDate, endDate, clientId, carrierEncode);
         }
 
-        public static List<SearchOrderDetail> GetEaduOrderDetailStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public static List<SearchOrderDetail> GetEaduOrderDetailStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode)
         {
-            return dal.GetEaduOrderDetailStatistic(startDate, endDate, companyId, clientId, carrierEncode, userId);
+            return dal.GetEaduOrderDetailStatistic(startDate, endDate, clientId, carrierEncode);
         }
 
-        public static List<SearchOrderDetail> GetFetchCostsStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, string carrierEncode, int userId)
+        public static List<SearchOrderDetail> GetFetchCostsStatistic(DateTime startDate, DateTime endDate, int clientId, string carrierEncode, int userId)
         {
-            return dal.GetFetchCostsStatistic(startDate, endDate, companyId, clientId, carrierEncode, userId);
+            return dal.GetFetchCostsStatistic(startDate, endDate, clientId, carrierEncode, userId);
         }
 
-        public static List<SearchOrderDetail> GetNotOnlineOrderDetail(DateTime startDate, int judgeDays, int companyId, int clientId, string carrierEncode)
+        public static List<SearchOrderDetail> GetNotOnlineOrderDetail(DateTime startDate, int judgeDays, int clientId, string carrierEncode)
         {
-            return dal.GetNotOnlineOrderDetail(startDate, judgeDays, companyId, clientId, carrierEncode);
+            return dal.GetNotOnlineOrderDetail(startDate, judgeDays, clientId, carrierEncode);
         }
     }
 }

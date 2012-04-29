@@ -5,14 +5,14 @@
 <head id="Head1" runat="server">
 <title></title>
 <link href="../Css/Style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/Calendar/WdatePicker.js"></script>
 </head>
 <body>
 <form id="form1" runat="server">   
   <table cellpadding="0" cellspacing="0" class="nav">
     <tr>
       <td class="img"><img src="../Images/icon_applist.gif" width="32" height="32" alt="" /></td>
-      <td class="title2"><a href="/Admin/Order/CheckOrderList.aspx">收件检验</a></td>
+      <td class="title2"><a href="../Order/CheckOrderList.aspx">收件检验</a></td>
     </tr>
     <tr>
       <td colspan="2" class="line"></td>
@@ -36,34 +36,34 @@
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">收件单号</th>                
-                <th align="center" class="header">收件公司</th>
-                <th align="center" class="header">收件日期</th>     
-                <th align="center" class="header">客户名称</th>     
-                <th align="center" class="header">下单类型</th>      
-                <th align="center" class="header">制单人</th>  
+                <th align="left" class="header">收件单号</th>     
+                <th align="left" class="header">制单时间</th>     
+                <th align="left" class="header">客户名称</th>
+                <th align="left" class="header">订单费用</th>  
+                <th align="left" class="header">审核人员</th>  
+                <th align="left" class="header">审核时间</th>     
                 <th align="center" class="header">操作</th>
               </tr>
               <asp:Repeater ID="rpOrder" runat="server">
                 <ItemTemplate>
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                    <td align="center"><%# Eval("Encode") %></td>                    
-                    <td align="center"><%# Eval("CompanyName")%></td>     
-                    <td align="center"><%# Convert.ToDateTime(Eval("ReceiveDate")).ToShortDateString()%></td>     
-                    <td align="center"><%# Eval("Client.RealName")%></td>
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.OrderTypeConvertToString(Convert.ToByte(Eval("Type")))%></td>
-                    <td align="center"><%# Eval("CreateUser.RealName")%></td> 
+                    <td align="left"><%# Eval("Encode") %></td>             
+                    <td align="left"><%# Eval("CreateTime")%></td>     
+                    <td align="left"><%# Eval("Client.RealName")%></td>
+                    <td align="left"><%# Eval("Costs")%></td>  
+                    <td align="left"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("audit_user_id"))).RealName%></td>  
+                    <td align="left"><%# Eval("Audit_Time")%></td>  
                     <td align="center"><a href="CheckOrder.aspx?id=<%# Eval("Id") %>">检验</a></td>                                               
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                    <td align="center"><%# Eval("Encode") %></td>                    
-                    <td align="center"><%# Eval("CompanyName")%></td>     
-                    <td align="center"><%# Convert.ToDateTime(Eval("ReceiveDate")).ToShortDateString()%></td>     
-                    <td align="center"><%# Eval("Client.RealName")%></td>
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.OrderTypeConvertToString(Convert.ToByte(Eval("Type")))%></td>
-                    <td align="center"><%# Eval("CreateUser.RealName")%></td> 
+                    <td align="left"><%# Eval("Encode") %></td>           
+                    <td align="left"><%# Eval("CreateTime")%></td>         
+                    <td align="left"><%# Eval("Client.RealName")%></td>
+                    <td align="left"><%# Eval("Costs")%></td>  
+                    <td align="left"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("audit_user_id"))).RealName%></td>  
+                    <td align="left"><%# Eval("Audit_Time")%></td> 
                     <td align="center"><a href="CheckOrder.aspx?id=<%# Eval("Id") %>">检验</a></td>     
                   </tr>
                 </AlternatingItemTemplate>

@@ -36,7 +36,7 @@ function checkDetailCount()
         <td class="seperator"><input type="hidden" id="hdOrderDetailCount" value="<%=orderDetailCount %>"/><input type="hidden" id="hdOrderCosts" value="<%=order.Costs %>"/></td>
     </tr>
     <tr>
-        <td class="info"><asp:Button ID="btnUpdate" runat="server" Text="修 改" CssClass="button" OnClick="btnUpdate_Click" />&nbsp;&nbsp;<asp:Button ID="btnDelete" runat="server" Text="删 除" CssClass="button" OnClientClick="return confirm('您确认要删除？');" OnClick="btnDelete_Click" />&nbsp;&nbsp;<asp:Button ID="btnSubmit" runat="server" Text="提交审核" CssClass="button" OnClientClick="return checkDetailCount()" OnClick="btnSubmit_Click" />&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='Default.aspx';" /></td>
+        <td class="info"><asp:Button ID="btnSubmit" runat="server" Text="提交审核" CssClass="button" OnClientClick="return checkDetailCount()" OnClick="btnSubmit_Click" />&nbsp;&nbsp;<asp:Button ID="btnDelete" runat="server" Text="删 除" CssClass="button" OnClientClick="return confirm('您确认要删除？');" OnClick="btnDelete_Click" />&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='Default.aspx';" /></td>
     </tr>    
   </table>
   <table class="tablecontent">
@@ -48,8 +48,8 @@ function checkDetailCount()
           <tr>
             <td width="10%" class="label" >收件单号:</td>
             <td width="40%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
-            <td width="10%" class="label" >收件日期:</td>
-            <td width="40%" class="content"><input type="text" onclick="WdatePicker()" class="Wdate" runat="server" id="txtReceivedDate" name="txtDate" readonly="readonly" /></td>            
+            <td class="label" >制单时间:</td>
+            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>        
           </tr>
           <tr>
            <td class="label" >客户姓名:</td>
@@ -57,11 +57,9 @@ function checkDetailCount()
             <td class="label" >应收总计:</td>
             <td class="content"><input type="text" id="txtCosts" name="txtCosts" style="color:Blue;" runat="server" readonly="readonly" value="0" />元</td>   
           </tr>
-          <tr>
-            <td class="label" >制单时间:</td>
-            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>
+          <tr>            
             <td class="label" >备&nbsp;&nbsp;&nbsp;&nbsp;注:</td>
-            <td class="content"><asp:TextBox TextMode="multiLine" Rows="2" Width="100%" runat="server" ID="txtRemark"></asp:TextBox></td>          
+            <td class="content" colspan="3"><asp:TextBox TextMode="multiLine" Rows="1" Width="100%" runat="server" ID="txtRemark"></asp:TextBox></td>          
           </tr>
           <tr id="trReturnReason" runat="server" visible="false">
             <td class="label" style="color:Red; height:24px;">审核退回原因:</td>
@@ -88,7 +86,6 @@ function checkDetailCount()
             <td align="left" class="headers">处理费</td>
             <td align="left" class="headers">取件费</td>           
             <td align="left" class="headers">材料费</td>
-            <td align="left" class="headers">保价费</td>
             <td align="left" class="headers">燃油费</td>
             <td align="left" class="headers">其他费</td>   
             <td align="left" class="headers">应收费用</td>      
@@ -116,7 +113,6 @@ function checkDetailCount()
                 <td align="left"><%=od.DisposalCosts%></td>
                 <td align="left"><%=od.FetchCosts%></td>
                 <td align="left"><%=od.MaterialCosts%></td>
-                <td align="left"><%=od.InsureCosts %></td>
                 <td align="left"><%=od.FuelCosts %></td>
                 <td align="left"><%=od.OtherCosts%></td>
                 <td align="left"><%=od.TotalCosts%></td>

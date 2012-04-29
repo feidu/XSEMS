@@ -111,16 +111,13 @@ namespace Backend.DAL
             return recharge;
         }
 
-        public List<Recharge> GetRechargeStatistic(DateTime startDate, DateTime endDate, int companyId, int clientId, int userId, int receiveUserId, string pmIds)
+        public List<Recharge> GetRechargeStatistic(DateTime startDate, DateTime endDate, int clientId, string pmIds)
         {
             List<Recharge> result = new List<Recharge>();
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate),
-                SqlUtilities.GenerateInputIntParameter("@client_id", clientId),
-                SqlUtilities.GenerateInputIntParameter("@company_id", companyId),
-                SqlUtilities.GenerateInputIntParameter("@user_id", userId),
-                SqlUtilities.GenerateInputIntParameter("@receive_user_id", receiveUserId),
+                SqlUtilities.GenerateInputIntParameter("@client_id", clientId)
             };
 
             string sqlParam = "";
@@ -137,28 +134,15 @@ namespace Backend.DAL
             {
                 sqlParam += " AND create_time <= @end_date";
             }
-
-            if (companyId > 0)
-            {
-                sqlParam += " AND company_id = @company_id";
-            }
             if (clientId >= 0)
             {
                 sqlParam += " AND client_id = @client_id";
-            }
-            if (userId > 0)
-            {
-                sqlParam += " AND user_id = @user_id";
-            }
-            if (receiveUserId > 0)
-            {
-                sqlParam += " AND user_id = @receive_user_id";
-            }
+            }            
             if (!string.IsNullOrEmpty(pmIds))
             {
                 sqlParam += " AND payment_method_id IN(" + pmIds + ")";
             }
-            string sql = "SELECT id, client_id, company_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 "+sqlParam;           
+            string sql = "SELECT id, client_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 "+sqlParam;           
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -168,24 +152,23 @@ namespace Backend.DAL
                     recharge.ClientId = dr.GetInt32(1);
                     Client client = new ClientDAL().GetClientById(recharge.ClientId);
                     recharge.ClientName = client.RealName;
-                    recharge.CompanyId = dr.GetInt32(2);
-                    recharge.Encode = dr.GetString(3);
-                    recharge.Money = dr.GetDecimal(4);
-                    recharge.Account = dr.GetString(5);
-                    recharge.ReceiveTime = dr.GetDateTime(6);
-                    recharge.CreateTime = dr.GetDateTime(7);
-                    recharge.UserId = dr.GetInt32(8);
+                    recharge.Encode = dr.GetString(2);
+                    recharge.Money = dr.GetDecimal(3);
+                    recharge.Account = dr.GetString(4);
+                    recharge.ReceiveTime = dr.GetDateTime(5);
+                    recharge.CreateTime = dr.GetDateTime(6);
+                    recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
                     recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(9);
+                    recharge.PaymentMethodId = dr.GetInt32(8);
                     PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
                     recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(10));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(11));
-                    recharge.Remark = dr.GetString(12);
-                    recharge.Paid = dr.GetDecimal(13);
-                    recharge.ExchangeRate = dr.GetDecimal(14);
-                    recharge.Invoice = dr.GetString(15);
+                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(9));
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(10));
+                    recharge.Remark = dr.GetString(11);
+                    recharge.Paid = dr.GetDecimal(12);
+                    recharge.ExchangeRate = dr.GetDecimal(13);
+                    recharge.Invoice = dr.GetString(14);
                     result.Add(recharge);
                 }
             }

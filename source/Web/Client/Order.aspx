@@ -30,25 +30,13 @@
       	             <table class="grid">
                       <tr>
                         <td width="12%" class="label" >收件单号:</td>
-                        <td width="21%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
-                        <td width="11%" class="label" >收件日期:</td>
-                        <td width="23%" class="content"><asp:Label ID="lblReceiveDate" runat="server" Text=""></asp:Label></td>
-                        <td class="label" >收件公司:</td>
-                        <td class="content"><asp:Label ID="lblCompanyName" runat="server" Text=""></asp:Label></td>
-                      </tr>
-                      <tr>
-                        <td class="label" >收货方式:</td>
-                        <td class="content"><asp:Label ID="lblReceiveType" runat="server" Text=""></asp:Label></td>
-                        <td class="label" >业 务 员:</td>
-                        <td class="content"><asp:Label ID="lblUserName" runat="server" Text=""></asp:Label></td>
-                        <td class="label" >制 单 人:</td>
-                        <td class="content"><asp:Label ID="lblCreateUser" runat="server" Text=""></asp:Label></td>                
+                        <td width="38%" class="content" colspan="2"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
+                        <td width="13%" class="label">制单时间:</td>
+                        <td width="37%" class="content" colspan="2"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>  
                       </tr>
                       <tr>
                         <td class="label" >应收总计:</td>
-                        <td class="content" colspan="3"><input type="text" id="txtCosts" name="txtCosts" style="color:Blue;" runat="server" readonly="readonly" value="0" />元</td>
-                        <td class="label" >制单时间:</td>
-                        <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>                
+                        <td class="content" colspan="5"><input type="text" id="txtCosts" name="txtCosts" style="color:Blue;" runat="server" readonly="readonly" value="0" />元</td>                                      
                       </tr>
                       <tr>
                         <td class="label" >备&nbsp;&nbsp;&nbsp;&nbsp;注:</td>
@@ -59,6 +47,8 @@
                         <td class="content" colspan="5"><asp:Label ID="lblReason" runat="server" Text=""></asp:Label></td>          
                       </tr>
                       <tr><td colspan="6" align="left" class="label" style="font-weight:bold;"> 收件人信息</td></tr>
+                      <tr><td colspan="6" align="left">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
                       <tr>
                         <td class="label">姓&nbsp;&nbsp;&nbsp;&nbsp;名:</td>
                         <td class="content"><asp:Label ID="lblToUsername" runat="server"></asp:Label></td>
@@ -79,8 +69,9 @@
                         <td class="label">详&nbsp;&nbsp;&nbsp;&nbsp;址:</td>
                         <td class="content" colspan="5"><asp:Label ID="lblToAddress" runat="server"></asp:Label></td> 
                       </tr>  
+                      </table>
+                       </td></tr>
                      </table>	     
-                         
 	              </td>
                 </tr>                
                 <tr>

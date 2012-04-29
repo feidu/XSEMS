@@ -15,15 +15,13 @@ using Backend.Authorization;
 
 public partial class Admin_Order_CreateQuote : System.Web.UI.Page
 {
-    protected string companyId = "0";
     User user = null;
     private static readonly int CLIENT_NAME_LENGTH = 50;
     private static readonly int REMARK_LENGTH = 500;
     protected void Page_Load(object sender, EventArgs e)
     {
         AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
-        user = UserOperation.GetUserByUsername(cookie.Username);
-        companyId = user.CompanyId.ToString();
+        user = UserOperation.GetUserByUsername(cookie.Username);        
         txtQuoteTime.Value = DateTime.Now.ToShortDateString();
     }
     protected void btnCreate_Click(object sender, EventArgs e)
@@ -60,9 +58,7 @@ public partial class Admin_Order_CreateQuote : System.Web.UI.Page
         quote.QuoteTime = quoteTime;
         quote.Client = client;
         quote.CreateTime = DateTime.Now;
-        quote.User = user;
-        quote.CompanyId = user.CompanyId;
-        quote.CompanyName = CompanyOperation.GetCompanyById(user.CompanyId).Name;
+        quote.User = user;     
         quote.Remark = remark;
 
         QuoteOperation.CreateQuote(quote);

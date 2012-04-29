@@ -40,25 +40,10 @@ public partial class Client_Order : System.Web.UI.Page
         lblToPostcode.Text = order.ToPostcode;
         lblToUsername.Text = order.ToUsername;
         lblToCountry.Text = order.ToCountry;
-
         lblRemark.Text = order.Remark;
-        txtCosts.Value = order.Costs.ToString();
-        lblCompanyName.Text = order.CompanyName;
-        if (order.CreateUser != null)
-        {
-            lblCreateUser.Text = order.CreateUser.RealName;
-        }
+        txtCosts.Value = order.Costs.ToString();       
         lblEncode.Text = order.Encode;
         lblCreateTime.Text = order.CreateTime.ToString();
-        lblReceiveType.Text = order.ReceiveType;
-        if (order.ReceiveDate > DateTime.MinValue)
-        {
-            lblReceiveDate.Text = order.ReceiveDate.ToShortDateString();
-        }
-        if (UserOperation.GetUserById(order.UserId) != null)
-        {
-            lblUserName.Text = UserOperation.GetUserById(order.UserId).RealName;
-        }
 
         if (order.Reason != null && order.Reason.Trim().Length > 0)
         {

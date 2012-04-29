@@ -44,7 +44,7 @@ namespace Backend.Authorization
             AdminCookie cookie = GetAdminCookie();
             if (cookie == null) return RuleAuthorizationStatus.NOT_SIGN_IN;
 
-            string url = ctx.Request.Path.ToLower();
+            string url = ctx.Request.Path.ToLower().Replace("/web", ""); ;
             //find out matched config url.
             foreach (RuleAuthorizationModule ram in acs.Modules)
             {

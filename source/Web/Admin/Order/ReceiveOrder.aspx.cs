@@ -47,11 +47,7 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
         txtCosts.Value = order.Costs.ToString();
         lblClientName.Text = order.Client.RealName;
         lblEncode.Text = order.Encode;
-        lblCreateTime.Text = order.CreateTime.ToString();
-        if (order.ReceiveDate > DateTime.MinValue)
-        {
-            txtReceivedDate.Value = order.ReceiveDate.ToShortDateString();
-        }
+        lblCreateTime.Text = order.CreateTime.ToString();        
         if (order.Reason != null && order.Reason.Trim().Length > 0)
         {
             trReturnReason.Visible = true;
@@ -65,12 +61,7 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
     }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        DateTime receiveDate = new DateTime(1999, 1, 1);
-        if (string.IsNullOrEmpty(Request.Form[txtReceivedDate.ID].Trim()) || !DateTime.TryParse(Request.Form[txtReceivedDate.ID].Trim(), out receiveDate))
-        {
-            lblMsg.Text = "收件日期不能为空，且只能为时间格式！";
-            return;
-        }
+        DateTime receiveDate = new DateTime(1999, 1, 1);       
         string remark = Request.Form[txtRemark.ID].Trim();
         if (!string.IsNullOrEmpty(remark) && Validator.IsMatchLessThanChineseCharacter(remark, REMARK_LENGTH))
         {
@@ -84,7 +75,7 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
             order.CreateUser = user;
         }
         //order.ReceiveType = slReceiveType.Value;
-        order.ReceiveDate = receiveDate;
+        //order.ReceiveDate = receiveDate;
         //order.ReceiveUserId = int.Parse(ddlCompanyUsers.SelectedItem.Value);
         OrderOperation.UpdateOrder(order);
         lblMsg.Text = "修改成功！";
@@ -93,17 +84,7 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         DateTime receiveDate = new DateTime(1999, 1, 1);
-        if (string.IsNullOrEmpty(Request.Form[txtReceivedDate.ID].Trim()) || !DateTime.TryParse(Request.Form[txtReceivedDate.ID].Trim(), out receiveDate))
-        {
-            lblMsg.Text = "收件日期不能为空，且只能为时间格式！";
-            return;
-        }
-        if (order.CreateUser == null)
-        {
-            order.ReceiveDate = receiveDate;
-            order.UserId = user.Id;
-            order.CreateUser = user;
-        }
+            
         OrderOperation.UpdateOrder(order);
         order.Status = OrderStatus.WAIT_AUDIT;
         order.Reason = "";
@@ -115,20 +96,8 @@ public partial class Admin_Order_ReceiveOrder : System.Web.UI.Page
     protected void btnPrintPost_Click(object sender, EventArgs e)
     {
         DateTime receiveDate = new DateTime(1999, 1, 1);
-        if (string.IsNullOrEmpty(Request.Form[txtReceivedDate.ID].Trim()) || !DateTime.TryParse(Request.Form[txtReceivedDate.ID].Trim(), out receiveDate))
-        {
-            lblMsg.Text = "如果货物已经收到请先填写收件日期！";
-            return;
-        }
-        if (order.CreateUser == null)
-        {
-            order.ReceiveDate = receiveDate;
-            order.UserId = user.Id;
-            order.CreateUser = user;
-            OrderOperation.UpdateOrder(order);
-        }
-
-        string fileName = StringHelper.GetEncodeNumber("HYD");
+        
+             string fileName = StringHelper.GetEncodeNumber("HYD");
         string filePath = Server.MapPath("../../Config/");
 
         string[] fileArray = Directory.GetFiles(filePath, "*.pdf");

@@ -42,8 +42,8 @@ function checkReason(strMsg)
           <tr>
             <td width="10%" class="label" >收件单号:</td>
             <td width="40%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
-            <td width="10%" class="label" >收件日期:</td>
-            <td width="40%" class="content"><asp:Label ID="lblReceiveDate" runat="server" Text=""></asp:Label></td>            
+            <td class="label" >制单时间:</td>
+            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>            
           </tr>                    
           <tr>
             <td class="label" >客户姓名:</td>
@@ -52,10 +52,8 @@ function checkReason(strMsg)
             <td class="content"><asp:Label ID="lblCosts" runat="server" Text="" ForeColor="blue"></asp:Label> 元</td>                          
           </tr>
           <tr>
-            <td class="label" >制单时间:</td>
-            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>  
             <td class="label" >备&nbsp;&nbsp;&nbsp;&nbsp;注:</td>
-            <td class="content"><asp:Label ID="lblRemark" runat="server" Text=""></asp:Label></td> 
+            <td class="content" colspan="3"><asp:Label ID="lblRemark" runat="server" Text=""></asp:Label></td> 
           </tr>          
           <tr id="trCheckReason" runat="server" visible="false">
             <td class="label" style="color:Red; height:24px;">检验退回原因:</td>

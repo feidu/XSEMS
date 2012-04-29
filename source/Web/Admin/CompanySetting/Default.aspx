@@ -87,7 +87,7 @@
                       <td class="content"><asp:TextBox ID="txtAddress" runat="server" Width="280"></asp:TextBox>
                       </td>
                     </tr>
-                     <tr><td colspan="2" align="center"><asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="修 改" OnClick="btnUpdate_Click" />&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='Default.aspx';" /></td></tr>                    
+                     <tr><td colspan="2" align="center"><asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="修 改" OnClick="btnUpdate_Click" /></td></tr>                    
                 </table>		
         </td>
     </tr>
