@@ -65,9 +65,9 @@ public partial class Admin_PostSetting_UserList : System.Web.UI.Page
     {
         User user = (User)e.Item.DataItem;
         Label lblId = (Label)e.Item.FindControl("lblId");
-        TextBox txtCommission = (TextBox)e.Item.FindControl("txtCommission");
+        //TextBox txtCommission = (TextBox)e.Item.FindControl("txtCommission");
         lblId.Text = user.Id.ToString();
-        txtCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
+        //txtCommission.Text = StringHelper.CurtNumber(user.Commission.ToString());
     }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
