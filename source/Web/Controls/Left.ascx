@@ -14,7 +14,7 @@
          <li><a href="ComplaintList.aspx">我的投诉</a></li>-->
          <li><a href="PersonalInfo.aspx"> 我的资料</a></li>
          <li><a href="Recharge.aspx"> 充值明细</a></li>
-         <li><a href="OrderCostList.aspx"> 物流信息</a></li>
+         <li><a href="OrderCostList.aspx"> 消费明细</a></li>
          <li><a href="ChangePwd.aspx"> 修改密码</a></li>
          <li><a href="../Logout.aspx"> 安全退出</a></li>
        </ul>               

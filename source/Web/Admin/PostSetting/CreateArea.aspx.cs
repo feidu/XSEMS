@@ -15,13 +15,13 @@ using Backend.Utilities;
 public partial class Admin_PostSetting_CreateArea : System.Web.UI.Page
 {
     private static readonly int NAME_LENGTH = 50;
+    protected int carrierId=0;
     Carrier carrier = null;
     protected void Page_Load(object sender, EventArgs e)
     {
-        int id = 0;
-        if (int.TryParse(Request.QueryString["id"], out id))
+        if (int.TryParse(Request.QueryString["id"], out carrierId))
         {
-            carrier = CarrierOperation.GetCarrierById(id);
+            carrier = CarrierOperation.GetCarrierById(carrierId);
             trLblCarrier.Visible = true;
             lblCarrier.Text = carrier.Name;
         }

@@ -30,7 +30,7 @@ function checkReason(strMsg)
         <td class="seperator"></td>
     </tr>
     <tr>
-        <td class="info"><asp:Button ID="btnAuditThrough" runat="server" Text="审核通过" CssClass="button" OnClick="btnAuditThrough_Click"/>&nbsp;&nbsp;<asp:Button ID="btnReturn" runat="server" Text="退回修改" CssClass="button" OnClientClick="return checkReason('请填写退回原因！')" OnClick="btnReturn_Click" />&nbsp;&nbsp;<asp:Button ID="btnDetain" runat="server" Text="审核扣货" CssClass="button" OnClientClick="return checkReason('请填写扣货原因！')" OnClick="btnDetain_Click" />&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='AuditOrderList.aspx';" /></td>
+        <td class="info"><asp:Button ID="btnAuditThrough" runat="server" Text="审核通过" CssClass="button" OnClick="btnAuditThrough_Click"/>&nbsp;&nbsp;<asp:Button ID="btnDetain" runat="server" Text="审核扣货" CssClass="button" OnClientClick="return checkReason('请填写扣货原因！')" OnClick="btnDetain_Click" />&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='AuditOrderList.aspx';" /></td>
     </tr>
   </table>
   <table class="tablecontent">
@@ -60,7 +60,7 @@ function checkReason(strMsg)
             <td class="content" colspan="5"><asp:Label ID="lblCheckReason" runat="server" Text=""></asp:Label></td>          
           </tr>
           <tr>
-            <td class="label" >退回/扣货原因:</td>
+            <td class="label" >扣货原因:</td>
             <td class="content" colspan="5"><asp:TextBox TextMode="multiLine" Rows="2" Width="100%" runat="server" ID="txtReason"></asp:TextBox></td>          
           </tr>
          </table>	         

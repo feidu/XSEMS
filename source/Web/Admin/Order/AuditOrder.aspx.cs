@@ -175,7 +175,7 @@ public partial class Admin_Order_AuditOrder : System.Web.UI.Page
         order.AuditTime = DateTime.Now;
         order.AuditUserId = user.Id;
 
-        order.Status = OrderStatus.WAIT_SUBMIT;
+        order.Status = OrderStatus.WAIT_AUDIT;
         OrderOperation.UpdateOrderStatus(order);
         OrderOperation.UpdateOrderReason(order);
                

@@ -28,13 +28,15 @@ public partial class Admin_CompanySetting_CreateUser : System.Web.UI.Page
     private readonly DateTime CONST_MIN_DATE = new DateTime(1999, 1, 1);
     User adminUser = null;
     Company adminCompany = null;
-    List<Department> result = new List<Department>();
+    List<Department> departList = new List<Department>();
+    List<Position> positionList = new List<Position>();
     protected void Page_Load(object sender, EventArgs e)
     {
         AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
         adminUser = UserOperation.GetUserByUsername(cookie.Username);
         adminCompany = CompanyOperation.GetCompanyById(adminUser.CompanyId);
-        result = DepartmentOperation.GetDepartmentByCompanyId(adminUser.CompanyId);
+        positionList = PositionOperation.GetPosition();
+        departList = DepartmentOperation.GetDepartmentByCompanyId(adminUser.CompanyId);
         if (!IsPostBack)
         {
             DdlsDataBind();
@@ -63,16 +65,8 @@ public partial class Admin_CompanySetting_CreateUser : System.Web.UI.Page
         int departmentId = 0;
         byte positionId = 0;
         positionId = byte.Parse(ddlPosition.SelectedItem.Value);
-        if (result.Count > 0)
-        {
-            departmentId = int.Parse(ddlDepartment.SelectedItem.Value);
-        }
-        else
-        {
-            lblMsg.Text = "请先添加部门！";
-            return;
-        }
-
+        departmentId = byte.Parse(ddlDepartment.SelectedItem.Value);
+        
         if (string.IsNullOrEmpty(username) || Validator.IsMatchLessThanChineseCharacter(username, CONST_USERNAEM_LENGTH))
         {
             lblMsg.Text = "用户名不能为空，且不能超过" + CONST_USERNAEM_LENGTH + "个字符！";
@@ -196,16 +190,21 @@ public partial class Admin_CompanySetting_CreateUser : System.Web.UI.Page
 
     private void DdlsDataBind()
     {
-        if (result.Count > 0)
+        if (positionList.Count > 0 && departList.Count > 0)
         {
-            ddlDepartment.DataSource = result;
+            ddlDepartment.DataSource = departList;
             ddlDepartment.DataTextField = "Name";
             ddlDepartment.DataValueField = "Id";
             ddlDepartment.DataBind();
+
+            ddlPosition.DataSource = positionList;
+            ddlPosition.DataTextField = "Name";
+            ddlPosition.DataValueField = "Id";
+            ddlPosition.DataBind();
         }
         else
         {
-            lblMsg.Text = "请先添加公司部门！";
+            Response.Write("<script language='javascript' type='text/javascript'>alert('请先添加公司部门和职位！');history.go(-1);</script>");
             return;
         }
     }

@@ -31,11 +31,11 @@
                 <tr>
                   <td><table class="grid">
                           <tr>
-                            <th align="center" class="header_client">编号</th>
-                            <th align="center" class="header_client">收件单号</th>      
-                            <th align="center" class="header_client">问题类型</th>
-                            <th align="center" class="header_client">制单人</th>
-                            <th align="center" class="header_client">制单时间</th>
+                            <th align="left" class="header_client">问题单号</th>
+                            <th align="left" class="header_client">收件单号</th>  
+                            <th align="left" class="header_client">订单费用</th>        
+                            <th align="left" class="header_client">问题类型</th>
+                            <th align="left" class="header_client">制单时间</th>
                             <th align="center" class="header_client">操作</th>
                           </tr>
                           <asp:Repeater ID="rpWrongOrder" runat="server">
@@ -43,8 +43,8 @@
                               <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
                                 <td align="center"><%# Eval("Encode") %></td>
                                 <td align="left"><%# Eval("Order.Encode") %></td>
+                                <td align="left"><%# Eval("Order.Cost") %></td>
                                 <td align="left"><%# Eval("Type") %></td>
-                                <td align="left"><%# Backend.BAL.UserOperation.GetUserById(int.Parse(Eval("CreateUserId").ToString())).RealName %></td>
                                 <td align="left"><%# Eval("CreateTime") %></td>
                                 <td align="center"><a href="WrongOrder.aspx?id=<%# Eval("Id") %>">查看</a></td>                                             
                               </tr>
@@ -53,8 +53,8 @@
                               <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
                                 <td align="center"><%# Eval("Encode") %></td>
                                 <td align="left"><%# Eval("Order.Encode") %></td>
-                                <td align="left"><%# Eval("Type") %></td>
-                                <td align="left"><%# Backend.BAL.UserOperation.GetUserById(int.Parse(Eval("CreateUserId").ToString())).RealName %></td>
+                                <td align="left"><%# Eval("Order.Cost") %></td>
+                                <td align="left"><%# Eval("Type") %></td>>
                                 <td align="left"><%# Eval("CreateTime") %></td>
                                 <td align="center"><a href="WrongOrder.aspx?id=<%# Eval("Id") %>">查看</a></td>       
                               </tr>

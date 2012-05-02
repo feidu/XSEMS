@@ -95,7 +95,7 @@ public partial class Client_CreateConsign : System.Web.UI.Page
         order.CompanyId = client.CompanyId;
         order.CompanyName = company.Name;
         order.Encode = encode;
-        order.Status = OrderStatus.WAIT_SUBMIT;
+        order.Status = OrderStatus.WAIT_AUDIT;
         order.Type = OrderType.CLIENT_ORDER;
         order.CreateTime = DateTime.Now;
         order.Costs = 0;

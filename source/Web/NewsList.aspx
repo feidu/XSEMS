@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="News_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewsList.aspx.cs" Inherits="NewsList" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <wl:Seo ID="seo" runat="server" Title=""/>
-<link href="/Css/style.css" rel="stylesheet" type="text/css" />
+<link href="Css/style.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -14,7 +14,7 @@
     <div id="wrapper">
       <div id="wrapper2">
         <!--头部-->
-        <wl:HeaderClient ID="hc" runat="server" />
+        <wl:Header ID="hc" runat="server" />
         <!--内容-->
         <tr>
             <td><table width="980" border="0" cellspacing="0" cellpadding="0">
@@ -39,7 +39,7 @@
                                                 padding-left: 20px; font-size: 13px; background-position: 5px; float:left;">
                                             <table width="100%">
                                               <tr>
-                                                <td width="80%"><div style="font-size: 14px;"> <a href="Content.aspx?Id=<%# Eval("Id") %>" target="_blank"> <%# Eval("Title") %></a></div></td>
+                                                <td width="80%"><div style="font-size: 14px;"> <a href="NewsView.aspx?Id=<%# Eval("Id") %>" target="_blank"> <%# Eval("Title") %></a></div></td>
                                                 <td width="20%"> <%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString() %> </td>
                                               </tr>
                                             </table>

@@ -140,7 +140,7 @@ public partial class Admin_Order_CreateOrderQuick : System.Web.UI.Page
             }
             order.CreateUser = user;
             order.ReceiveUserId = user.Id;
-            order.Status = OrderStatus.WAIT_SUBMIT;
+            order.Status = OrderStatus.WAIT_AUDIT;
             order.Type = OrderType.COMPANY_ORDER;
             order.CalculateType = 1;
             order.ReceiveType = "上门收件";

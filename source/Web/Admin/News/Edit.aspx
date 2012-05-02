@@ -29,7 +29,7 @@
           <tr>
             <td align="left" valign="middle" class="label">内&nbsp;&nbsp;&nbsp;&nbsp;容:</td>
             <td align="left" valign="middle" class="content"><input type="hidden" name="tbxContent" runat="server" id="tbxContent" class="por-import-srk"  dataType="LimitB" min="1" max="1500" msg=""/>
-                            <script type="text/javascript" src="/Js/HtmlEditor/HtmlEditor.js"></script>
+                            <script type="text/javascript" src="../../Js/HtmlEditor/HtmlEditor.js"></script>
                             <script type="text/javascript" language="javascript">
                                 var editor = new KindEditor("editor");     
                                 editor.hiddenName = "tbxContent";

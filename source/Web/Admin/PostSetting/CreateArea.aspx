@@ -15,7 +15,7 @@
         <td class="info2">物流设置 > 分区设定 > 添加分区</td>
     </tr>
     <tr>
-        <td class="info"><a href="CreateArea.aspx">添加分区</a> | <a href="AreaList.aspx">分区列表</a></td>
+        <td class="info"><a href="CreateArea.aspx">添加分区</a></td>
     </tr>
     <tr>
         <td class="seperator"></td>

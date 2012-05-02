@@ -27,13 +27,12 @@
       <td><table class="grid">
           <tr>
             <th align="center" class="header">编号</th>
-            <th align="center" class="header">真实姓名</th>
-            <th align="center" class="header">地区</th>
-            <th align="center" class="header">手机</th>
-            <th align="center" class="header">邮箱</th>
-            <th align="center" class="header">余额</th>
-            <th align="center" class="header">信用额度</th>
-            <th align="center" class="header">查看</th>
+            <th align="left" class="header">真实姓名</th>
+            <th align="left" class="header">手机</th>
+            <th align="left" class="header">邮箱</th>
+            <th align="left" class="header">余额</th>
+            <th align="left" class="header">信用额度</th>
+            <th align="center" class="header">编辑</th>
             <th align="center" class="header">选择</th>
           </tr>
           <asp:Repeater ID="rpClient" runat="server">
@@ -41,12 +40,11 @@
               <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
                 <td align="center"><%# Eval("Id") %></td>
                 <td align="left"><%# Eval("RealName") %></td>
-                <td align="left"><%# Eval("Province").ToString()+" "+Eval("City").ToString() %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
                 <td align="left"><%# Eval("Balance") %> 元</td>
                 <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Credit")))%> 元</td>
-                <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">查看</a></td>
+                <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">编辑</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>
             </ItemTemplate>
@@ -54,12 +52,11 @@
               <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
                 <td align="center"><%# Eval("Id") %></td>
                 <td align="left"><%# Eval("RealName") %></td>
-                <td align="left"><%# Eval("Province").ToString()+" "+Eval("City").ToString() %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
                 <td align="left"><%# Eval("Balance") %> 元</td>
                 <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Credit")))%> 元</td>
-                <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">查看</a></td>
+                <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">编辑</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>
             </AlternatingItemTemplate>

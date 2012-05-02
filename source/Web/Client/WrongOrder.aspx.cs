@@ -35,14 +35,12 @@ public partial class Client_WrongOrder : System.Web.UI.Page
     private void FormDataBind()
     {
         lblCreateTime.Text = wo.CreateTime.ToString();
-        lblCreateUser.Text = UserOperation.GetUserById(wo.CreateUserId).RealName;
         lblEncode.Text = wo.Encode;
         txtReason.Text = wo.Reason;
         slWrongType.Value = wo.Type;
         if (wo.Order != null)
         {
             txtOrderEncode.Text = wo.Order.Encode;
-            lblReceiveDate.Text = wo.Order.ReceiveDate.ToString();
         }
     }
 }

@@ -75,7 +75,7 @@ public partial class Admin_Order_CreateReceiveOrder : System.Web.UI.Page
         }
         order.CreateUser = user;
         order.ReceiveUserId = user.Id;
-        order.Status = OrderStatus.WAIT_SUBMIT;
+        order.Status = OrderStatus.WAIT_AUDIT;
         order.Type = OrderType.COMPANY_ORDER;
         order.CalculateType = int.Parse(ddlCalculateType.SelectedItem.Value);
         order.ReceiveType = ddlReceiveType.SelectedItem.Value;

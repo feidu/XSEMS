@@ -121,7 +121,7 @@ public partial class Client_CreateOrder : System.Web.UI.Page
             order.Encode = encode;
             
             //order.ReceiveUserId = client.Id;
-            order.Status = OrderStatus.WAIT_SUBMIT;
+            order.Status = OrderStatus.WAIT_AUDIT;
             //order.Type = OrderType.COMPANY_ORDER;
             order.Client = client;
             //order.CalculateType = 1;            
@@ -185,7 +185,7 @@ public partial class Client_CreateOrder : System.Web.UI.Page
         order.Costs += clientCarrierCharge.ClientTotalCost;
         order.SelfCosts += selfCarrierCharge.SelfTotalCost;
         OrderOperation.UpdateOrder(order);
-        lblMsg.Text = "添加成功！";
+        lblMsg.Text = od.BarCode+" 添加成功！";
 
         txtBarCode.Text = "";
         txtRemark.Text = "";

@@ -44,11 +44,11 @@ namespace Backend.Utilities
         public static OrderStatus ConvertToOrderStatus(byte value)
         {
             switch (value)
-            {
-                case (byte)OrderStatus.WAIT_SUBMIT:
-                    return OrderStatus.WAIT_SUBMIT;
+            {            
                 case (byte)OrderStatus.WAIT_AUDIT:
                     return OrderStatus.WAIT_AUDIT;
+                case (byte)OrderStatus.AUDITED:
+                    return OrderStatus.AUDITED;
                 case (byte)OrderStatus.DETAINED:
                     return OrderStatus.DETAINED;
                 case (byte)OrderStatus.WAIT_CHECK:
@@ -65,11 +65,11 @@ namespace Backend.Utilities
         public static string OrderStatusConvertToString(byte value)
         {
             switch (value)
-            {
-                case (byte)OrderStatus.WAIT_SUBMIT:
-                    return "待提交";
+            {              
                 case (byte)OrderStatus.WAIT_AUDIT:
                     return "待审核";
+                case (byte)OrderStatus.AUDITED:
+                    return "已审核";
                 case (byte)OrderStatus.DETAINED:
                     return "已扣货";
                 case (byte)OrderStatus.WAIT_CHECK:

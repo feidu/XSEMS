@@ -43,7 +43,7 @@
                                 <td align="left"><%# Eval("Encode")%></td>         
                                 <td align="left"><%# Eval("CreateTime")%></td>                                                  
                                 <td align="left"><%# Backend.Utilities.EnumConvertor.OrderStatusConvertToString(Convert.ToByte(Eval("Status")))%></td>  
-                                <td align="left"><%# Eval("Costs")%></td>                    
+                                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td>                    
                                 <td align="center"><a href="Order.aspx?id=<%# Eval("Id") %>">详细</a></td>                                              
                               </tr>
                             </ItemTemplate>
@@ -52,7 +52,7 @@
                                 <td align="left"><%# Eval("Encode")%></td>    
                                 <td align="left"><%# Eval("CreateTime")%></td>       
                                 <td align="left"><%# Backend.Utilities.EnumConvertor.OrderStatusConvertToString(Convert.ToByte(Eval("Status")))%></td>         
-                                <td align="left"><%# Eval("Costs")%></td>                  
+                                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td>                  
                                 <td align="center"><a href="Order.aspx?id=<%# Eval("Id") %>">详细</a></td>      
                               </tr>
                             </AlternatingItemTemplate>

@@ -27,7 +27,7 @@ public partial class Admin_Main_Welcome : System.Web.UI.Page
         username = user.RealName;
         if (!IsPostBack)
         {
-            PaginationQueryResult<News> result = NewsOperation.GetNewsByCategoryId(PaginationHelper.GetCurrentPaginationQueryCondition(Request), 8);
+            PaginationQueryResult<News> result = NewsOperation.GetNewsByCategoryId(PaginationHelper.GetCurrentPaginationQueryCondition(Request), 3);
             rpAnnouncement.DataSource = result.Results;
             rpAnnouncement.DataBind();
         }

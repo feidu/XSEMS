@@ -17,7 +17,7 @@ public partial class AboutUs : System.Web.UI.Page
     protected string aboutFeidu = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        News news = NewsOperation.GetNewsById(9);
+        News news = NewsOperation.GetNewsById(2);
         if (news != null)
         {
             aboutFeidu = news.Content;

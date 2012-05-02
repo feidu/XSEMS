@@ -51,18 +51,16 @@ public partial class Admin_CompanySetting_Client : System.Web.UI.Page
         string idCard = Request.Form[txtIdCard.ID].Trim();
         string mobile = Request.Form[txtMobile.ID].Trim();
         string phone = Request.Form[txtPhone.ID].Trim();
-        string realName = Request.Form[txtRealName.ID].Trim();
-        string province = Request.Form["slProvince"].Trim();
-        string city = Request.Form["slCity"];
+        string realName = Request.Form[txtRealName.ID].Trim();     
 
         if (string.IsNullOrEmpty(realName) || Validator.IsMatchLessThanChineseCharacter(realName, CONST_REAL_NAME_LENGTH))
         {
             lblMsg.Text = "真实姓名不能为空，且不能超过" + CONST_REAL_NAME_LENGTH + "个字符！";
             return;
         }
-        if (string.IsNullOrEmpty(idCard) || Validator.IsMatchLessThanChineseCharacter(idCard, CONST_IDCARD_LENGTH))
+        if (!string.IsNullOrEmpty(idCard) && Validator.IsMatchLessThanChineseCharacter(idCard, CONST_IDCARD_LENGTH))
         {
-            lblMsg.Text = "身份证号不能为空，且不能超过" + CONST_IDCARD_LENGTH + "个字符！";
+            lblMsg.Text = "身份证号不能超过" + CONST_IDCARD_LENGTH + "个字符！";
             return;
         }
         if (!string.IsNullOrEmpty(phone) && Validator.IsMatchLessThanChineseCharacter(phone, CONST_PHONE_LENGTH))
@@ -70,22 +68,17 @@ public partial class Admin_CompanySetting_Client : System.Web.UI.Page
             lblMsg.Text = "联系电话不能超过" + CONST_PHONE_LENGTH + "个字符！";
             return;
         }
-        if (string.IsNullOrEmpty(mobile) || Validator.IsMatchLessThanChineseCharacter(mobile, CONST_MOBILE_LENGTH))
+        if (!string.IsNullOrEmpty(mobile) && Validator.IsMatchLessThanChineseCharacter(mobile, CONST_MOBILE_LENGTH))
         {
-            lblMsg.Text = "手机号码不能为空，且不能超过" + CONST_MOBILE_LENGTH + "个字符！";
+            lblMsg.Text = "手机号码不能超过" + CONST_MOBILE_LENGTH + "个字符！";
             return;
         }
-        if (string.IsNullOrEmpty(email) || Validator.IsMatchLessThanChineseCharacter(email, CONST_EMAIL_LENGTH))
+        if (!string.IsNullOrEmpty(email) && Validator.IsMatchLessThanChineseCharacter(email, CONST_EMAIL_LENGTH))
         {
-            lblMsg.Text = "电子邮件不能为空，且不能超过" + CONST_EMAIL_LENGTH + "个字符！";
+            lblMsg.Text = "电子邮件不能超过" + CONST_EMAIL_LENGTH + "个字符！";
             return;
         }
-
-        if (province == "0" || city == "0")
-        {
-            lblMsg.Text = "请选择所在地区！";
-            return;
-        }
+            
         if (!string.IsNullOrEmpty(address) && Validator.IsMatchLessThanChineseCharacter(address, CONST_ADDRESS_LENGTH))
         {
             lblMsg.Text = "地址不能超过" + CONST_ADDRESS_LENGTH + "个字符！";
@@ -104,49 +97,23 @@ public partial class Admin_CompanySetting_Client : System.Web.UI.Page
         client.IdCard = idCard;
         client.Mobile = mobile;
         client.Phone = phone;
-        client.RealName = realName;
-        client.IsFetchGoods = chkIsFetchGoods.Checked;
-        client.IsMessage = chkIsMessage.Checked;
-        client.Province = province;
-        client.City = city;
-        client.Credit = credit;
-        if (ddlCompanyUsers.Items.Count > 0)
-        {
-            client.UserId = int.Parse(ddlCompanyUsers.SelectedItem.Value);
-        }
-        else
-        {
-            client.UserId = 0;
-        }
+        client.RealName = realName;       
+        client.IsMessage = chkIsMessage.Checked;       
+        client.Credit = credit;       
         ClientOperation.UpdateClientInfo(client);
         lblMsg.Text = "修改成功！";
         FormDataBind();
     }
     private void FormDataBind()
     {
-        ddlCompanyUsers.DataSource = UserOperation.GetLightUserByCompanyId(user.CompanyId);
-        ddlCompanyUsers.DataTextField = "RealName";
-        ddlCompanyUsers.DataValueField = "Id";
-        ddlCompanyUsers.DataBind();
-
         txtAddress.Text = client.Address;
         txtEmail.Text = client.Email;
         txtIdCard.Text = client.IdCard;
         txtMobile.Text = client.Mobile;
         txtPhone.Text = client.Phone;
         txtRealName.Text = client.RealName;
-        chkIsMessage.Checked = client.IsMessage;
-        chkIsFetchGoods.Checked = client.IsFetchGoods;
-        slProvince.Value = client.Province;
-        slCity.Items.Clear();
-        slCity.Items.Add(new ListItem(client.City, client.City));
+        chkIsMessage.Checked = client.IsMessage;     
         txtCredit.Text = StringHelper.CurtNumber(client.Credit.ToString());
         lblBalance.Text = client.Balance.ToString() + " 元";
-
-        if (client.UserId!=0)
-        {
-            ddlCompanyUsers.SelectedValue = client.UserId.ToString();
-        }
-
     }
 }

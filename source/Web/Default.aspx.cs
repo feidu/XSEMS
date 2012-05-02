@@ -30,7 +30,7 @@ public partial class _Default : System.Web.UI.Page
         msnAccount = setting.Msn;
         address = setting.Address;
         postalcode = setting.Postalcode;
-        News news = NewsOperation.GetNewsById(9);
+        News news = NewsOperation.GetNewsById(2);
         if (news != null)
         {
             aboutFeidu = StringHelper.CnCutString(news.Content, 380)+"……";

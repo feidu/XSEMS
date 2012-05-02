@@ -28,18 +28,18 @@
     <tr>
       <td><table class="grid">
           <tr>
-            <th align="center" class="header">编号</th>
-            <th align="center" class="header">收件单号</th>      
-            <th align="center" class="header">问题类型</th>
-            <th align="center" class="header">制单人</th>
-            <th align="center" class="header">制单时间</th>
+            <th align="left" class="header">编号</th>
+            <th align="left" class="header">收件单号</th>      
+            <th align="left" class="header">问题类型</th>
+            <th align="left" class="header">制单人</th>
+            <th align="left" class="header">制单时间</th>
             <th align="center" class="header">操作</th>
             <th align="center" class="header">选择</th>
           </tr>
           <asp:Repeater ID="rpWrongOrder" runat="server">
             <ItemTemplate>
               <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                <td align="center"><%# Eval("Encode") %></td>
+                <td align="left"><%# Eval("Encode") %></td>
                 <td align="left"><%# Eval("Order.Encode") %></td>
                 <td align="left"><%# Eval("Type") %></td>
                 <td align="left"><%# Backend.BAL.UserOperation.GetUserById(int.Parse(Eval("CreateUserId").ToString())).RealName %></td>
@@ -50,7 +50,7 @@
             </ItemTemplate>
             <AlternatingItemTemplate>
               <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                <td align="center"><%# Eval("Encode") %></td>
+                <td align="left"><%# Eval("Encode") %></td>
                 <td align="left"><%# Eval("Order.Encode") %></td>
                 <td align="left"><%# Eval("Type") %></td>
                 <td align="left"><%# Backend.BAL.UserOperation.GetUserById(int.Parse(Eval("CreateUserId").ToString())).RealName %></td>

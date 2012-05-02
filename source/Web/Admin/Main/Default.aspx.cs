@@ -22,7 +22,7 @@ public partial class Admin_Main_Default : System.Web.UI.Page
     protected string URL = null;
     string[] MENUS = new string[] { 
     "<td width=\"0\"></td>",   
-    "<td width=\"60\" onClick=\"menuClickMe(this,'../Order/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 业务管理</td>",
+    "<td width=\"60\" onClick=\"menuClickMe(this,'../Order/AuditOrderList.aspx?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 业务管理</td>",
     "<td width=\"60\" onClick=\"menuClickMe(this,'../Order/CheckOrderList.aspx?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 收件检验</td>",
     "<td width=\"60\" onClick=\"menuClickMe(this,'../Client/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 客户服务</td>",
     "<td width=\"60\" onClick=\"menuClickMe(this,'../Finance/?'+new Date());\" onMouseOver=\"menuOverMe(this)\" onmouseout=\"menuOutMe(this)\"> 财务管理</td>",

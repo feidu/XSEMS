@@ -65,9 +65,15 @@ namespace Backend.Utilities
 
         public static string CurtNumber(string oldStr)
         {
-            string newStr = "";            
-            newStr = oldStr.TrimEnd('0');
-            
+            string newStr = "";
+            if (oldStr != "0")
+            {
+                newStr = oldStr.TrimEnd('0');
+            }
+            else
+            {
+                return "0";
+            }
             int index = newStr.Length - 1;
             if (newStr.LastIndexOf('.') == index)
             {

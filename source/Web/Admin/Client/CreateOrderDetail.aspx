@@ -40,7 +40,7 @@
               <td class="content"><asp:CheckBox ID="chkIsMail" runat="server" Checked="true" /></td>
             </tr>
                  
-            <tr><td colspan="2" align="center"><asp:Button ID="btnCreate" runat="server" CssClass="button" Text="添 加" OnClick="btnCreate_Click" />&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='/Admin/Client/WrongOrder.aspx?id=<%=id %>'"/></td></tr>
+            <tr><td colspan="2" align="center"><asp:Button ID="btnCreate" runat="server" CssClass="button" Text="添 加" OnClick="btnCreate_Click" />&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='../Client/WrongOrder.aspx?id=<%=id %>'"/></td></tr>
         </table>		
         </td>
     </tr>

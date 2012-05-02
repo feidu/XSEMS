@@ -66,7 +66,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@id", id),
             };
-            string sql = "SELECT id, name, area_code, address, contact_person, phone, email, smtp, commission, email_password, qq, msn FROM companies WHERE id = @id; SELECT CA.module_id, CA.accessible, CA.writable FROM company_authorizations AS CA, companies AS C WHERE C.id = CA.company_id and C.id = @id";
+            string sql = "SELECT id, name, area_code, address, contact_person, phone, email, smtp, commission, email_password, qq, msn FROM companies WHERE id = @id;";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -84,20 +84,7 @@ namespace Backend.DAL
                     company.EmailPassword = dr.GetString(9);
                     company.QQ = dr.GetString(10);
                     company.MSN = dr.GetString(11);
-                }
-                if (company != null)
-                {
-                    dr.NextResult();
-                    company.ModuleAuthorizations = new List<ModuleAuthorization>();
-                    while (dr.Read())
-                    {
-                        ModuleAuthorization ma = new ModuleAuthorization();
-                        ma.ModuleId = dr.GetInt32(0);
-                        ma.Accessible = dr.GetBoolean(1);
-                        ma.Writable = dr.GetBoolean(2);
-                        company.ModuleAuthorizations.Add(ma);
-                    }
-                }
+                }              
             }
             return company;
         }

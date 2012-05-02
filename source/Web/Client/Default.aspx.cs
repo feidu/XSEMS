@@ -24,7 +24,7 @@ public partial class Client_Default : System.Web.UI.Page
         if (!IsPostBack)
         {
             ddlOrderStatus.SelectedValue = "1";
-            RpOrderDataBind(OrderStatus.WAIT_SUBMIT);
+            RpOrderDataBind(OrderStatus.WAIT_AUDIT);
         }
     }
 

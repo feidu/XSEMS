@@ -36,7 +36,7 @@ function openCountryWindow()
               <!--中间右边内容部分--> 
               <table class="tablecontent">
                 <tr><td align="left" class="top_content"><wl:ClientTop runat="server" id="clientTop" Title="费用计算"></wl:ClientTop> </td></tr>  
-                <tr><td align="left" valign="bottom" style="padding-left:5px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="230">寄达国家：<input id="txtCountry" type="text" style="width:160px;color:#555555;" runat="server" readonly="readonly"/></td><td valign="middle"><input type="image" src="/Admin/Images/btn_bg1.gif" onclick="openCountryWindow()" /></td>
+                <tr><td align="left" valign="bottom" style="padding-left:5px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="230">寄达国家：<input id="txtCountry" type="text" style="width:160px;color:#555555;" runat="server" readonly="readonly"/></td><td valign="middle"><input type="image" src="../Admin/Images/btn_bg1.gif" onclick="openCountryWindow()" /></td>
                           <td>&nbsp;&nbsp;物品类型：<wl:GoodsTypeDropDownList ID="ddlGoodsType" name="ddlGoodsType" runat="server"></wl:GoodsTypeDropDownList>&nbsp;&nbsp;&nbsp;</td>
                           <td>物品重量：<input id="txtWeight" name="txtWeight" type="text" style="width:46px" runat="server" />千克&nbsp;&nbsp;&nbsp;</td>
                           <td>物品数量：<input name="txtCount" id="txtCount" type="text" style="width:46px" runat="server"/>件&nbsp;&nbsp;&nbsp;</td>
@@ -73,7 +73,7 @@ function openCountryWindow()
                                 <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ChargeStandard.ClientRegisterCost.ToString())%></td> 
                                 <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber((cc.ClientPostCost * cc.Carrier.FuelSgRate).ToString())%></td> 
                                 <td align="center"><%=Backend.Utilities.EnumConvertor.GoodsTypeConvertToString(cc.ChargeStandard.GoodsType)%></td> 
-                                <td align="center"><%=cc.ClientTotalCost%></td>                                         
+                                <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ClientTotalCost.ToString())%></td>                                         
                               </tr> 
                           <%  }
                           } %>       

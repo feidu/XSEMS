@@ -58,16 +58,9 @@ public partial class Admin_CompanySetting_PositionOperator : System.Web.UI.Page
     {
         AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
         User user = UserOperation.GetUserByUsername(cookie.Username);
-        string[] array = CompanyOperation.GetCompanyRuleAuthorizationModuleIds(user.CompanyId).Split(',');
         foreach (RuleAuthorizationModule ram in rams)
         {
-            foreach (string sId in array)
-            {
-                if (ram.Id.ToString() == sId)
-                {
-                    compRams.Add(ram);
-                }
-            }
+            compRams.Add(ram);
         }
         rpModule.ItemDataBound += new RepeaterItemEventHandler(rpModule_ItemDataBound);
         rpModule.DataSource = compRams;

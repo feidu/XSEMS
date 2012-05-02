@@ -32,16 +32,9 @@ public partial class Client_Order : System.Web.UI.Page
     }
 
     private void FormDataBind()
-    {
-        lblToAddress.Text = order.ToAddress;
-        lblToCity.Text = order.ToCity;
-        lblToEmail.Text = order.ToEmail;
-        lblToPhone.Text = order.ToPhone;
-        lblToPostcode.Text = order.ToPostcode;
-        lblToUsername.Text = order.ToUsername;
-        lblToCountry.Text = order.ToCountry;
+    {       
         lblRemark.Text = order.Remark;
-        txtCosts.Value = order.Costs.ToString();       
+        txtCosts.Value =Backend.Utilities.StringHelper.CurtNumber(order.Costs.ToString());       
         lblEncode.Text = order.Encode;
         lblCreateTime.Text = order.CreateTime.ToString();
 
@@ -53,7 +46,7 @@ public partial class Client_Order : System.Web.UI.Page
             {
                 lblReasonTitle.Text = "检验退回原因";
             }
-            else if (order.Status == OrderStatus.WAIT_SUBMIT)
+            else if (order.Status == OrderStatus.WAIT_AUDIT)
             {
                 lblReasonTitle.Text = "审核退回原因";
             }

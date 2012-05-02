@@ -38,7 +38,7 @@
             <td width="23%" class="content"><asp:Label ID="lblReceiveDate" runat="server" Text=""></asp:Label></td>
           </tr>
           <tr>
-            <td class="label" >服务类别:</td>
+            <td class="label" >问题类型:</td>
             <td class="content"><select id="slWrongType" runat="server">
                               <option value="未收到">未收到 </option>                             
                               <option value="损坏">损坏 </option>

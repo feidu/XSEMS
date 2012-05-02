@@ -31,12 +31,12 @@
       <td><table class="grid">
           <tr>
             <th align="center" class="header">编号</th>
-            <th align="center" class="header">用户名</th>
-            <th align="center" class="header">真实姓名</th>
-            <th align="center" class="header">手机</th>
-            <th align="center" class="header">邮箱</th>
-            <th align="center" class="header">余额</th>
-            <th align="center" class="header">信用额度</th>
+            <th align="left" class="header">用户名</th>
+            <th align="left" class="header">真实姓名</th>
+            <th align="left" class="header">手机</th>
+            <th align="left" class="header">邮箱</th>
+            <th align="left" class="header">余额</th>
+            <th align="left" class="header">信用额度</th>
             <th align="center" class="header">操作</th>
             <th align="center" class="header">选择</th>
           </tr>

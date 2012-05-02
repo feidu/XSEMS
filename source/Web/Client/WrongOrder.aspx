@@ -30,29 +30,25 @@
                 <tr>
                   <td><table class="grid">
                           <tr>
-                            <td width="10%" class="label" >服务单号:</td>
-                            <td width="23%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
+                            <td width="10%" class="label" >问题单号:</td>
+                            <td width="40%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
                             <td width="10%" class="label" >收件单号:</td>
-                            <td width="24%" class="content"><asp:TextBox ID="txtOrderEncode" runat="server"></asp:TextBox></td>
-                            <td width="10%" class="label" >收件日期:</td>
-                            <td width="23%" class="content"><asp:Label ID="lblReceiveDate" runat="server" Text=""></asp:Label></td>
+                            <td width="40%" class="content"><asp:TextBox ID="txtOrderEncode" runat="server"></asp:TextBox></td>                           
                           </tr>
                           <tr>
-                            <td class="label" >服务类别:</td>
+                            <td class="label" >制单时间:</td>
+                            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>    
+                            <td class="label" >问题类别:</td>
                             <td class="content"><select id="slWrongType" runat="server">
                                               <option value="未收到">未收到 </option>                             
                                               <option value="损坏">损坏 </option>
                                               <option value="差错">差错</option>
                                               <option value="海关因素">海关因素 </option>                              
-                                          </select></td>
-                            <td class="label" >制 单 人:</td>
-                            <td class="content"><asp:Label ID="lblCreateUser" runat="server" Text=""></asp:Label></td>           
-                            <td class="label" >制单时间:</td>
-                            <td class="content"><asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label></td>        
+                                          </select></td>      
                           </tr>         
                           <tr>
-                            <td class="label" >服务内容:</td>
-                            <td class="content" colspan="5"><asp:TextBox ID="txtReason" TextMode="multiLine" Rows="2" Width="100%" runat="server"></asp:TextBox></td>          
+                            <td class="label" >问题内容:</td>
+                            <td class="content" colspan="3"><asp:TextBox ID="txtReason" TextMode="multiLine" Rows="2" Width="100%" runat="server"></asp:TextBox></td>          
                           </tr>        
                          </table>		
 		            </td>

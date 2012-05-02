@@ -45,30 +45,7 @@
                       <tr id="trReturnReason" runat="server" visible="false">
                         <td class="label" style="color:Red; height:24px;"><asp:Label ID="lblReasonTitle" runat="server"></asp:Label>:</td>
                         <td class="content" colspan="5"><asp:Label ID="lblReason" runat="server" Text=""></asp:Label></td>          
-                      </tr>
-                      <tr><td colspan="6" align="left" class="label" style="font-weight:bold;"> 收件人信息</td></tr>
-                      <tr><td colspan="6" align="left">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                      <tr>
-                        <td class="label">姓&nbsp;&nbsp;&nbsp;&nbsp;名:</td>
-                        <td class="content"><asp:Label ID="lblToUsername" runat="server"></asp:Label></td>
-                        <td class="label">电&nbsp;&nbsp;&nbsp;&nbsp;话:</td>
-                        <td class="content"><asp:Label ID="lblToPhone" runat="server"></asp:Label></td>
-                        <td class="label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱:</td>
-                        <td class="content"><asp:Label ID="lblToEmail" runat="server"></asp:Label></td>                
-                      </tr>
-                      <tr>
-                        <td class="label">国&nbsp;&nbsp;&nbsp;&nbsp;家:</td>
-                        <td class="content"><asp:Label ID="lblToCountry" runat="server"></asp:Label></td>
-                        <td class="label">城&nbsp;&nbsp;&nbsp;&nbsp;市:</td>
-                        <td class="content"><asp:Label ID="lblToCity" runat="server"></asp:Label></td>  
-                        <td class="label">邮&nbsp;&nbsp;&nbsp;&nbsp;编:</td>
-                        <td class="content"><asp:Label ID="lblToPostcode" runat="server"></asp:Label></td>                                           
-                      </tr>
-                      <tr>
-                        <td class="label">详&nbsp;&nbsp;&nbsp;&nbsp;址:</td>
-                        <td class="content" colspan="5"><asp:Label ID="lblToAddress" runat="server"></asp:Label></td> 
-                      </tr>  
+                      </tr>                      
                       </table>
                        </td></tr>
                      </table>	     
@@ -77,13 +54,15 @@
                 <tr>
                   <td>
       	             <table class="grid">
-      	              <tr><td class="label" style="font-weight:bold;" colspan="6"> 订单明细</td></tr>
+      	              <tr><td class="label" style="font-weight:bold;" colspan="8"> 订单明细</td></tr>
                       <tr>
                         <td align="center" class="headers">序号</td>
+                        <td align="left" class="headers">国家</td>
                         <td align="left" class="headers">承运商编号</td>
                         <td align="left" class="headers">承运商名称</td>
+                        <td align="left" class="headers">追踪码</td>
                         <td align="left" class="headers">数量</td>           
-                        <td align="left" class="headers">计费重量</td>                      
+                        <td align="left" class="headers">计费重量(KG)</td>                      
                         <td align="left" class="headers">应收费用</td>      
                       </tr>
                       <%
@@ -96,11 +75,13 @@
                            %>
                           <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
                             <td align="center"><%=i%></td>
+                            <td align="left"><%=od.ToCountry%></td>
                             <td align="left"><%=od.CarrierEncode%></td>
                             <td align="left"><%= od.CarrierEncode==null?"": Backend.BAL.CarrierOperation.GetCarrierByEncode(od.CarrierEncode).Name%></td>
+                            <td align="left"><%=od.BarCode%></td>
                             <td align="left"><%=od.Count%></td>
-                            <td align="left"><%=od.Weight%></td>                            
-                            <td align="left"><%=od.TotalCosts%></td>
+                            <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.Weight.ToString())%></td>                            
+                            <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.TotalCosts.ToString())%></td>
                           </tr>
                           <% i++;
                          }

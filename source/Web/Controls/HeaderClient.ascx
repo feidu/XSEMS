@@ -30,9 +30,9 @@ body {
   <tr>
     <td height="35"><table width="980" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="116" height="35" align="center" valign="middle" <% if (currentNav!=0){ %> bgcolor="#007ABB"<%}else {%> bgcolor="#E48221"<%} %> onmouseover="this.style.backgroundColor='#E48221'"  onmouseout="this.style.backgroundColor='' " ><a href="/"><span style="font-family:宋体; font-size:14px; color: #FFF; font-weight: bold;">首页</span></a></td>
-        <td width="130" align="center" valign="middle" <% if (currentNav!=1){ %> bgcolor="#0089D2"<%}else {%> bgcolor="#E48221"<%} %> onmouseover="this.style.backgroundColor='#E48221'"  onmouseout="this.style.backgroundColor='' " ><a href="/AboutUs.aspx"><span style="font-family:宋体; font-size:14px; color: #FFF; font-weight: bold;">关于萧山EMS</span></a></td>
-        <td width="130" align="center" valign="middle" <% if (currentNav!=2){ %> bgcolor="#007ABB"<%}else {%> bgcolor="#E48221"<%} %> onmouseover="this.style.backgroundColor='#E48221'"  onmouseout="this.style.backgroundColor='' "><a href="/News/Default.aspx?cat=1"><span style="font-family:宋体; font-size:14px; color: #FFF; font-weight: bold;">新闻公告</span></a></td>        
+        <td width="116" height="35" align="center" valign="middle" <% if (currentNav!=0){ %> bgcolor="#007ABB"<%}else {%> bgcolor="#E48221"<%} %> onmouseover="this.style.backgroundColor='#E48221'"  onmouseout="this.style.backgroundColor='' " ><a href="../"><span style="font-family:宋体; font-size:14px; color: #FFF; font-weight: bold;">首页</span></a></td>
+        <td width="130" align="center" valign="middle" <% if (currentNav!=1){ %> bgcolor="#0089D2"<%}else {%> bgcolor="#E48221"<%} %> onmouseover="this.style.backgroundColor='#E48221'"  onmouseout="this.style.backgroundColor='' " ><a href="../AboutUs.aspx"><span style="font-family:宋体; font-size:14px; color: #FFF; font-weight: bold;">关于萧山EMS</span></a></td>
+        <td width="130" align="center" valign="middle" <% if (currentNav!=2){ %> bgcolor="#007ABB"<%}else {%> bgcolor="#E48221"<%} %> onmouseover="this.style.backgroundColor='#E48221'"  onmouseout="this.style.backgroundColor='' "><a href="../NewsList.aspx?cat=1"><span style="font-family:宋体; font-size:14px; color: #FFF; font-weight: bold;">新闻公告</span></a></td>        
         <td width="604" bgcolor="#007ABB"></td>
       </tr>
     </table></td>

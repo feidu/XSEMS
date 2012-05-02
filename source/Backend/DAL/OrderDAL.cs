@@ -243,7 +243,11 @@ namespace Backend.DAL
                     }
                     order.CreateTime = dr.GetDateTime(6);
                     order.Remark = dr.GetString(7);
-                    order.IsMailSend = dr.GetBoolean(8);
+                    order.IsMailSend = false;
+                    if (!dr.IsDBNull(8))
+                    {
+                        order.IsMailSend = dr.GetBoolean(8);
+                    }
                     if (!dr.IsDBNull(9))
                     {
                         order.AuditUserId = dr.GetInt32(9);
@@ -966,7 +970,8 @@ namespace Backend.DAL
                     order.Costs = dr.GetDecimal(4);
                     order.CreateTime = dr.GetDateTime(5);
                     order.Remark = dr.GetString(6);
-                    order.IsMailSend = dr.GetBoolean(7);
+                    order.IsMailSend = false;
+
                     if (!dr.IsDBNull(8))
                     {
                         order.AuditUserId = dr.GetInt32(8);

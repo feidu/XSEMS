@@ -55,9 +55,9 @@
                                 <td align="center"><%# Eval("Remark")%></td>  
                                 <td align="center"><%# Eval("ToUsername")%></td>      
                                 <td align="center"><%# Eval("Count")%></td>                                     
-                                <td align="center"><%# Eval("Weight")%></td>                                     
+                                <td align="center"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Weight").ToString())%></td>                                     
                                 <td align="center"><%# Eval("ToCountry")%></td>                                     
-                                <td align="center"><%# Eval("TotalCosts")%></td>                                               
+                                <td align="center"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("TotalCosts").ToString())%></td>     
                                 <td align="center"><%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString()%></td>     
                                 <td align="center"><%# Convert.ToDateTime(Eval("LastDisposalTime")) > DateTime.MinValue ? "" + Convert.ToDateTime(Eval("LastDisposalTime")).ToShortDateString() + "" : ""%></td>          
                                 <td align="left"><%# Eval("PostStatus")%></td>                                          
@@ -70,9 +70,9 @@
                                 <td align="center"><%# Eval("Remark")%></td>    
                                 <td align="center"><%# Eval("ToUsername")%></td>    
                                 <td align="center"><%# Eval("Count")%></td>                                     
-                                <td align="center"><%# Eval("Weight")%></td>                                     
+                                <td align="center"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Weight").ToString())%></td>                                     
                                 <td align="center"><%# Eval("ToCountry")%></td>                                     
-                                <td align="center"><%# Eval("TotalCosts")%></td>                                               
+                                <td align="center"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("TotalCosts").ToString())%></td>       
                                 <td align="center"><%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString()%></td>   
                                 <td align="center"><%# Convert.ToDateTime(Eval("LastDisposalTime")) > DateTime.MinValue ? "" + Convert.ToDateTime(Eval("LastDisposalTime")).ToShortDateString() + "" : ""%></td>       
                                 <td align="left"><%# Eval("PostStatus")%></td>   
