@@ -28,40 +28,40 @@
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">收款单号</th>
-                <th align="center" class="header">类型</th>           
-                <th align="center" class="header">收款日期</th>
-                <th align="center" class="header">流水号</th>   
-                <th align="center" class="header">客户姓名</th>      
-                <th align="center" class="header">付款方式</th>        
-                <th align="center" class="header">收款金额</th>
-                <th align="center" class="header">制单人</th>                
+                <th align="left" class="header">收款单号</th>
+                <th align="left" class="header">类型</th>           
+                <th align="left" class="header">收款日期</th>
+                <th align="left" class="header">流水号</th>   
+                <th align="left" class="header">客户姓名</th>      
+                <th align="left" class="header">付款方式</th>        
+                <th align="left" class="header">收款金额</th>
+                <th align="left" class="header">制单人</th>                
                 <th align="center" class="header">操作</th>
               </tr>
               <asp:Repeater ID="rpAlreadyReceived" runat="server">
                 <ItemTemplate>
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                    <td align="center"><%# Eval("Encode")%></td>
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.PaymentTypeConvertToString(Convert.ToByte(Eval("PaymentType")))%></td>          
+                    <td align="left"><%# Eval("Encode")%></td>
+                    <td align="left"><%# Backend.Utilities.EnumConvertor.PaymentTypeConvertToString(Convert.ToByte(Eval("PaymentType")))%></td>          
                     <td align="left"><%# Convert.ToDateTime(Eval("ReceiveTime")).ToShortDateString()%></td>
-                    <td align="center"><%# Eval("Invoice")%></td>       
-                    <td align="center"><%# Eval("ClientName")%></td>               
-                    <td align="center"><%# Eval("PaymentMethodName")%></td>
-                    <td align="center"><%# Eval("Money")%> 元</td>
-                    <td align="center"><%# Eval("UserName")%></td>                    
+                    <td align="left"><%# Eval("Invoice")%></td>       
+                    <td align="left"><%# Eval("ClientName")%></td>               
+                    <td align="left"><%# Eval("PaymentMethodName")%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Money").ToString())%> 元</td>
+                    <td align="left"><%# Eval("UserName")%></td>                    
                     <td align="center"><a onclick="return confirm('您确认要删除此充值信息？')" href="AlreadyReceived.aspx?id=<%# Eval("Id") %>">删除</a></td>   
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                    <td align="center"><%# Eval("Encode")%></td>
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.PaymentTypeConvertToString(Convert.ToByte(Eval("PaymentType")))%></td>          
+                    <td align="left"><%# Eval("Encode")%></td>
+                    <td align="left"><%# Backend.Utilities.EnumConvertor.PaymentTypeConvertToString(Convert.ToByte(Eval("PaymentType")))%></td>          
                     <td align="left"><%# Convert.ToDateTime(Eval("ReceiveTime")).ToShortDateString()%></td>
-                    <td align="center"><%# Eval("Invoice")%></td>       
-                    <td align="center"><%# Eval("ClientName")%></td>               
-                    <td align="center"><%# Eval("PaymentMethodName")%></td>
-                    <td align="center"><%# Eval("Money")%> 元</td>
-                    <td align="center"><%# Eval("UserName")%></td>                    
+                    <td align="left"><%# Eval("Invoice")%></td>       
+                    <td align="left"><%# Eval("ClientName")%></td>               
+                    <td align="left"><%# Eval("PaymentMethodName")%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Money").ToString())%> 元</td>
+                    <td align="left"><%# Eval("UserName")%></td>                    
                     <td align="center"><a onclick="return confirm('您确认要删除此充值信息？')" href="AlreadyReceived.aspx?id=<%# Eval("Id") %>">删除</a></td>             
                   </tr>
                 </AlternatingItemTemplate>

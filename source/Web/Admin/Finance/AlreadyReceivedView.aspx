@@ -26,11 +26,7 @@
               <tr>
                 <td width="9%" class="label" >收款单号:</td>
                 <td width="91%" class="content"><asp:Label ID="lblEncode" runat="server" Text=""></asp:Label></td>
-              </tr>   
-              <tr>
-                <td class="label" >收款类型:</td>
-                <td class="content"><asp:Label ID="lblPaymentType" runat="server" Text=""></asp:Label></td>
-              </tr>
+              </tr>              
               <tr>
                 <td class="label" >收款时间:</td>
                 <td class="content"><asp:Label ID="lblReceivedTime" runat="server" Text=""></asp:Label></td>
@@ -42,11 +38,7 @@
               <tr>
                 <td class="label" >客户姓名:</td>   
                 <td class="content"><asp:Label ID="lblClientName" runat="server" Text=""></asp:Label></td>
-              </tr>                   
-              <tr>
-                <td class="label" >付款方式:</td>
-                <td class="content"><asp:Label ID="lblPaymentMethod" runat="server" Text=""></asp:Label></td>
-              </tr>
+              </tr>         
               <tr>
                 <td class="label" >收款账号:</td>
                 <td class="content"><asp:Label ID="lblAccount" runat="server" Text=""></asp:Label></td>

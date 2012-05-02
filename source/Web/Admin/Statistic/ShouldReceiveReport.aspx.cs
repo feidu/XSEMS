@@ -100,13 +100,12 @@ public partial class Admin_Statistic_ShouldReceiveReport : System.Web.UI.Page
             Response.Write("<table border='1'>");
             Response.Write("<tr style='font-size:16px;font-weight:bold;height:35px;'><td align='center' valign='middle' colspan='4'>应收款汇总</td></tr>");
             Response.Write("<tr style='font-weight:bold;'><td align='left' colspan='4'>&nbsp;" + titleContent + "</td></tr>");
-            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;所属公司</td><td align='left'>&nbsp;客户用户名</td><td align='left'>&nbsp;客户姓名</td><td align='right'>&nbsp;应收金额</td></tr>");
+            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;客户用户名</td><td align='left'>&nbsp;客户姓名</td><td align='right'>&nbsp;应收金额</td></tr>");
 
             decimal totalMoney = 0;
             foreach (ShouldReceive sr in result)
             {
                 Response.Write("<tr>");
-                Response.Write("<td align='left'>&nbsp;" + CompanyOperation.GetCompanyById(ClientOperation.GetClientById(sr.ClientId).CompanyId).Name + "</td>");
                 Response.Write("<td align='left'>&nbsp;" + ClientOperation.GetClientById(sr.ClientId).Username + "</td>");
                 Response.Write("<td align='left'>&nbsp;" + ClientOperation.GetClientById(sr.ClientId).RealName + "</td>");
                 Response.Write("<td align='right'>" + sr.Money.ToString() + "</td>");
@@ -115,7 +114,7 @@ public partial class Admin_Statistic_ShouldReceiveReport : System.Web.UI.Page
                 totalMoney += sr.Money;
             }
 
-            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;合计：</td><td colspan='2'>&nbsp;</td><td align='right'>" + totalMoney.ToString() + "</td></tr>");
+            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;合计：</td><td>&nbsp;</td><td align='right'>" + totalMoney.ToString() + "</td></tr>");
             Response.Write("</table>");
             Response.Flush();
             Response.End();

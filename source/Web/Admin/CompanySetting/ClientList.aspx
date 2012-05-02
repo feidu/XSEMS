@@ -48,7 +48,7 @@
                 <td align="left"><%# Eval("RealName") %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
-                <td align="left"><%# Eval("Balance") %> 元</td>
+                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Balance").ToString())%> 元</td>
                 <td align="left"><asp:TextBox ID="txtCredit" runat="server" Width="70"></asp:TextBox>元</td>
                 <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">编辑</a>&nbsp;|&nbsp;<a href="changeClientPwd.aspx?id=<%#Eval("Id") %>">修改密码</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
@@ -61,7 +61,7 @@
                 <td align="left"><%# Eval("RealName") %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
-                <td align="left"><%# Eval("Balance") %> 元</td>
+                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Balance").ToString())%> 元</td>
                 <td align="left"><asp:TextBox ID="txtCredit" runat="server" Width="70"></asp:TextBox>元</td>
                 <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">编辑</a>&nbsp;|&nbsp;<a href="changeClientPwd.aspx?id=<%#Eval("Id") %>">修改密码</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>

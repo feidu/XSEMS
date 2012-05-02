@@ -57,10 +57,6 @@ public partial class Admin_CompanySetting_CreateAccount : System.Web.UI.Page
         ra.AccountNumber = accountNumber;
         ra.BankName = bankName;
         ra.Remark = remark;
-        ra.CompanyId = user.CompanyId;
-        ra.PaymentMethod = new PaymentMethod();
-        ra.PaymentMethod.Id = int.Parse(ddlPaymentMethod.SelectedItem.Value);
-
         if (ReceivableAccountOperation.CreateReceivableAccount(ra))
         {
             lblMsg.Text = "添加成功！";

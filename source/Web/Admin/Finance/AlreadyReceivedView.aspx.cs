@@ -32,23 +32,21 @@ public partial class Admin_Finance_AlreadyReceivedView : System.Web.UI.Page
         {
             trUsdConversion.Visible = true;
             trReceivedMoney.Visible = false;
-            lblClientPaid.Text = recharge.Paid.ToString();
-            lblExchangeRate.Text = recharge.ExchangeRate.ToString();
-            lblActualReceived.Text = recharge.Money.ToString();
+            lblClientPaid.Text = StringHelper.CurtNumber(recharge.Paid.ToString());
+            lblExchangeRate.Text = StringHelper.CurtNumber(recharge.ExchangeRate.ToString());
+            lblActualReceived.Text = StringHelper.CurtNumber(recharge.Money.ToString());
         }
         else
         {
             trUsdConversion.Visible = false;
             trReceivedMoney.Visible = true;
-            lblReceivedMoney.Text = recharge.Money.ToString();
+            lblReceivedMoney.Text = StringHelper.CurtNumber(recharge.Money.ToString());
         }
         lblEncode.Text = recharge.Encode;
         lblReceivedTime.Text = recharge.ReceiveTime.ToString();
         lblClientName.Text = recharge.ClientName;
         lblCurrencyType.Text = EnumConvertor.CurrencyTypeConvertToString((byte)recharge.CurrencyType);
-        lblInvoice.Text = recharge.Invoice;
-        lblPaymentMethod.Text = recharge.PaymentMethodName;
-        lblPaymentType.Text = EnumConvertor.PaymentTypeConvertToString((byte)recharge.PaymentType);
+        lblInvoice.Text = recharge.Invoice;      
         lblRemark.Text = recharge.Remark;
         lblUsername.Text = recharge.UserName;
         lblCreateTime.Text = recharge.CreateTime.ToString();

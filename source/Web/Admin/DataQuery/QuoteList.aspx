@@ -28,36 +28,36 @@
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">报价单号</th>
-                <th align="center" class="header">所属公司</th>           
-                <th align="center" class="header">报价日期</th>
-                <th align="center" class="header">客户姓名</th>         
-                <th align="center" class="header">制单人</th>
-                <th align="center" class="header">制单时间</th>
+                <th align="left" class="header">报价单号</th>
+                <th align="left" class="header">所属公司</th>           
+                <th align="left" class="header">报价日期</th>
+                <th align="left" class="header">客户姓名</th>         
+                <th align="left" class="header">制单人</th>
+                <th align="left" class="header">制单时间</th>
                 <th align="center" class="header">状态</th>
                 <th align="center" class="header">操作</th>
               </tr>
               <asp:Repeater ID="rpQuote" runat="server">
                 <ItemTemplate>
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                    <td align="center"><%# Eval("Encode")%></td>
-                    <td align="center"><%# Eval("CompanyName")%></td>          
-                    <td align="center"><%# Convert.ToDateTime(Eval("QuoteTime")).ToShortDateString()%></td>
-                    <td align="center"><%# Eval("Client.RealName")%></td>               
-                    <td align="center"><%# Eval("User.RealName")%></td>
-                    <td align="center"><%# Eval("CreateTime")%></td>            
+                    <td align="left"><%# Eval("Encode")%></td>
+                    <td align="left"><%# Eval("CompanyName")%></td>          
+                    <td align="left"><%# Convert.ToDateTime(Eval("QuoteTime")).ToShortDateString()%></td>
+                    <td align="left"><%# Eval("Client.RealName")%></td>               
+                    <td align="left"><%# Eval("User.RealName")%></td>
+                    <td align="left"><%# Eval("CreateTime")%></td>            
                     <td align="center"><%# Convert.ToBoolean(Eval("Status")) ? "审核通过":"待审核"%></td>          
                     <td align="center"><a href="Quote.aspx?id=<%# Eval("Id") %>">查看</a></td>                                             
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                    <td align="center"><%# Eval("Encode")%></td>
-                    <td align="center"><%# Eval("CompanyName")%></td>          
-                    <td align="center"><%# Convert.ToDateTime(Eval("QuoteTime")).ToShortDateString()%></td>
-                    <td align="center"><%# Eval("Client.RealName")%></td>                  
-                    <td align="center"><%# Eval("User.RealName")%></td>
-                    <td align="center"><%# Eval("CreateTime")%></td>                    
+                    <td align="left"><%# Eval("Encode")%></td>
+                    <td align="left"><%# Eval("CompanyName")%></td>          
+                    <td align="left"><%# Convert.ToDateTime(Eval("QuoteTime")).ToShortDateString()%></td>
+                    <td align="left"><%# Eval("Client.RealName")%></td>                  
+                    <td align="left"><%# Eval("User.RealName")%></td>
+                    <td align="left"><%# Eval("CreateTime")%></td>                    
                     <td align="center"><%# Convert.ToBoolean(Eval("Status")) ? "审核通过":"待审核"%></td>  
                     <td align="center"><a href="Quote.aspx?id=<%# Eval("Id") %>">查看</a></td>   
                   </tr>

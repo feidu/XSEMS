@@ -66,13 +66,13 @@ namespace Backend.Utilities
         public static string CurtNumber(string oldStr)
         {
             string newStr = "";
-            if (oldStr != "0")
+            if (oldStr != "0" && oldStr.Contains("."))
             {
                 newStr = oldStr.TrimEnd('0');
             }
             else
             {
-                return "0";
+                return oldStr;
             }
             int index = newStr.Length - 1;
             if (newStr.LastIndexOf('.') == index)

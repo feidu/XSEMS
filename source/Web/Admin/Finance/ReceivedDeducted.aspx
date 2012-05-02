@@ -28,39 +28,39 @@
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">客户姓名</th>
-                <th align="center" class="header">应收款号</th>           
-                <th align="center" class="header">付款单号</th>
-                <th align="center" class="header">核销时间</th>   
-                <th align="center" class="header">核销金额</th>                
-                <th align="center" class="header">核销账号</th>     
-                <th align="center" class="header">核销人员</th>
+                <th align="left" class="header">客户姓名</th>
+                <th align="left" class="header">应收款号</th>           
+                <th align="left" class="header">付款单号</th>
+                <th align="left" class="header">核销时间</th>   
+                <th align="left" class="header">核销金额</th>                
+                <th align="left" class="header">核销账号</th>     
+                <th align="left" class="header">核销人员</th>
                 <!--<th align="center" class="header">操作</th> -->
                 <th align="center" class="header">选择</th>
               </tr>
               <asp:Repeater ID="rpReceivedDeducted" runat="server">
                 <ItemTemplate>
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                    <td align="center"><%# Eval("Client.RealName")%></td>
-                    <td align="center"><%# Eval("SrEncode")%></td>          
+                    <td align="left"><%# Eval("Client.RealName")%></td>
+                    <td align="left"><%# Eval("SrEncode")%></td>          
                     <td align="left"><%# Eval("ArEncode")%></td>
-                    <td align="center"><%# Eval("CreateTime")%></td>       
-                    <td align="center"><%# Eval("Money")%></td>    
-                    <td align="center"><%# Eval("ArAccount")%></td>   
-                    <td align="center"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("ArUserId"))).RealName %></td>    
+                    <td align="left"><%# Eval("CreateTime")%></td>       
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Money").ToString())%></td>   
+                    <td align="left"><%# Eval("ArAccount")%></td>   
+                    <td align="left"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("ArUserId"))).RealName %></td>    
                     <!--<td align="center"><a href="ReceivedDeductedView.aspx?id=<%# Eval("Id") %>">查看</a></td> -->        
                     <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>     
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                    <td align="center"><%# Eval("Client.RealName")%></td>
-                    <td align="center"><%# Eval("SrEncode")%></td>          
+                    <td align="left"><%# Eval("Client.RealName")%></td>
+                    <td align="left"><%# Eval("SrEncode")%></td>          
                     <td align="left"><%# Eval("ArEncode")%></td>
-                    <td align="center"><%# Eval("CreateTime")%></td>       
-                    <td align="center"><%# Eval("Money")%></td>         
-                    <td align="center"><%# Eval("ArAccount")%></td>  
-                    <td align="center"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("ArUserId"))).RealName %></td>   
+                    <td align="left"><%# Eval("CreateTime")%></td>       
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Money").ToString())%></td>         
+                    <td align="left"><%# Eval("ArAccount")%></td>  
+                    <td align="left"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("ArUserId"))).RealName %></td>   
                     <!--<td align="center"><a href="ReceivedDeductedView.aspx?id=<%# Eval("Id") %>">查看</a></td> -->
                     <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
                   </tr>

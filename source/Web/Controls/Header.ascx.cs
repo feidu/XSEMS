@@ -29,12 +29,11 @@ public partial class Controls_Header : System.Web.UI.UserControl
     protected int currentNav = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<News> result = NewsOperation.GetNewsByCategoryId(8);
+        List<News> result = NewsOperation.GetNewsByCategoryId(3);
         foreach (News news in result)
         {
-            announcement += "<a href='/News/Content.aspx?id=" + news.Id + "' targit='_blank'>" + news.Title + "</a>&nbsp;";
-        }
-
+            announcement += "<a href='/NewsView.aspx?id=" + news.Id + "' targit='_blank'>" + news.Title + "</a>&nbsp;";
+        }        
         currentNav = CurrentNav;
 
         List<Ad> adList = SettingOperation.GetAdSortByNum();

@@ -50,7 +50,7 @@
                     <td align="left"><%# Eval("Encode") %></td>             
                     <td align="left"><%# Eval("CreateTime")%></td>     
                     <td align="left"><%# Eval("Client.RealName")%></td>
-                    <td align="left"><%# Eval("Costs")%></td>  
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td>  
                     <td align="left"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("audit_user_id"))).RealName%></td>  
                     <td align="left"><%# Eval("Audit_Time")%></td>  
                     <td align="center"><a href="CheckOrder.aspx?id=<%# Eval("Id") %>">检验</a></td>                                               
@@ -61,7 +61,7 @@
                     <td align="left"><%# Eval("Encode") %></td>           
                     <td align="left"><%# Eval("CreateTime")%></td>         
                     <td align="left"><%# Eval("Client.RealName")%></td>
-                    <td align="left"><%# Eval("Costs")%></td>  
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td> 
                     <td align="left"><%# Backend.BAL.UserOperation.GetUserById(Convert.ToInt32(Eval("audit_user_id"))).RealName%></td>  
                     <td align="left"><%# Eval("Audit_Time")%></td> 
                     <td align="center"><a href="CheckOrder.aspx?id=<%# Eval("Id") %>">检验</a></td>     

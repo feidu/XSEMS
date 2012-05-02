@@ -12,7 +12,7 @@
   <wl:CompanySettingNav ID="companySettingNav" runat="server" />
   <table cellpadding="0" cellspacing="0" class="nav">
     <tr>
-        <td class="info2">公司设置 > 公司设定 > 添加收款账号</td>
+        <td class="info2">公司设置 > 添加收款账号</td>
     </tr>
     <tr>
         <td class="info"><a href="CreateAccount.aspx">添加收款账号</a> | <a href="AccountList.aspx">收款账号列表</a></td>
@@ -27,27 +27,22 @@
     <tr>
       <td><table class="grid">    
                     <tr>
-                      <td class="label" width="14%"> 账 户 名：: </td>
+                      <td class="label" width="14%"> 账 户 名： </td>
                       <td class="content" width="86%"><asp:TextBox ID="txtAccountName" runat="server" Width="180"></asp:TextBox>
                       </td>
                     </tr>            
                     <tr>
-                      <td class="label"> 账&nbsp;&nbsp;&nbsp;&nbsp;号: </td>
+                      <td class="label"> 账&nbsp;&nbsp;&nbsp;&nbsp;号： </td>
                       <td class="content"><asp:TextBox ID="txtAccountNumber" runat="server" Width="180"></asp:TextBox>
                       </td>
                     </tr>                    
                     <tr>
-                      <td class="label"> 开户银行: </td>
+                      <td class="label"> 开户银行/支付平台： </td>
                       <td class="content"><asp:TextBox ID="txtBankName" runat="server" Width="180"></asp:TextBox>
                       </td>
-                    </tr>
+                    </tr>                              
                     <tr>
-                      <td class="label"> 付款方式: </td>
-                      <td class="content"><wl:PaymentMethodDropDownList ID="ddlPaymentMethod" runat="server"></wl:PaymentMethodDropDownList> 
-                      </td>
-                    </tr>                
-                    <tr>
-                      <td class="label"> 备&nbsp;&nbsp;&nbsp;&nbsp;注: </td>
+                      <td class="label"> 备&nbsp;&nbsp;&nbsp;&nbsp;注： </td>
                       <td class="content"><asp:TextBox ID="txtRemark" runat="server" Width="580" TextMode="MultiLine" Rows="2"></asp:TextBox>
                       </td>
                     </tr>

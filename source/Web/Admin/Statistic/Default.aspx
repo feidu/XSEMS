@@ -5,11 +5,11 @@
 <head id="Head1" runat="server">
 <title></title>
 <link href="../Css/Style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/Calendar/WdatePicker.js"></script>
 <script language="javascript" type="text/javascript">  
     function openClientWindow()
     {
-        window.open("../../Config/ClientList.aspx?id="+document.getElementById('hdCompanyId').value+"","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
+        window.open("../../Config/ClientList.aspx","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
     }  
 </script>
 </head>

@@ -28,11 +28,10 @@
       <td><table class="grid">
           <tr>
             <th align="center" class="header">编号</th>
-            <th align="center" class="header">所属公司</th>
-            <th align="center" class="header">开户银行</th>
-            <th align="center" class="header">账户名</th>
-            <th align="center" class="header">账号</th>
-            <th align="center" class="header">付款方式</th>            
+            <th align="left" class="header">开户银行/支付平台</th>
+            <th align="left" class="header">账户名</th>
+            <th align="left" class="header">账号</th>
+            <th align="left" class="header">备注</th>            
             <th align="center" class="header">查看</th>
             <th align="center" class="header">选择</th>
           </tr>
@@ -40,11 +39,10 @@
             <ItemTemplate>
               <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
                 <td align="center"><%# Eval("Id") %></td>
-                <td align="left"><%# Eval("CompanyName") %></td>
                 <td align="left"><%# Eval("BankName") %></td>
                 <td align="left"><%# Eval("AccountName") %></td>
                 <td align="left"><%# Eval("AccountNumber") %></td>
-                <td align="left"><%# Eval("PaymentMethod.Name") %></td>
+                <td align="left"><%# Eval("Remark")%></td>
                 <td align="center"><a href="Account.aspx?id=<%# Eval("Id") %>">查看</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>
@@ -56,7 +54,7 @@
                 <td align="left"><%# Eval("BankName") %></td>
                 <td align="left"><%# Eval("AccountName") %></td>
                 <td align="left"><%# Eval("AccountNumber") %></td>
-                <td align="left"><%# Eval("PaymentMethod.Name") %></td>
+                <td align="left"><%# Eval("Remark")%></td>
                 <td align="center"><a href="Account.aspx?id=<%# Eval("Id") %>">查看</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
               </tr>

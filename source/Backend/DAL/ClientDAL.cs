@@ -355,7 +355,7 @@ namespace Backend.DAL
         public List<Client> GetClientList()
         {
             List<Client> result = new List<Client>();
-            string sql = "SELECT  id, username, password, real_name, id_card, phone, mobile, email, address, province, city, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0";
+            string sql = "SELECT  id, username, password, real_name, id_card, phone, mobile, email, address, credit, is_message, create_date, balance FROM clients WHERE is_delete = 0";
            
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, null))
             {

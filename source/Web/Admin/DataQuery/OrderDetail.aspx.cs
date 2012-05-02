@@ -34,7 +34,7 @@ public partial class Admin_DataQuery_OrderDetail : System.Web.UI.Page
     private void FormDataBind()
     {
         lblCountry.Text = od.ToCountry;
-        lblAddressChangeCosts.Text = od.AddressChangeCosts.ToString();
+        lblAddressChangeCosts.Text = StringHelper.CurtNumber(od.AddressChangeCosts.ToString());
         txtBarCode.Text = od.BarCode;
         if (od.CarrierEncode != null)
         {
@@ -47,29 +47,29 @@ public partial class Admin_DataQuery_OrderDetail : System.Web.UI.Page
         lblEncode.Text = od.Encode;
         lblCount.Text = od.Count.ToString();
         lblCountry.Text = od.ToCountry;
-        lblDamageMoney.Text = od.DamageMoney.ToString();
-        lblDisposalCosts.Text = od.DisposalCosts.ToString();
-        lblFetchCosts.Text = od.FetchCosts.ToString();
-        lblInsureCosts.Text = od.InsureCosts.ToString();
-        lblFuelCosts.Text = od.FuelCosts.ToString();
-        lblMaterialCosts.Text = od.MaterialCosts.ToString();
-        lblOtherCosts.Text = od.OtherCosts.ToString();
+        lblDamageMoney.Text = StringHelper.CurtNumber(od.DamageMoney.ToString());
+        lblDisposalCosts.Text = StringHelper.CurtNumber(od.DisposalCosts.ToString());
+        lblFetchCosts.Text = StringHelper.CurtNumber(od.FetchCosts.ToString());
+        lblInsureCosts.Text = StringHelper.CurtNumber(od.InsureCosts.ToString());
+        lblFuelCosts.Text = StringHelper.CurtNumber(od.FuelCosts.ToString());
+        lblMaterialCosts.Text = StringHelper.CurtNumber(od.MaterialCosts.ToString());
+        lblOtherCosts.Text = StringHelper.CurtNumber(od.OtherCosts.ToString());
         lblOtherCostsNote.Text = od.OtherCostsNote;
-        lblPostCosts.Text = od.PostCosts.ToString();
-        lblRegisterCosts.Text = od.RegisterCosts.ToString();
+        lblPostCosts.Text = StringHelper.CurtNumber(od.PostCosts.ToString());
+        lblRegisterCosts.Text = StringHelper.CurtNumber(od.RegisterCosts.ToString());
         txtRemark.Text = od.Remark;
-        lblRemoteCosts.Text = od.RemoteCosts.ToString();
-        lblReturnCosts.Text = od.ReturnCosts.ToString();
-        lblReturnMoney.Text = od.ReturnMoney.ToString();
+        lblRemoteCosts.Text = StringHelper.CurtNumber(od.RemoteCosts.ToString());
+        lblReturnCosts.Text = StringHelper.CurtNumber(od.ReturnCosts.ToString());
+        lblReturnMoney.Text = StringHelper.CurtNumber(od.ReturnMoney.ToString());
         lblToAddress.Text = od.ToAddress;
         lblToCity.Text = od.ToCity;
         lblToCountry.Text = od.ToCountry;
         lblToEmail.Text = od.ToEmail;
         lblToPhone.Text = od.ToPhone;
         lblToPostcode.Text = od.ToPostcode;
-        lblTotalCosts.Text = od.TotalCosts.ToString();
+        lblTotalCosts.Text = StringHelper.CurtNumber(od.TotalCosts.ToString());
         lblToUsername.Text = od.ToUsername;
-        lblWeight.Text = od.Weight.ToString();
+        lblWeight.Text = StringHelper.CurtNumber(od.Weight.ToString());
     }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {

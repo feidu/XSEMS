@@ -37,21 +37,16 @@
                       </td>
                     </tr>                    
                     <tr>
-                      <td class="label"> 开户银行: </td>
+                      <td class="label"> 开户银行/支付平台: </td>
                       <td class="content"><asp:TextBox ID="txtBankName" runat="server" Width="180"></asp:TextBox>
                       </td>
-                    </tr>
-                    <tr>
-                      <td class="label"> 付款方式: </td>
-                      <td class="content"><wl:PaymentMethodDropDownList ID="ddlPaymentMethod" runat="server"></wl:PaymentMethodDropDownList> 
-                      </td>
-                    </tr>                 
+                    </tr>                                
                     <tr>
                       <td class="label"> 备&nbsp;&nbsp;&nbsp;&nbsp;注: </td>
                       <td class="content"><asp:TextBox ID="txtRemark" runat="server" Width="580" TextMode="MultiLine" Rows="2"></asp:TextBox>
                       </td>
                     </tr>
-                    <tr><td colspan="2" align="center"><div style="display:none;"><asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="修 改" OnClick="btnUpdate_Click" />&nbsp;&nbsp;&nbsp;</div><input type="button" class="button" value="返 回" onclick="javascript:location.href='AccountList.aspx';" /></td></tr>
+                    <tr><td colspan="2" align="center"><asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="修 改" OnClick="btnUpdate_Click" />&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='AccountList.aspx';" /></td></tr>
                 </table>		
         </td>
     </tr>

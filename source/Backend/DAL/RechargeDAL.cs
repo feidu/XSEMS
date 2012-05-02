@@ -31,7 +31,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputParameter("@exchange_rate",SqlDbType.Decimal, recharge.ExchangeRate),
 
             };
-            string sql = "INSERT INTO recharges(client_id, company_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice) VALUES(@client_id, @company_id, @encode, @money, @account, @receive_time,           @create_time, @user_id, @payment_method_id, @payment_type, @currency_type, @remark, @paid, @exchange_rate, @invoice)";
+            string sql = "INSERT INTO recharges(client_id, encode, money, account, receive_time, create_time, user_id, currency_type, remark, paid, exchange_rate, invoice) VALUES(@client_id, @encode, @money, @account, @receive_time, @create_time, @user_id, @currency_type, @remark, @paid, @exchange_rate, @invoice)";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 
@@ -78,7 +78,7 @@ namespace Backend.DAL
             SqlParameter[] param = new SqlParameter[] { 
                 SqlUtilities.GenerateInputIntParameter("@id", id)
             };
-            string sql = "SELECT id, client_id, company_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE id = @id";
+            string sql = "SELECT id, client_id, encode, money, account, receive_time, create_time, user_id, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE id = @id";
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -87,25 +87,20 @@ namespace Backend.DAL
                     recharge.Id = dr.GetInt32(0);
                     recharge.ClientId = dr.GetInt32(1);
                     Client client = new ClientDAL().GetClientById(recharge.ClientId);
-                    recharge.ClientName = client.RealName;
-                    recharge.CompanyId = dr.GetInt32(2);
-                    recharge.Encode = dr.GetString(3);
-                    recharge.Money = dr.GetDecimal(4);
-                    recharge.Account = dr.GetString(5);
-                    recharge.ReceiveTime = dr.GetDateTime(6);
-                    recharge.CreateTime = dr.GetDateTime(7);
-                    recharge.UserId = dr.GetInt32(8);
+                    recharge.ClientName = client.RealName;                 
+                    recharge.Encode = dr.GetString(2);
+                    recharge.Money = dr.GetDecimal(3);
+                    recharge.Account = dr.GetString(4);
+                    recharge.ReceiveTime = dr.GetDateTime(5);
+                    recharge.CreateTime = dr.GetDateTime(6);
+                    recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
-                    recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(9);
-                    PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
-                    recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(10));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(11));
-                    recharge.Remark = dr.GetString(12);
-                    recharge.Paid = dr.GetDecimal(13);
-                    recharge.ExchangeRate = dr.GetDecimal(14);
-                    recharge.Invoice = dr.GetString(15);
+                    recharge.UserName = user.RealName;                
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(8));
+                    recharge.Remark = dr.GetString(9);
+                    recharge.Paid = dr.GetDecimal(10);
+                    recharge.ExchangeRate = dr.GetDecimal(11);
+                    recharge.Invoice = dr.GetString(12);
                 }
             }
             return recharge;
@@ -142,7 +137,7 @@ namespace Backend.DAL
             {
                 sqlParam += " AND payment_method_id IN(" + pmIds + ")";
             }
-            string sql = "SELECT id, client_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 "+sqlParam;           
+            string sql = "SELECT id, client_id, encode, money, account, receive_time, create_time, user_id, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 "+sqlParam;           
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -159,16 +154,12 @@ namespace Backend.DAL
                     recharge.CreateTime = dr.GetDateTime(6);
                     recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
-                    recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(8);
-                    PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
-                    recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(9));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(10));
-                    recharge.Remark = dr.GetString(11);
-                    recharge.Paid = dr.GetDecimal(12);
-                    recharge.ExchangeRate = dr.GetDecimal(13);
-                    recharge.Invoice = dr.GetString(14);
+                    recharge.UserName = user.RealName;                   
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(8));
+                    recharge.Remark = dr.GetString(9);
+                    recharge.Paid = dr.GetDecimal(10);
+                    recharge.ExchangeRate = dr.GetDecimal(11);
+                    recharge.Invoice = dr.GetString(12);
                     result.Add(recharge);
                 }
             }
@@ -196,24 +187,19 @@ namespace Backend.DAL
                     recharge.ClientId = dr.GetInt32(1);
                     Client client = new ClientDAL().GetClientById(recharge.ClientId);
                     recharge.ClientName = client.RealName;
-                    recharge.CompanyId = dr.GetInt32(2);
-                    recharge.Encode = dr.GetString(3);
-                    recharge.Money = dr.GetDecimal(4);
-                    recharge.Account = dr.GetString(5);
-                    recharge.ReceiveTime = dr.GetDateTime(6);
-                    recharge.CreateTime = dr.GetDateTime(7);
-                    recharge.UserId = dr.GetInt32(8);
+                    recharge.Encode = dr.GetString(2);
+                    recharge.Money = dr.GetDecimal(3);
+                    recharge.Account = dr.GetString(4);
+                    recharge.ReceiveTime = dr.GetDateTime(5);
+                    recharge.CreateTime = dr.GetDateTime(6);
+                    recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
-                    recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(9);
-                    PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
-                    recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(10));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(11));
-                    recharge.Remark = dr.GetString(12);
-                    recharge.Paid = dr.GetDecimal(13);
-                    recharge.ExchangeRate = dr.GetDecimal(14);
-                    recharge.Invoice = dr.GetString(15);
+                    recharge.UserName = user.RealName;                  
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(8));
+                    recharge.Remark = dr.GetString(9);
+                    recharge.Paid = dr.GetDecimal(10);
+                    recharge.ExchangeRate = dr.GetDecimal(11);
+                    recharge.Invoice = dr.GetString(12);
                     result.Results.Add(recharge);
                 }
                 dr.NextResult();
@@ -248,7 +234,7 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate)
             };
             
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 AND client_id =              @client_id"+sqlTime;
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, money, account, receive_time, create_time, user_id, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 AND client_id = @client_id"+sqlTime;
             if (condition.CurrentPage > 1)
             {
                 sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM recharges WHERE is_delete = 0 AND client_id = @client_id "+sqlTime+" ORDER BY id DESC) AS R )";
@@ -263,24 +249,19 @@ namespace Backend.DAL
                     recharge.ClientId = dr.GetInt32(1);
                     Client client = new ClientDAL().GetClientById(recharge.ClientId);
                     recharge.ClientName = client.RealName;
-                    recharge.CompanyId = dr.GetInt32(2);
-                    recharge.Encode = dr.GetString(3);
-                    recharge.Money = dr.GetDecimal(4);
-                    recharge.Account = dr.GetString(5);
-                    recharge.ReceiveTime = dr.GetDateTime(6);
-                    recharge.CreateTime = dr.GetDateTime(7);
-                    recharge.UserId = dr.GetInt32(8);
+                    recharge.Encode = dr.GetString(2);
+                    recharge.Money = dr.GetDecimal(3);
+                    recharge.Account = dr.GetString(4);
+                    recharge.ReceiveTime = dr.GetDateTime(5);
+                    recharge.CreateTime = dr.GetDateTime(6);
+                    recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
                     recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(9);
-                    PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
-                    recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(10));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(11));
-                    recharge.Remark = dr.GetString(12);
-                    recharge.Paid = dr.GetDecimal(13);
-                    recharge.ExchangeRate = dr.GetDecimal(14);
-                    recharge.Invoice = dr.GetString(15);
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(8));
+                    recharge.Remark = dr.GetString(9);
+                    recharge.Paid = dr.GetDecimal(10);
+                    recharge.ExchangeRate = dr.GetDecimal(11);
+                    recharge.Invoice = dr.GetString(12);
                     result.Results.Add(recharge);
                 }
                 dr.NextResult();
@@ -292,19 +273,16 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Recharge> GetRechargeByCompanyId(PaginationQueryCondition condition, int compId)
+        public PaginationQueryResult<Recharge> GetRecharge(PaginationQueryCondition condition)
         {
-            SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId)
-            };
             PaginationQueryResult<Recharge> result = new PaginationQueryResult<Recharge>();
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 AND company_id =              @company_id";
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, money, account, receive_time, create_time, user_id, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0";
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM recharges WHERE is_delete = 0 AND company_id = @company_id ORDER BY id DESC) AS R )";
+                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM recharges WHERE is_delete = 0 ORDER BY id DESC) AS R )";
             }
-            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM recharges WHERE is_delete = 0 AND company_id = @company_id ";
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
+            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM recharges WHERE is_delete = 0  ";
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, null))
             {
                 while (dr.Read())
                 {
@@ -313,24 +291,19 @@ namespace Backend.DAL
                     recharge.ClientId = dr.GetInt32(1);
                     Client client = new ClientDAL().GetClientById(recharge.ClientId);
                     recharge.ClientName = client.RealName;
-                    recharge.CompanyId = dr.GetInt32(2);
-                    recharge.Encode = dr.GetString(3);
-                    recharge.Money = dr.GetDecimal(4);
-                    recharge.Account = dr.GetString(5);
-                    recharge.ReceiveTime = dr.GetDateTime(6);
-                    recharge.CreateTime = dr.GetDateTime(7);
-                    recharge.UserId = dr.GetInt32(8);
+                    recharge.Encode = dr.GetString(2);
+                    recharge.Money = dr.GetDecimal(3);
+                    recharge.Account = dr.GetString(4);
+                    recharge.ReceiveTime = dr.GetDateTime(5);
+                    recharge.CreateTime = dr.GetDateTime(6);
+                    recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
-                    recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(9);
-                    PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
-                    recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(10));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(11));
-                    recharge.Remark = dr.GetString(12);
-                    recharge.Paid = dr.GetDecimal(13);
-                    recharge.ExchangeRate = dr.GetDecimal(14);
-                    recharge.Invoice = dr.GetString(15);
+                    recharge.UserName = user.RealName;                   
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(8));
+                    recharge.Remark = dr.GetString(9);
+                    recharge.Paid = dr.GetDecimal(10);
+                    recharge.ExchangeRate = dr.GetDecimal(11);
+                    recharge.Invoice = dr.GetString(12);
                     result.Results.Add(recharge);
                 }
                 dr.NextResult();
@@ -342,7 +315,7 @@ namespace Backend.DAL
             return result;
         }
 
-        public PaginationQueryResult<Recharge> GetRechargeByCompanyIdAndDate(PaginationQueryCondition condition, int compId, DateTime startDate, DateTime endDate)
+        public PaginationQueryResult<Recharge> GetRechargeByDate(PaginationQueryCondition condition, DateTime startDate, DateTime endDate)
         {
             DateTime minTime = new DateTime(1999, 1, 1);
             string sqlTime = "";
@@ -359,17 +332,16 @@ namespace Backend.DAL
                 sqlTime = " AND create_time <= @end_date";
             }
             SqlParameter[] param = new SqlParameter[] { 
-                SqlUtilities.GenerateInputIntParameter("@company_id", compId),
                 SqlUtilities.GenerateInputDateTimeParameter("@start_date", startDate),
                 SqlUtilities.GenerateInputDateTimeParameter("@end_date", endDate)
             };
             PaginationQueryResult<Recharge> result = new PaginationQueryResult<Recharge>();
-            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, company_id, encode, money, account, receive_time, create_time, user_id, payment_method_id, payment_type, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0 AND company_id =              @company_id" + sqlTime;
+            string sql = "SELECT TOP " + condition.PageSize + " id, client_id, encode, money, account, receive_time, create_time, user_id, currency_type, remark, paid, exchange_rate, invoice FROM recharges WHERE is_delete = 0" + sqlTime;
             if (condition.CurrentPage > 1)
             {
-                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM recharges WHERE is_delete = 0 AND company_id = @company_id" + sqlTime + " ORDER BY id DESC) AS R )";
+                sql += " AND id< (SELECT MIN(id) FROM (SELECT TOP " + condition.PageSize * (condition.CurrentPage - 1) + " id FROM recharges WHERE is_delete = 0 " + sqlTime + " ORDER BY id DESC) AS R )";
             }
-            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM recharges WHERE is_delete = 0 AND company_id = @company_id " + sqlTime;
+            sql += " ORDER BY id DESC; SELECT COUNT(*) FROM recharges WHERE is_delete = 0 " + sqlTime;
             using (SqlDataReader dr = SqlHelper.ExecuteReader(CommandType.Text, sql, param))
             {
                 while (dr.Read())
@@ -378,25 +350,20 @@ namespace Backend.DAL
                     recharge.Id = dr.GetInt32(0);
                     recharge.ClientId = dr.GetInt32(1);
                     Client client = new ClientDAL().GetClientById(recharge.ClientId);
-                    recharge.ClientName = client.RealName;
-                    recharge.CompanyId = dr.GetInt32(2);
-                    recharge.Encode = dr.GetString(3);
-                    recharge.Money = dr.GetDecimal(4);
-                    recharge.Account = dr.GetString(5);
-                    recharge.ReceiveTime = dr.GetDateTime(6);
-                    recharge.CreateTime = dr.GetDateTime(7);
-                    recharge.UserId = dr.GetInt32(8);
+                    recharge.ClientName = client.RealName;                   
+                    recharge.Encode = dr.GetString(2);
+                    recharge.Money = dr.GetDecimal(3);
+                    recharge.Account = dr.GetString(4);
+                    recharge.ReceiveTime = dr.GetDateTime(5);
+                    recharge.CreateTime = dr.GetDateTime(6);
+                    recharge.UserId = dr.GetInt32(7);
                     User user = new UserDAL().GetUserById(recharge.UserId);
-                    recharge.UserName = user.RealName;
-                    recharge.PaymentMethodId = dr.GetInt32(9);
-                    PaymentMethod pm = new PaymentMethodDAL().GetPaymentMethodById(recharge.PaymentMethodId);
-                    recharge.PaymentMethodName = pm.Name;
-                    recharge.PaymentType = EnumConvertor.ConvertToPaymentType(dr.GetByte(10));
-                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(11));
-                    recharge.Remark = dr.GetString(12);
-                    recharge.Paid = dr.GetDecimal(13);
-                    recharge.ExchangeRate = dr.GetDecimal(14);
-                    recharge.Invoice = dr.GetString(15);
+                    recharge.UserName = user.RealName;                                      
+                    recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(dr.GetByte(8));
+                    recharge.Remark = dr.GetString(9);
+                    recharge.Paid = dr.GetDecimal(10);
+                    recharge.ExchangeRate = dr.GetDecimal(11);
+                    recharge.Invoice = dr.GetString(12);
                     result.Results.Add(recharge);
                 }
                 dr.NextResult();

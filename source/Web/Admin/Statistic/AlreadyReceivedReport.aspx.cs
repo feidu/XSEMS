@@ -19,15 +19,12 @@ using System.IO;
 
 public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
 {
-    protected List<PaymentMethod> result = null;
-    protected string companyId = "0";
     DateTime minTime = new DateTime(1999, 1, 1);
     protected void Page_Load(object sender, EventArgs e)
     {       
         txtStartDate.Value = DateTime.Now.ToShortDateString();
         txtEndDate.Value = DateTime.Now.ToShortDateString();
-
-        result = PaymentMethodOperation.GetPaymentMethod();
+       
     }
        
     protected void btnArStatistic_Click(object sender, EventArgs e)
@@ -56,7 +53,7 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
             endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, 23, 59, 59);
         }
                
-        string pmIds = Request.Form["chkPaymentMethod"];   
+        //string pmIds = Request.Form["chkPaymentMethod"];   
 
         int clientId = 0;
         string clientName = Request.Form[txtClientName.ID].Trim();
@@ -77,10 +74,9 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
             clientId = -1;
         }
 
-        int companyId = 0;
     
 
-        List<Recharge> result = StatisticOperation.GetRechargeStatistic(startDate, endDate, clientId, pmIds);
+        List<Recharge> result = StatisticOperation.GetRechargeStatistic(startDate, endDate, clientId, "");
 
         string fileName = StringHelper.GetEncodeNumber("SK");
         string titleContent = "";      
@@ -104,13 +100,12 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
             Response.Write("<table border='1'>");
             Response.Write("<tr style='font-size:16px;font-weight:bold;height:35px;'><td align='center' valign='middle' colspan='7'>已收款汇总</td></tr>");
             Response.Write("<tr style='font-weight:bold;'><td align='left' colspan='7'>&nbsp;"+titleContent+"</td></tr>");
-            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;所属公司</td><td align='left'>&nbsp;收款单号</td><td align='left'>&nbsp;收款日期</td><td align='left'>&nbsp;发票号码</td><td align='left'>&nbsp;付款方式</td><td align='left'>&nbsp;经手人</td><td align='right'>&nbsp;收款金额</td></tr>");
+            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;收款单号</td><td align='left'>&nbsp;收款日期</td><td align='left'>&nbsp;发票号码</td><td align='left'>&nbsp;付款方式</td><td align='left'>&nbsp;经手人</td><td align='right'>&nbsp;收款金额</td></tr>");
 
             decimal totalMoney = 0;
             foreach (Recharge recharge in result)
             {
                 Response.Write("<tr>");
-                Response.Write("<td align='left'>&nbsp;" + CompanyOperation.GetCompanyById(recharge.CompanyId).Name + "</td>");
                 Response.Write("<td align='left'>&nbsp;" + recharge.Encode + "</td>");
                 Response.Write("<td align='left'>&nbsp;" + recharge.ReceiveTime.ToShortDateString() + "</td>");
                 Response.Write("<td align='left'>&nbsp;" + recharge.Invoice + "</td>");
@@ -122,7 +117,7 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
                 totalMoney += recharge.Money;
             }
 
-            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;合计：</td><td colspan='5'>&nbsp;</td><td align='right'>" + totalMoney.ToString() + "</td></tr>");
+            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;合计：</td><td colspan='4'>&nbsp;</td><td align='right'>" + totalMoney.ToString() + "</td></tr>");
             Response.Write("</table>");
             Response.Flush();
             Response.End();
@@ -154,7 +149,7 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
             endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, 23, 59, 59);
         }
            
-        string pmIds = Request.Form["chkPaymentMethod"];
+        //string pmIds = Request.Form["chkPaymentMethod"];
 
         int clientId = 0;
         string clientName = Request.Form[txtClientName.ID].Trim();
@@ -173,12 +168,9 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
         else
         {
             clientId = -1;
-        }
+        }       
 
-        int companyId = 0;
-       
-
-        List<ClientRecharge> result = StatisticOperation.GetRechargeDetailStatistic(startDate, endDate, clientId, pmIds);
+        List<ClientRecharge> result = StatisticOperation.GetRechargeDetailStatistic(startDate, endDate, clientId, "");
 
         string fileName = StringHelper.GetEncodeNumber("SK");
         string titleContent = "";
@@ -202,7 +194,7 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
             Response.Write("<table border='1'>");
             Response.Write("<tr style='font-size:16px;font-weight:bold;height:35px;'><td align='center' valign='middle' colspan='7'>已收款明细</td></tr>");
             Response.Write("<tr style='font-weight:bold;'><td align='left' colspan='7'>&nbsp;" + titleContent + "</td></tr>");
-            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;所属公司</td><td align='left'>&nbsp;收款单号</td><td align='left'>&nbsp;收款日期</td><td align='left'>&nbsp;发票号码</td><td align='left'>&nbsp;付款方式</td><td align='left'>&nbsp;经手人</td><td align='right'>&nbsp;收款金额</td></tr>");
+            Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;收款单号</td><td align='left'>&nbsp;收款日期</td><td align='left'>&nbsp;发票号码</td><td align='left'>&nbsp;付款方式</td><td align='left'>&nbsp;经手人</td><td align='right'>&nbsp;收款金额</td></tr>");
 
             foreach (ClientRecharge cr in result)
             {
@@ -222,7 +214,7 @@ public partial class Admin_Statistic_AlreadyReceivedReport : System.Web.UI.Page
                     Response.Write("</tr>");
                     totalMoney += recharge.Money;
                 }
-                Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;合计：</td><td colspan='5'>&nbsp;</td><td align='right'>" + totalMoney.ToString() + "</td></tr>");
+                Response.Write("<tr style='font-weight:bold;'><td align='left'>&nbsp;合计：</td><td colspan='4'>&nbsp;</td><td align='right'>" + totalMoney.ToString() + "</td></tr>");
             }
             Response.Write("</table>");
             Response.Flush();

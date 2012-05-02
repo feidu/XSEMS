@@ -102,15 +102,15 @@ function checkReason(strMsg)
                 <td align="left"><%=od.CarrierEncode%></td>    
                 <td align="left"><%=od.BarCode%></td>    
                 <td align="left"><%=od.Count%></td>
-                <td align="left"><%=od.Weight%></td>
-                <td align="left"><%=od.PostCosts%></td>
-                <td align="left"><%=od.RegisterCosts%></td>
-                <td align="left"><%=od.RemoteCosts%></td>
-                <td align="left"><%=od.DisposalCosts%></td>
-                <td align="left"><%=od.FetchCosts%></td>
-                <td align="left"><%=od.MaterialCosts%></td>
-                <td align="left"><%=od.OtherCosts%></td>
-                <td align="left"><%=od.TotalCosts%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.Weight.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.PostCosts.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.RegisterCosts.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.RemoteCosts.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.DisposalCosts.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.FetchCosts.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.MaterialCosts.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.OtherCosts.ToString())%></td>
+                <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.TotalCosts.ToString())%></td>
                 <td align="center"><a href="OrderDetailView.aspx?id=<%=od.Id %>">查看</a></td>
               </tr>
               <% i++;

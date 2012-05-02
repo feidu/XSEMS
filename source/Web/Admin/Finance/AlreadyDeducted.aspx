@@ -28,36 +28,36 @@
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">收款单号</th>           
-                <th align="center" class="header">收款日期</th>
-                <th align="center" class="header">收件单号</th>   
-                <th align="center" class="header">收件日期</th>      
-                <th align="center" class="header">客户姓名</th>        
-                <th align="center" class="header">收款金额</th>
+                <th align="left" class="header">收款单号</th>           
+                <th align="left" class="header">收款日期</th>
+                <th align="left" class="header">收件单号</th>   
+                <th align="left" class="header">收件日期</th>      
+                <th align="left" class="header">客户姓名</th>        
+                <th align="left" class="header">收款金额</th>
                 <th align="center" class="header">操作</th>
                 <th align="center" class="header">选择</th>
               </tr>
               <asp:Repeater ID="rpShouldReceive" runat="server">
                 <ItemTemplate>
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                    <td align="center"><%# Eval("Encode")%></td>          
+                    <td align="left"><%# Eval("Encode")%></td>          
                     <td align="left"><%# Convert.ToDateTime(Eval("ReceiveTime")).ToShortDateString() %></td>
-                    <td align="center"><%# Eval("Order.Encode")%></td>       
-                    <td align="center"><%# Convert.ToDateTime(Eval("Order.ReceiveDate")).ToShortDateString()%></td>               
-                    <td align="center"><%# Eval("ClientName")%></td>
-                    <td align="center"><%# Eval("Money")%></td>                    
+                    <td align="left"><%# Eval("Order.Encode")%></td>       
+                    <td align="left"><%# Convert.ToDateTime(Eval("Order.ReceiveDate")).ToShortDateString()%></td>               
+                    <td align="left"><%# Eval("ClientName")%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Money").ToString())%></td>                 
                     <td align="center"><a href="AlreadyDeductedView.aspx?id=<%# Eval("Id") %>">查看</a></td>         
                     <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>                                      
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                    <td align="center"><%# Eval("Encode")%></td>          
+                    <td align="left"><%# Eval("Encode")%></td>          
                     <td align="left"><%# Convert.ToDateTime(Eval("ReceiveTime")).ToShortDateString() %></td>
-                    <td align="center"><%# Eval("Order.Encode")%></td>       
-                    <td align="center"><%# Convert.ToDateTime(Eval("Order.ReceiveDate")).ToShortDateString()%></td>             
-                    <td align="center"><%# Eval("ClientName")%></td>
-                    <td align="center"><%# Eval("Money")%></td>                    
+                    <td align="left"><%# Eval("Order.Encode")%></td>       
+                    <td align="left"><%# Convert.ToDateTime(Eval("Order.ReceiveDate")).ToShortDateString()%></td>             
+                    <td align="left"><%# Eval("ClientName")%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Money").ToString())%></td>                
                     <td align="center"><a href="AlreadyDeductedView.aspx?id=<%# Eval("Id") %>">查看</a></td> 
                     <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
                   </tr>

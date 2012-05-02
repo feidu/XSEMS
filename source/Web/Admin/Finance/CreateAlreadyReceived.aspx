@@ -89,7 +89,7 @@
     }
     function openClientWindow()
     {
-        window.open("../../Config/ClientList.aspx?id="+document.getElementById('hdCompanyId').value+"","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
+        window.open("../../Config/ClientList.aspx","客户列表","toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes","");
     }  
 </script>
 </head>
@@ -129,17 +129,12 @@
                 <td class="content"><table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                     <td align="left" width="20%"><input id="txtClientName" type="text" style="width:97%;color:#555555;" runat="server" readonly="readonly"/></td>
-                    <td align="left" width="80%"><input type="image" src="../Images/btn_bg1.gif" onclick="openClientWindow()" />
-                    <input id="hdCompanyId" name="hdCompanyId" type="hidden" value="<%=companyId %>" /></td></tr></table>
+                    <td align="left" width="80%"><input type="image" src="../Images/btn_bg1.gif" onclick="openClientWindow()" /></td></tr></table>
                 </td>
-              </tr>                   
-              <tr>
-                <td class="label" >付款方式:</td>
-                <td class="content"><wl:PaymentMethodDropDownList ID="ddlPaymentMethod" runat="server"></wl:PaymentMethodDropDownList></td>
-              </tr>
+              </tr>             
               <tr>
                 <td class="label" >收款账号:</td>
-                <td class="content"><asp:TextBox ID="txtAccount" runat="server" Width="180"></asp:TextBox></td>
+                <td class="content"><asp:DropDownList ID="ddlReceiveAccount" runat="server"></asp:DropDownList></td>
               </tr>                            
               <tr>
                 <td class="label" >币&nbsp;&nbsp;&nbsp;&nbsp;种:</td>

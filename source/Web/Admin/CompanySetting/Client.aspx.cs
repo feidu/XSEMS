@@ -114,6 +114,6 @@ public partial class Admin_CompanySetting_Client : System.Web.UI.Page
         txtRealName.Text = client.RealName;
         chkIsMessage.Checked = client.IsMessage;     
         txtCredit.Text = StringHelper.CurtNumber(client.Credit.ToString());
-        lblBalance.Text = client.Balance.ToString() + " 元";
+        lblBalance.Text = StringHelper.CurtNumber(client.Balance.ToString()) + " 元";
     }
 }

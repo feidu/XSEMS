@@ -35,10 +35,10 @@ namespace Backend.BAL
             return dal.GetReceivableAccount();
         }
 
-        public static List<ReceivableAccount> GetReceivableAccountByCompanyId(int compId)
-        {
-            return dal.GetReceivableAccountByCompanyId(compId);
-        }
+        //public static List<ReceivableAccount> GetReceivableAccountByCompanyId(int compId)
+        //{
+        //    return dal.GetReceivableAccountByCompanyId(compId);
+        //}
 
         public static void DeleteReceivableAccountByIds(string ids)
         {

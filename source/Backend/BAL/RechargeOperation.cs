@@ -31,14 +31,14 @@ namespace Backend.BAL
             return dal.GetRechargeByClientIdAndDate(condition, clientId, startDate, endDate);
         }
 
-        public static PaginationQueryResult<Recharge> GetRechargeByCompanyId(PaginationQueryCondition condition, int companyId)
+        public static PaginationQueryResult<Recharge> GetRecharge(PaginationQueryCondition condition)
         {
-            return dal.GetRechargeByCompanyId(condition, companyId);
+            return dal.GetRecharge(condition);
         }
 
-        public static PaginationQueryResult<Recharge> GetRechargeByCompanyIdAndDate(PaginationQueryCondition condition, int companyId, DateTime startDate, DateTime endDate)
+        public static PaginationQueryResult<Recharge> GetRechargeByDate(PaginationQueryCondition condition, DateTime startDate, DateTime endDate)
         {
-            return dal.GetRechargeByCompanyIdAndDate(condition, companyId, startDate, endDate);
+            return dal.GetRechargeByDate(condition, startDate, endDate);
         }
 
         public static Recharge GetRechargeById(int id)

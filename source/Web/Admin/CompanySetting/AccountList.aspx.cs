@@ -32,9 +32,7 @@ public partial class Admin_CompanySetting_AccountList : System.Web.UI.Page
 
     private void RpReceivableAccountDataBind()
     {
-        AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
-        User user = UserOperation.GetUserByUsername(cookie.Username);
-        rpReceivableAccount.DataSource = ReceivableAccountOperation.GetReceivableAccountByCompanyId(user.CompanyId);
+        rpReceivableAccount.DataSource = ReceivableAccountOperation.GetReceivableAccount();
         rpReceivableAccount.DataBind();
     }
 }

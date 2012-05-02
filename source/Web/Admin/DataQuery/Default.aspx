@@ -39,15 +39,15 @@ function openCountryWindow()
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">承运商编号</th>
-                <th align="center" class="header">承运商名称</th>           
-                <th align="center" class="header">地区</th>   
-                <th align="center" class="header">首重价</th>        
-                <th align="center" class="header">续重价</th>
-                <th align="center" class="header">每KG价</th>
-                <th align="center" class="header">处理费</th>
-                <th align="center" class="header">挂号费</th>
-                <th align="center" class="header">燃油附加费</th>
+                <th align="left" class="header">承运商编号</th>
+                <th align="left" class="header">承运商名称</th>           
+                <th align="left" class="header">地区</th>   
+                <th align="left" class="header">首重价</th>        
+                <th align="left" class="header">续重价</th>
+                <th align="left" class="header">每KG价</th>
+                <th align="left" class="header">处理费</th>
+                <th align="left" class="header">挂号费</th>
+                <th align="left" class="header">燃油附加费</th>
                 <th align="center" class="header">类型</th>
                 <th align="center" class="header">金额</th>
               </tr>
@@ -58,15 +58,15 @@ function openCountryWindow()
                     %> 
               
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';" >
-                    <td align="center"><%=cc.Carrier.Encode%></td>
-                    <td align="center"><%=cc.Carrier.Name%></td>          
-                    <td align="center"><%=cc.CarrierArea.Name%></td>
-                    <td align="center"><%=cc.ChargeStandard.ClientBasePrice%></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientContinuePrice%></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientKgPrice%></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientDisposalCost%></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientRegisterCost%></td> 
-                    <td align="center"><%=cc.ClientPostCost*cc.Carrier.FuelSgRate%></td> 
+                    <td align="left"><%=cc.Carrier.Encode%></td>
+                    <td align="left"><%=cc.Carrier.Name%></td>          
+                    <td align="left"><%=cc.CarrierArea.Name%></td>
+                    <td align="left"><%=cc.ChargeStandard.ClientBasePrice%></td> 
+                    <td align="left"><%=cc.ChargeStandard.ClientContinuePrice%></td> 
+                    <td align="left"><%=cc.ChargeStandard.ClientKgPrice%></td> 
+                    <td align="left"><%=cc.ChargeStandard.ClientDisposalCost%></td> 
+                    <td align="left"><%=cc.ChargeStandard.ClientRegisterCost%></td> 
+                    <td align="left"><%=cc.ClientPostCost*cc.Carrier.FuelSgRate%></td> 
                     <td align="center"><%=Backend.Utilities.EnumConvertor.GoodsTypeConvertToString(cc.ChargeStandard.GoodsType)%></td> 
                     <td align="center"><%=cc.ClientTotalCost%></td>                                         
                   </tr> 

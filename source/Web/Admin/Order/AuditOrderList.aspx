@@ -43,8 +43,8 @@
                     <td align="left"><%# Eval("Encode") %></td>          
                     <td align="left"><%# Eval("CreateTime")%></td>     
                     <td align="left"><%# Eval("Client.RealName")%></td>
-                    <td align="left"><%# Eval("Costs")%></td>
-                    <td align="left"><%# Convert.ToDecimal(Eval("Client.Balance"))+Convert.ToDecimal(Eval("Client.Credit"))%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber((Convert.ToDecimal(Eval("Client.Balance"))+Convert.ToDecimal(Eval("Client.Credit"))).ToString())%></td>
                     <td align="center"><a href="AuditOrder.aspx?id=<%# Eval("Id") %>">审核</a></td>                                               
                   </tr>
                 </ItemTemplate>
@@ -53,8 +53,8 @@
                     <td align="left"><%# Eval("Encode") %></td>           
                     <td align="left"><%# Eval("CreateTime")%></td>        
                     <td align="left"><%# Eval("Client.RealName")%></td>
-                    <td align="left"><%# Eval("Costs")%></td>
-                    <td align="left"><%# Convert.ToDecimal(Eval("Client.Balance"))+Convert.ToDecimal(Eval("Client.Credit"))%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td>
+                    <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber((Convert.ToDecimal(Eval("Client.Balance"))+Convert.ToDecimal(Eval("Client.Credit"))).ToString())%></td>
                     <td align="center"><a href="AuditOrder.aspx?id=<%# Eval("Id") %>">审核</a></td>     
                   </tr>
                 </AlternatingItemTemplate>

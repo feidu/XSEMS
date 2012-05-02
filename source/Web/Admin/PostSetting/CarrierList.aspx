@@ -26,13 +26,13 @@
     <tr>
       <td><table class="grid">
           <tr>
-            <th align="center" class="header">编号</th>
-            <th align="center" class="header">名称</th>
-            <th align="center" class="header">联系人</th>
-            <th align="center" class="header">联系电话</th>
-            <th align="center" class="header">联系地址</th>
-            <th align="center" class="header">代理折扣</th>
-            <th align="center" class="header">客户折扣</th>
+            <th align="left" class="header">编号</th>
+            <th align="left" class="header">名称</th>
+            <th align="left" class="header">联系人</th>
+            <th align="left" class="header">联系电话</th>
+            <th align="left" class="header">联系地址</th>
+            <th align="left" class="header">代理折扣</th>
+            <th align="left" class="header">客户折扣</th>
             <th align="center" class="header">编辑</th>
             <th align="center" class="header">操作</th>
             <th align="center" class="header">选择</th>
@@ -40,7 +40,7 @@
           <asp:Repeater ID="rpCarrier" runat="server">
             <ItemTemplate>
               <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                <td align="center"><%# Eval("Encode") %></td>
+                <td align="left"><%# Eval("Encode") %></td>
                 <td align="left"><%# Eval("Name") %></td>
                 <td align="left"><%# Eval("ContactPerson") %></td>
                 <td align="left"><%# Eval("Phone") %></td>
@@ -54,7 +54,7 @@
             </ItemTemplate>
             <AlternatingItemTemplate>
               <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                <td align="center"><%# Eval("Encode") %></td>
+                <td align="left"><%# Eval("Encode") %></td>
                 <td align="left"><%# Eval("Name") %></td>
                 <td align="left"><%# Eval("ContactPerson") %></td>
                 <td align="left"><%# Eval("Phone") %></td>

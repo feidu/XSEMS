@@ -5,7 +5,7 @@
 <head id="Head1" runat="server">
 <title></title>
 <link href="../Css/Style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../JS/Calendar/WdatePicker.js"></script>
 </head>
 <body>
 <form id="form1" runat="server">   

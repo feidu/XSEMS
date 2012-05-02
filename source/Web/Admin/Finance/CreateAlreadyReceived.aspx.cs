@@ -20,25 +20,33 @@ public partial class Admin_Finance_CreateAlreadyReceived : System.Web.UI.Page
     private static readonly int INVOICE_NUMBER_LENGTH = 50;
     private static readonly int REMARK_LENGTH = 500;
     private static readonly int ACCOUNT_LENGTH = 50;
-
-    protected string companyId = "0";
-    Company company = null;
+    User user = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
-        User user = UserOperation.GetUserByUsername(cookie.Username);
-        companyId = user.CompanyId.ToString();
-        company = CompanyOperation.GetCompanyById(user.CompanyId);
-        
+        user = UserOperation.GetUserByUsername(cookie.Username);
+        if (!IsPostBack)
+        {
+            if (ReceivableAccountOperation.GetReceivableAccount().Count > 0)
+            {
+                ddlReceiveAccount.DataSource = ReceivableAccountOperation.GetReceivableAccount();
+                ddlReceiveAccount.DataTextField = "AccountNumber";
+                ddlReceiveAccount.DataValueField = "Id";
+                ddlReceiveAccount.DataBind();
+            }
+            else
+            {
+                Response.Write("<script language='javascript' type='text/javascript'>alert('请先添加收款账号！');history.go(-1);</script>");
+            }
+        }
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         string clientName = Request.Form[txtClientName.ID].Trim();
         string invoice = Request.Form[txtInvoice.ID].Trim();
-        string account = Request.Form[txtAccount.ID].Trim();
-        string remark=Request.Form[txtRemark.ID].Trim();
+        string remark = Request.Form[txtRemark.ID].Trim();
         string strReceivedTime = Request.Form[txtReceivedTime.ID].Trim();
-        DateTime receivedTime = new DateTime(1999, 1 ,1);
+        DateTime receivedTime = new DateTime(1999, 1, 1);
         if (string.IsNullOrEmpty(strReceivedTime) || !DateTime.TryParse(strReceivedTime, out receivedTime))
         {
             lblMsg.Text = "收款时间不能为空，且只能为时间格式！";
@@ -60,31 +68,26 @@ public partial class Admin_Finance_CreateAlreadyReceived : System.Web.UI.Page
             lblMsg.Text = "客户不存在！";
             return;
         }
-        if (string.IsNullOrEmpty(account) || Validator.IsMatchLessThanChineseCharacter(account, ACCOUNT_LENGTH))
-        {
-            lblMsg.Text = "收款账号不能为空，且长度不能超过" + ACCOUNT_LENGTH + "个字符！";
-            return;
-        }
-                
+        
         if (!string.IsNullOrEmpty(remark) && Validator.IsMatchLessThanChineseCharacter(remark, REMARK_LENGTH))
         {
             lblMsg.Text = "备注长度不能超过" + REMARK_LENGTH + "个字符！";
             return;
         }
 
-        decimal paid=0;
-        decimal exchangeRate=1;
+        decimal paid = 0;
+        decimal exchangeRate = 1;
         decimal money = 0;
-        if(ddlCurrencyType.SelectedItem.Value=="2")
+        if (ddlCurrencyType.SelectedItem.Value == "2")
         {
-            if(!decimal.TryParse(Request.Form[txtClientPaid.ID].Trim(), out paid))
+            if (!decimal.TryParse(Request.Form[txtClientPaid.ID].Trim(), out paid))
             {
-                lblMsg.Text="客户付款金额只能为数字！";
+                lblMsg.Text = "客户付款金额只能为数字！";
                 return;
             }
             if (!decimal.TryParse(Request.Form[txtExchangeRate.ID].Trim(), out exchangeRate))
             {
-                lblMsg.Text="当前汇率只能为数字！";
+                lblMsg.Text = "当前汇率只能为数字！";
                 return;
             }
             string strActualReceived = Request.Form["txtActualReceived"];
@@ -95,9 +98,9 @@ public partial class Admin_Finance_CreateAlreadyReceived : System.Web.UI.Page
         }
         else
         {
-            if(!decimal.TryParse(Request.Form[txtReceivedMoney.ID], out money))
+            if (!decimal.TryParse(Request.Form[txtReceivedMoney.ID], out money))
             {
-                lblMsg.Text="收款金额只能为数字！";
+                lblMsg.Text = "收款金额只能为数字！";
                 return;
             }
         }
@@ -107,13 +110,9 @@ public partial class Admin_Finance_CreateAlreadyReceived : System.Web.UI.Page
             return;
         }
 
-        AdminCookie cookie = (AdminCookie)RuleAuthorizationManager.GetCurrentSessionObject(Context, true);
-        User user = UserOperation.GetUserByUsername(cookie.Username);
-
         Recharge recharge = new Recharge();
-        recharge.Account = account;
-        recharge.ClientId = client.Id;
-        recharge.CompanyId = user.CompanyId;
+        recharge.Account = ddlReceiveAccount.SelectedItem.Text;
+        recharge.ClientId = client.Id;    
         recharge.CreateTime = DateTime.Now;
         recharge.UserId = user.Id;
         recharge.CurrencyType = EnumConvertor.ConvertToCurrencyType(byte.Parse(ddlCurrencyType.SelectedItem.Value));
@@ -122,8 +121,6 @@ public partial class Admin_Finance_CreateAlreadyReceived : System.Web.UI.Page
         recharge.ExchangeRate = exchangeRate;
         recharge.Money = money;
         recharge.Paid = paid;
-        recharge.PaymentMethodId = int.Parse(ddlPaymentMethod.SelectedItem.Value);
-        recharge.PaymentType = EnumConvertor.ConvertToPaymentType(byte.Parse(ddlPaymentType.SelectedItem.Value));
         recharge.ReceiveTime = receivedTime;
         recharge.Remark = remark;
 
@@ -155,9 +152,9 @@ public partial class Admin_Finance_CreateAlreadyReceived : System.Web.UI.Page
                     ShouldReceiveOperation.CreateReceivedDeducted(rd);
                     money = money - sr.Money;
                 }
-                else if(money>0)
+                else if (money > 0)
                 {
-                    sr.Money = sr.Money - money;                    
+                    sr.Money = sr.Money - money;
                     ShouldReceiveOperation.UpdateShouldReceive(sr);
                     ReceivedDeducted rd = new ReceivedDeducted();
                     rd.Money = money;
@@ -176,17 +173,17 @@ public partial class Admin_Finance_CreateAlreadyReceived : System.Web.UI.Page
                     sr.ReceiveTime = DateTime.Now;
                     ShouldReceiveOperation.CreateOrderShouldReceive(sr);
                     money = 0;
-                    MailSend(client, recharge.Money);                    
+                    MailSend(client, recharge.Money);
                 }
             }
         }
-        MailSend(client, recharge.Money);        
+        MailSend(client, recharge.Money);
     }
 
     private void MailSend(Client client, decimal money)
     {
         string msg = "";
-        EmailHelper.SendMailForReceiveMoney(company, client, money, out msg);        
+        EmailHelper.SendMailForReceiveMoney(client, money, out msg);
         Response.Write("<script language='javascript' type='text/javascript'>alert('" + msg + "');location.href='AlreadyReceived.aspx';</script>");
 
     }

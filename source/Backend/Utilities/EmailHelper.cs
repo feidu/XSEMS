@@ -79,7 +79,7 @@ namespace Backend.Utilities
             return SendMail(client, "欠款通知", sb.ToString(), out msg);
         }
 
-        public static bool SendMailForReceiveMoney(Company company, Client client, decimal money, out string msg)
+        public static bool SendMailForReceiveMoney(Client client, decimal money, out string msg)
         {
             StringBuilder sb = new StringBuilder();                       
             sb.Append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我司已收到您本次付款RMB "+money.ToString()+" 元，您当前的账户余额为RMB "+client.Balance.ToString()+" 元，请核对，有问题请与您的业务人员联系！");

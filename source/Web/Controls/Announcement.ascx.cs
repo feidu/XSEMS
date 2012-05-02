@@ -17,7 +17,7 @@ public partial class Controls_Announcement : System.Web.UI.UserControl
     protected string announcement = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<News> result = NewsOperation.GetNewsByCategoryId(8);
+        List<News> result = NewsOperation.GetNewsByCategoryId(3);
         foreach (News news in result)
         {
             announcement += "<a href='Announcement.aspx?id=" + news.Id + "' targit='_blank'>" + news.Title + "</a>&nbsp;";

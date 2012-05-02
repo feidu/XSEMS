@@ -33,40 +33,40 @@
     <tr>
       <td><table class="grid">
               <tr>
-                <th align="center" class="header">制单日期</th>
-                <th align="center" class="header">收件单号</th>           
-                <th align="center" class="header">客户姓名</th>
-                <th align="center" class="header">承运商</th>   
-                <th align="center" class="header">国家</th>        
-                <th align="center" class="header">收件人</th>
-                <th align="center" class="header">跟踪条码</th>
-                <th align="center" class="header">状态</th>
+                <th align="left" class="header">制单日期</th>
+                <th align="left" class="header">收件单号</th>           
+                <th align="left" class="header">客户姓名</th>
+                <th align="left" class="header">承运商</th>   
+                <th align="left" class="header">国家</th>        
+                <th align="left" class="header">收件人</th>
+                <th align="left" class="header">跟踪条码</th>
+                <th align="left" class="header">状态</th>
                 <th align="center" class="header">操作</th>
               </tr>
               <asp:Repeater ID="rpOrder" runat="server">
                 <ItemTemplate>
                   <tr class="label" onmouseover="this.className = 'hover';" onmouseout="this.className = 'label';">
-                    <td align="center"><%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString()%></td>
-                    <td align="center"><a href="Order.aspx?id=<%# Eval("ID")%>"><%# Eval("Encode")%></a></td>          
-                    <td align="center"><%# Eval("Client.RealName")%></td>
-                    <td align="center"><%# Eval("CarrierEncode")%></td>       
-                    <td align="center"><%# Eval("ToCountry")%></td>               
-                    <td align="center"><%# Eval("ToUsername")%></td>
-                    <td align="center"><%# Eval("BarCode")%></td>     
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.OrderStatusConvertToString(Convert.ToByte(Eval("Status")))%></td> 
+                    <td align="left"><%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString()%></td>
+                    <td align="left"><a href="Order.aspx?id=<%# Eval("ID")%>"><%# Eval("Encode")%></a></td>          
+                    <td align="left"><%# Eval("Client.RealName")%></td>
+                    <td align="left"><%# Eval("CarrierEncode")%></td>       
+                    <td align="left"><%# Eval("ToCountry")%></td>               
+                    <td align="left"><%# Eval("ToUsername")%></td>
+                    <td align="left"><%# Eval("BarCode")%></td>     
+                    <td align="left"><%# Backend.Utilities.EnumConvertor.OrderStatusConvertToString(Convert.ToByte(Eval("Status")))%></td> 
                     <td align="center"><a href="OrderDetail.aspx?id=<%# Eval("OrderDetailId") %>">查看</a>&nbsp;<a onclick="return confirm('确认取消此订单？')" href="OrderList.aspx?id=<%# Eval("OrderDetailId") %>">取消订单</a></td>                                              
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <tr class="content" onmouseover="this.className = 'hover';" onmouseout="this.className = 'content';">
-                    <td align="center"><%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString()%></td>
-                    <td align="center"><a href="Order.aspx?id=<%# Eval("ID")%>"><%# Eval("Encode")%></a></td>          
-                    <td align="center"><%# Eval("Client.RealName")%></td>
-                    <td align="center"><%# Eval("CarrierEncode")%></td>       
-                    <td align="center"><%# Eval("ToCountry")%></td>               
-                    <td align="center"><%# Eval("ToUsername")%></td>
-                    <td align="center"><%# Eval("BarCode")%></td>           
-                    <td align="center"><%# Backend.Utilities.EnumConvertor.OrderStatusConvertToString(Convert.ToByte(Eval("Status")))%></td>   
+                    <td align="left"><%# Convert.ToDateTime(Eval("CreateTime")).ToShortDateString()%></td>
+                    <td align="left"><a href="Order.aspx?id=<%# Eval("ID")%>"><%# Eval("Encode")%></a></td>          
+                    <td align="left"><%# Eval("Client.RealName")%></td>
+                    <td align="left"><%# Eval("CarrierEncode")%></td>       
+                    <td align="left"><%# Eval("ToCountry")%></td>               
+                    <td align="left"><%# Eval("ToUsername")%></td>
+                    <td align="left"><%# Eval("BarCode")%></td>           
+                    <td align="left"><%# Backend.Utilities.EnumConvertor.OrderStatusConvertToString(Convert.ToByte(Eval("Status")))%></td>   
                     <td align="center"><a href="OrderDetail.aspx?id=<%# Eval("OrderDetailId") %>">查看</a>&nbsp;<a onclick="return confirm('确认取消此订单？')" href="OrderList.aspx?id=<%# Eval("OrderDetailId") %>">取消订单</a></td>    
                   </tr>
                 </AlternatingItemTemplate>

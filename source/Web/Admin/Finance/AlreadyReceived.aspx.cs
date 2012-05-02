@@ -27,7 +27,7 @@ public partial class Admin_Finance_AlreadyReceived : System.Web.UI.Page
 
     private void RpAlreadyReceivedDataBind()
     {
-        PaginationQueryResult<Recharge> result = RechargeOperation.GetRechargeByCompanyId(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId);
+        PaginationQueryResult<Recharge> result = RechargeOperation.GetRecharge(PaginationHelper.GetCurrentPaginationQueryCondition(Request));
         rpAlreadyReceived.DataSource = result.Results;
         rpAlreadyReceived.DataBind();
 
@@ -59,7 +59,7 @@ public partial class Admin_Finance_AlreadyReceived : System.Web.UI.Page
             {
                 endDate = new DateTime(1999, 1, 1);
             }
-            PaginationQueryResult<Recharge> result = RechargeOperation.GetRechargeByCompanyIdAndDate(PaginationHelper.GetCurrentPaginationQueryCondition(Request), user.CompanyId, startDate, endDate);
+            PaginationQueryResult<Recharge> result = RechargeOperation.GetRechargeByDate(PaginationHelper.GetCurrentPaginationQueryCondition(Request), startDate, endDate);
             rpAlreadyReceived.DataSource = result.Results;
             rpAlreadyReceived.DataBind();
 

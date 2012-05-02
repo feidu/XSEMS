@@ -43,7 +43,7 @@ public partial class Admin_DataQuery_ReceiveOrder : System.Web.UI.Page
     private void FormDataBind()
     {
         txtRemark.Text = order.Remark;
-        txtCosts.Value = order.Costs.ToString();
+        txtCosts.Value =Backend.Utilities.StringHelper.CurtNumber(order.Costs.ToString());
         lblClientName.Text = order.Client.RealName;
         lblEncode.Text = order.Encode;
         lblCreateTime.Text = order.CreateTime.ToString();

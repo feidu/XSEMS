@@ -35,7 +35,7 @@ public partial class Admin_Order_DetainOrder : System.Web.UI.Page
     private void FormDataBind()
     {
         lblRemark.Text = order.Remark;
-        lblCosts.Text = order.Costs.ToString();
+        lblCosts.Text = StringHelper.CurtNumber(order.Costs.ToString());
         lblClientName.Text = order.Client.RealName;
         //lblCreateUser.Text = order.CreateUser.RealName;
         lblEncode.Text = order.Encode;

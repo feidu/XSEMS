@@ -27,15 +27,15 @@
     <tr>
       <td><table class="grid">
           <tr>
-            <th align="center" class="header">编号</th>
-            <th align="center" class="header">用户名</th>
-            <th align="center" class="header">真实姓名</th>
-            <th align="center" class="header">性别</th>
-            <th align="center" class="header">学历</th>
-            <th align="center" class="header">手机</th>
-            <th align="center" class="header">邮箱</th>
-            <th align="center" class="header">入职时间</th>
-            <th align="center" class="header">合同有效期</th>
+            <th align="left" class="header">编号</th>
+            <th align="left" class="header">用户名</th>
+            <th align="left" class="header">真实姓名</th>
+            <th align="left" class="header">性别</th>
+            <th align="left" class="header">学历</th>
+            <th align="left" class="header">手机</th>
+            <th align="left" class="header">邮箱</th>
+            <th align="left" class="header">入职时间</th>
+            <th align="left" class="header">合同有效期</th>
            <%-- <th align="center" class="header">提成</th>--%>
             <th align="center" class="header">操作</th>
             <th align="center" class="header">选择</th>

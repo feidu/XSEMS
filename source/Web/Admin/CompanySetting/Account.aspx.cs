@@ -63,8 +63,6 @@ public partial class Admin_CompanySetting_Account : System.Web.UI.Page
         ra.AccountNumber = accountNumber;
         ra.BankName = bankName;
         ra.Remark = remark;
-        ra.PaymentMethod = new PaymentMethod();
-        ra.PaymentMethod.Id = int.Parse(ddlPaymentMethod.SelectedItem.Value);
 
         ReceivableAccountOperation.UpdateReceivableAccount(ra);
         lblMsg.Text = "修改成功！";
@@ -75,7 +73,6 @@ public partial class Admin_CompanySetting_Account : System.Web.UI.Page
         txtAccountName.Text = ra.AccountName;
         txtAccountNumber.Text = ra.AccountNumber;
         txtBankName.Text = ra.BankName;
-        txtRemark.Text = ra.Remark;
-        ddlPaymentMethod.SelectedValue = ra.PaymentMethod.Id.ToString();
+        txtRemark.Text = ra.Remark;       
     }
 }

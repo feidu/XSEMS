@@ -30,7 +30,7 @@ public partial class Admin_Finance_ShouldReceiveView : System.Web.UI.Page
         lblEncode.Text = sr.Encode;
         lblType.Text = sr.Type;
         lblReceivedTime.Text = sr.ReceiveTime.ToShortDateString();
-        txtMoney.Text = sr.Money.ToString();
+        txtMoney.Text = StringHelper.CurtNumber(sr.Money.ToString());
         lblClientName.Text = sr.ClientName;
         //lblRemark.Text = sr.Remark;
         lblOrderEncode.Text = sr.Order.Encode;
