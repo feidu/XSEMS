@@ -94,9 +94,10 @@ namespace Backend.DAL
                 SqlUtilities.GenerateInputParameter("@costs", SqlDbType.Money, order.Costs),
                 SqlUtilities.GenerateInputParameter("@self_costs", SqlDbType.Money, order.SelfCosts),
                 //SqlUtilities.GenerateInputIntParameter("@receive_user_id", order.ReceiveUserId),
+                SqlUtilities.GenerateInputParameter("@status", SqlDbType.TinyInt, (byte)order.Status),
                 SqlUtilities.GenerateInputNVarcharParameter("@remark", 500, order.Remark)
             };
-            string sql = "UPDATE orders SET costs = @costs, self_costs= @self_costs, remark = @remark WHERE id = @id";
+            string sql = "UPDATE orders SET costs = @costs, self_costs= @self_costs, remark = @remark, status = @status WHERE id = @id";
             SqlHelper.ExecuteNonQuery(CommandType.Text, sql, param);
         }
 

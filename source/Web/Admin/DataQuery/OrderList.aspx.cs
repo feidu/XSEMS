@@ -191,20 +191,17 @@ public partial class Admin_DataQuery_OrderList : System.Web.UI.Page
         od.CancelUser = user.Id;
         OrderDetailOperation.UpdateOrderDetailCancelInfo(od);
         OrderDetailOperation.DeleteOrderDetailById(orderDetailId);
+        List<OrderDetail> result = OrderDetailOperation.GetOrderDetailByOrderId(od.OrderId);
+        if (result.Count <= 0)
+        {           
+            OrderOperation.DeleteOrderById(od.OrderId);
+        }
         if (order.Status == OrderStatus.FINISHED)
         {
             ShouldPayOperation.DeleteShouldPayByOrderDetailId(orderDetailId);
         }
         if (order.Status == OrderStatus.WAIT_CHECK || order.Status == OrderStatus.FINISHED)
-        {
-            List<OrderDetail> result = OrderDetailOperation.GetOrderDetailByOrderId(od.OrderId);
-            if (result.Count <= 0)
-            {
-                order.Status = OrderStatus.CANCELED;
-                OrderOperation.UpdateOrder(order);
-                OrderOperation.DeleteOrderById(od.OrderId);
-            }
-
+        {            
             Client client = order.Client;
             client.Balance = client.Balance + od.TotalCosts;
             ClientOperation.UpdateClientBalance(client);

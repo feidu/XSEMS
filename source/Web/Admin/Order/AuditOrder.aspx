@@ -111,7 +111,7 @@ function checkReason(strMsg)
                 <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.MaterialCosts.ToString())%></td>
                 <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.OtherCosts.ToString())%></td>
                 <td align="left"><%=Backend.Utilities.StringHelper.CurtNumber(od.TotalCosts.ToString())%></td>
-                <td align="center"><a href="OrderDetailView.aspx?id=<%=od.Id %>">查看</a></td>
+                <td align="center"><a href="ReceiveOrderDetail.aspx?id=<%=od.Id %>">编辑</a> | <a href="CreateInsurance.aspx?id=<%=od.Id %>">保价</a></td>
               </tr>
               <% i++;
              }

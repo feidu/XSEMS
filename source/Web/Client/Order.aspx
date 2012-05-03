@@ -63,7 +63,7 @@
                         <td align="left" class="headers">追踪码</td>
                         <td align="left" class="headers">数量</td>           
                         <td align="left" class="headers">计费重量(KG)</td>                      
-                        <td align="left" class="headers">应收费用</td>      
+                        <td align="left" class="headers">应收费用(￥)</td>      
                       </tr>
                       <%
                           if (result != null)

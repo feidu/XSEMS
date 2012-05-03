@@ -5,7 +5,7 @@
 <head>
 <wl:Seo ID="seo" runat="server" Title=""/>
 <link href="../Css/style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../Admin/JS/Calendar/WdatePicker.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/lightview.css">
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/prototype/1.6.1/prototype.js'></script>
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/scriptaculous.js?load=effects'></script>

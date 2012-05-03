@@ -38,14 +38,14 @@
                     <td align="center"><%=cc.Carrier.Encode%><input type="hidden" name="hdCarrierEncode" value="<%=cc.Carrier.Encode %>" /></td>
                     <td align="center"><%=cc.Carrier.Name%><input type="hidden" name="hdCarrierName" value="<%=cc.Carrier.Name %>" /></td>          
                     <td align="center"><%=cc.CarrierArea.Name%></td>
-                    <td align="center"><%=cc.ChargeStandard.ClientBasePrice%></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientContinuePrice%></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientKgPrice%></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientDisposalCost%><input type="hidden" name="hdClientDisposalCost"            value="<%=cc.ChargeStandard.ClientDisposalCost %>" /></td> 
-                    <td align="center"><%=cc.ChargeStandard.ClientRegisterCost%><input type="hidden" name="hdClientRegisterCost"            value="<%=cc.ChargeStandard.ClientRegisterCost %>" /></td> 
-                    <td align="center"><%=cc.ClientPostCost*cc.Carrier.FuelSgRate%><input type="hidden" name="hdClientFuelCost"         value="<%=cc.ClientPostCost*cc.Carrier.FuelSgRate %>" /></td> 
+                    <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ChargeStandard.ClientBasePrice.ToString())%></td> 
+                    <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ChargeStandard.ClientContinuePrice.ToString())%></td> 
+                    <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ChargeStandard.ClientKgPrice.ToString())%></td> 
+                    <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ChargeStandard.ClientDisposalCost.ToString())%><input type="hidden" name="hdClientDisposalCost"            value="<%=cc.ChargeStandard.ClientDisposalCost %>" /></td> 
+                    <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ChargeStandard.ClientRegisterCost.ToString())%><input type="hidden" name="hdClientRegisterCost"            value="<%=cc.ChargeStandard.ClientRegisterCost %>" /></td> 
+                    <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber((cc.ClientPostCost*cc.Carrier.FuelSgRate).ToString())%><input type="hidden" name="hdClientFuelCost"         value="<%=cc.ClientPostCost*cc.Carrier.FuelSgRate %>" /></td> 
                     <td align="center"><%=Backend.Utilities.EnumConvertor.GoodsTypeConvertToString(cc.ChargeStandard.GoodsType)%></td> 
-                    <td align="center"><%=cc.ClientTotalCost%><input type="hidden" name="hdClientPostCost" value="<%=cc.ClientPostCost %>" /></td>                                         
+                    <td align="center"><%=Backend.Utilities.StringHelper.CurtNumber(cc.ClientTotalCost.ToString())%><input type="hidden" name="hdClientPostCost" value="<%=cc.ClientPostCost %>" /></td>                                         
                   </tr> 
               <%  }
               }%>       

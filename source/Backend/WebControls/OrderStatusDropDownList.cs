@@ -14,8 +14,7 @@ namespace Backend.WebControls
             Items.Add(new ListItem("已审核", "2"));
             Items.Add(new ListItem("已扣货", "3"));
             Items.Add(new ListItem("待检验", "4"));
-            Items.Add(new ListItem("已完毕", "5"));
-            Items.Add(new ListItem("已取消", "6"));
+            Items.Add(new ListItem("已完成", "5"));
         }
     }
 }

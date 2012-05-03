@@ -5,7 +5,7 @@
 <head>
 <wl:Seo ID="seo" runat="server" Title=""/>
 <link href="../Css/style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="../Admin/JS/Calendar/WdatePicker.js"></script>
 </head>
 <body>
 <center>

@@ -7,7 +7,7 @@
     <link href="../Css/style.css" rel="stylesheet" type="text/css" />
     <script src="/Admin/Js/util.js" type="text/javascript" language="javascript"></script>
     <script src="/Admin/Js/jquery-1.2.6.js" type="text/javascript" language="javascript"></script>
-    <script language="javascript" type="text/javascript" src="/Admin/JS/Calendar/WdatePicker.js"></script>
+    <script language="javascript" type="text/javascript" src="../Admin/JS/Calendar/WdatePicker.js"></script>
     <script language="javascript" type="text/ecmascript">
         function openCountryWindow() {
             window.open("../Config/CountryList.aspx", "国家列表", "toolbar=no,top=20,left=150,width=600,height=550,menubar=no,scrollbars=yes,resizable=yes,status=yes", "");

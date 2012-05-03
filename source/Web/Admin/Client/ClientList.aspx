@@ -42,7 +42,7 @@
                 <td align="left"><%# Eval("RealName") %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
-                <td align="left"><%# Eval("Balance") %> 元</td>
+                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Balance").ToString()) %> 元</td>
                 <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Credit")))%> 元</td>
                 <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">编辑</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>
@@ -54,7 +54,7 @@
                 <td align="left"><%# Eval("RealName") %></td>
                 <td align="left"><%# Eval("Mobile") %></td>
                 <td align="left"><%# Eval("Email") %></td>
-                <td align="left"><%# Eval("Balance") %> 元</td>
+                <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Balance").ToString()) %> 元</td>
                 <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Convert.ToString(Eval("Credit")))%> 元</td>
                 <td align="center"><a href="Client.aspx?id=<%# Eval("Id") %>">编辑</a></td>
                 <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>

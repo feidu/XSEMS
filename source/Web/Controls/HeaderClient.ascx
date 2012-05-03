@@ -12,7 +12,7 @@ body {
 <tr>
     <td height="20" align="left" valign="middle"><table width="980" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="175" height="20" align="left" valign="middle">您好! 欢迎您来到亿度物流!~</td>
+        <td width="175" height="20" align="left" valign="middle">您好! 欢迎您来到萧山EMS!~</td>
         <td width="805" align="left" valign="middle" class="announcement" style=" font-family:宋体;font-size:12px ; color: #E41616;"><marquee scrollamount="3" onMouseOver="this.stop()" onMouseOut="this.start()" direction="left">
         <%=announcement %>
         </marquee></td>

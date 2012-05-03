@@ -27,13 +27,8 @@ namespace Backend.Models
         WAIT_CHECK = 4,
 
         /// <summary>
-        /// 已完毕
+        /// 已完成
         /// </summary>
-        FINISHED = 5,
-
-        /// <summary>
-        /// 已取消
-        /// </summary>
-        CANCELED = 6
+        FINISHED = 5
     }
 }

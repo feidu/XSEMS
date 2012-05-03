@@ -26,7 +26,9 @@
         <td class="seperator"></td>
     </tr>
   </table>
-  <table class="tablecontent">
+  <table class="tablecontent">  
+    <tr><td align="center">
+        <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="red"></asp:Label></td></tr>
     <tr>
       <td><table class="grid">
               <tr>
@@ -36,6 +38,7 @@
                 <th align="left" class="header">订单费用</th>     
                 <th align="left" class="header">可发货量</th>     
                 <th align="center" class="header">操作</th>
+                <th align="center" class="header">选择</th>
               </tr>
               <asp:Repeater ID="rpOrder" runat="server">
                 <ItemTemplate>
@@ -45,7 +48,8 @@
                     <td align="left"><%# Eval("Client.RealName")%></td>
                     <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td>
                     <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber((Convert.ToDecimal(Eval("Client.Balance"))+Convert.ToDecimal(Eval("Client.Credit"))).ToString())%></td>
-                    <td align="center"><a href="AuditOrder.aspx?id=<%# Eval("Id") %>">审核</a></td>                                               
+                    <td align="center"><a href="AuditOrder.aspx?id=<%# Eval("Id") %>">审核</a></td>     
+                    <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td>                                           
                   </tr>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
@@ -56,9 +60,14 @@
                     <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber(Eval("Costs").ToString())%></td>
                     <td align="left"><%# Backend.Utilities.StringHelper.CurtNumber((Convert.ToDecimal(Eval("Client.Balance"))+Convert.ToDecimal(Eval("Client.Credit"))).ToString())%></td>
                     <td align="center"><a href="AuditOrder.aspx?id=<%# Eval("Id") %>">审核</a></td>     
+                    <td align="center"><input id="chkId" name="chkId" type="checkbox" value="<%# Eval("Id")%>" /></td> 
                   </tr>
                 </AlternatingItemTemplate>
-              </asp:Repeater>                      
+              </asp:Repeater>    
+              <tr>              
+              <td align="right" colspan="9">
+                    <asp:Button ID="btnDelete" runat="server"  CssClass="button"  Text="删除选择项" OnClientClick="return confirm('您确认要删除吗？')" OnClick="btnDelete_Click" /></td>
+              </tr>                  
             </table>		
 		</td>
     </tr>

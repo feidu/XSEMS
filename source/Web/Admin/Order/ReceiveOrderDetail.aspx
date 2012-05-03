@@ -35,7 +35,7 @@ function checkFreightForm()
         weight.focus();
         return false;
     }
-    else if(parseFloat(weight.value)<=0)
+    else if(parseFloat(weight.value)<0)
     {
         alert("重量不能小于或等于0！");
         weight.focus();
@@ -87,7 +87,7 @@ function checkFreightForms()
         weight.focus();
         return false;
     }
-    else if(parseFloat(weight.value)<=0)
+    else if(parseFloat(weight.value)<0)
     {
         alert("重量不能小于或等于0！");
         weight.focus();
@@ -225,7 +225,7 @@ document.onkeypress = function() {
   <wl:OrderNav ID="orderNav" runat="server" />
   <table cellpadding="0" cellspacing="0" class="nav">
     <tr>
-      <td class="info2"> 业务管理 > 收件计划 > 编辑收件明细</td>
+      <td class="info2"> 业务管理 > 收件审核 > 编辑收件明细</td>
     </tr>
     <tr>
       <td class="seperator"></td>
@@ -373,14 +373,14 @@ document.onkeypress = function() {
             <td class="content" colspan="5"><input id="txtToAddress" type="text" style="width: 98%" runat="server" /></td>
           </tr>
           <tr>
-            <td colspan="6" align="center"><asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="修 改" OnClientClick="return checkForms()"
+            <td colspan="6" align="center"><asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="修 改" OnClientClick="return checkFreightForm()"
                                     OnClick="btnUpdate_Click" />
               &nbsp;&nbsp;&nbsp;
               <asp:Button ID="btnDelete" runat="server"
                                         CssClass="button" Text="删 除" OnClientClick="return confirm('您确认要删除？');" OnClick="btnDelete_Click" />
               &nbsp;&nbsp;&nbsp;
               <input
-                                            type="button" class="button" value="返 回" onclick="javascript:location.href='/Admin/Order/ReceiveOrder.aspx?id=<%=order.Id %>'" /></td>
+                                            type="button" class="button" value="返 回" onclick="javascript:location.href='AuditOrder.aspx?id=<%=order.Id %>'" /></td>
           </tr>
         </table></td>
     </tr>

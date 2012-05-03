@@ -92,7 +92,7 @@ public partial class Admin_Order_CreateInsurance : System.Web.UI.Page
         order.Costs = order.Costs + od.TotalCosts;
         OrderOperation.UpdateOrder(order);
 
-        Response.Write("<script language='javascript' type='text/javascript'>alert('提交成功！');location.href='ReceiveOrder.aspx?id="+od.OrderId+"';</script>");
+        Response.Write("<script language='javascript' type='text/javascript'>alert('提交成功！');location.href='AuditOrder.aspx?id="+od.OrderId+"';</script>");
 
     }
 
@@ -112,7 +112,7 @@ public partial class Admin_Order_CreateInsurance : System.Web.UI.Page
         order.Costs = order.Costs + od.TotalCosts;
         OrderOperation.UpdateOrder(order);
 
-        Response.Write("<script language='javascript' type='text/javascript'>alert('删除成功！');location.href='ReceiveOrder.aspx?id=" + od.OrderId + "';</script>");
+        Response.Write("<script language='javascript' type='text/javascript'>alert('删除成功！');location.href='AuditOrder.aspx?id=" + od.OrderId + "';</script>");
     }
 
     private void FormDataBind()

@@ -80,4 +80,18 @@ public partial class Admin_Order_AuditOrderList : System.Web.UI.Page
             pagi.TotalCount = result.TotalCount;
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        string ids = Request.Form["chkId"];
+        if (string.IsNullOrEmpty(ids))
+        {
+            lblMsg.Text = "请选择！";
+            return;
+        }
+        OrderOperation.DeleteOrderByIds(ids);
+        lblMsg.Text = "删除成功！";
+
+        RpOrderDataBind();
+    }
 }

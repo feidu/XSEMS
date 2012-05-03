@@ -19,7 +19,10 @@ public partial class Admin_Order_Default : System.Web.UI.Page
     User user = null;
     protected void Page_Load(object sender, EventArgs e)
     {
-        RpOrderDataBind();
+        if (!IsPostBack)
+        {
+            RpOrderDataBind();
+        }
     }
 
     private void RpOrderDataBind()

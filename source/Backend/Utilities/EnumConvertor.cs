@@ -54,9 +54,7 @@ namespace Backend.Utilities
                 case (byte)OrderStatus.WAIT_CHECK:
                     return OrderStatus.WAIT_CHECK;
                 case (byte)OrderStatus.FINISHED:
-                    return OrderStatus.FINISHED;
-                case (byte)OrderStatus.CANCELED:
-                    return OrderStatus.CANCELED;
+                    return OrderStatus.FINISHED;               
                 default:
                     throw new Exception("OrderStatus " + value + " is illegal!");
             }
@@ -76,8 +74,6 @@ namespace Backend.Utilities
                     return "待检验";
                 case (byte)OrderStatus.FINISHED:
                     return "已完成";
-                case (byte)OrderStatus.CANCELED:
-                    return "已取消";
                 
                 default:
                     throw new Exception("OrderStatus " + value + " is illegal!");

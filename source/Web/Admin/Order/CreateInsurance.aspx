@@ -63,7 +63,7 @@
             <td class="content" width="24%" ><input id="txtInsureCosts" type="text" style="width:90px; color:Blue;" runat="server" readonly="readonly"/> 元</td>                
           </tr>          
           <tr><td colspan="6" align="left" style="color:Red;">&nbsp;说明：保价费最低为10元。</td></tr>
-          <tr><td colspan="6" align="center"><asp:Button ID="btnCreate" runat="server" CssClass="button" Text="提 交" OnClick="btnCreate_Click"/><span id="spanDelete" runat="server">&nbsp;&nbsp;&nbsp;<asp:Button ID="btnDelete" runat="server" CssClass="button" Text="删 除" OnClick="btnDelete_Click"/></span>&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='/Admin/Order/ReceiveOrder.aspx?id=<%=id %>'"/></td></tr>
+          <tr><td colspan="6" align="center"><asp:Button ID="btnCreate" runat="server" CssClass="button" Text="提 交" OnClick="btnCreate_Click"/><span id="spanDelete" runat="server">&nbsp;&nbsp;&nbsp;<asp:Button ID="btnDelete" runat="server" CssClass="button" Text="删 除" OnClick="btnDelete_Click"/></span>&nbsp;&nbsp;&nbsp;<input type="button" class="button" value="返 回" onclick="javascript:location.href='AuditOrder.aspx?id=<%=id %>'"/></td></tr>
          </table>
 		</td>
     </tr>

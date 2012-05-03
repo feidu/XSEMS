@@ -260,6 +260,7 @@ public partial class Admin_Order_ReceiveOrderDetail : System.Web.UI.Page
 
         decimal oldSelfTotalCosts = od.SelfTotalCosts;
         CarrierCharge cc = ChargeStandardOperation.GetSelfCarrierChargeByParameter(country.Id, weight, byte.Parse(slGoodsType.Value), count, carrier.Id, order.Client.Id);
+        
         od.SelfPostCosts = cc.SelfPostCost;
         od.SelfTotalCosts = cc.SelfTotalCost;
 
@@ -267,13 +268,13 @@ public partial class Admin_Order_ReceiveOrderDetail : System.Web.UI.Page
         order.Costs = order.Costs - oldTotalCosts + clientTotalCosts;
         order.SelfCosts = order.SelfCosts - oldSelfTotalCosts + od.SelfTotalCosts;
         OrderOperation.UpdateOrder(order);
-        Response.Write("<script language='javascript'>alert('修改成功！');location.href='ReceiveOrder.aspx?id=" + order.Id + "';</script>");
+        Response.Write("<script language='javascript'>alert('修改成功！');location.href='AuditOrder.aspx?id=" + order.Id + "';</script>");
     }
 
     protected void btnDelete_Click(object sender, EventArgs e)
     {
         OrderDetailOperation.DeleteOrderDetailById(od.Id);
-        Response.Write("<script language='javascript' type='text/javascript'>location.href='ReceiveOrder.aspx?id=" + order.Id + "';</script>");
+        Response.Write("<script language='javascript' type='text/javascript'>location.href='AuditOrder.aspx?id=" + order.Id + "';</script>");
     }
 
     private void FormDataBind()
@@ -284,7 +285,7 @@ public partial class Admin_Order_ReceiveOrderDetail : System.Web.UI.Page
         hdCountryBak.Value = od.ToCountry;
         hdCarrierEncode.Value = od.CarrierEncode;
         txtCountry.Value = od.ToCountry;
-        txtAddressChangeCosts.Value = od.AddressChangeCosts.ToString();
+        txtAddressChangeCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.AddressChangeCosts.ToString());
         txtBarCode.Value = od.BarCode;
         if (od.CarrierEncode != null)
         {
@@ -293,35 +294,35 @@ public partial class Admin_Order_ReceiveOrderDetail : System.Web.UI.Page
         if (od.PostCosts <= 0)
         {
             txtCount.Value = od.ClientCount.ToString();
-            txtWeight.Value = od.ClientWeight.ToString();
+            txtWeight.Value = Backend.Utilities.StringHelper.CurtNumber(od.ClientWeight.ToString());
         }
         else
         {
             txtCount.Value = od.Count.ToString();
-            txtWeight.Value = od.Weight.ToString();
+            txtWeight.Value = Backend.Utilities.StringHelper.CurtNumber(od.Weight.ToString());
         }
-        txtFuelCosts.Value = od.FuelCosts.ToString();
-        txtDamageMoney.Value = od.DamageMoney.ToString();
-        txtDisposalCosts.Value = od.DisposalCosts.ToString();
-        txtFetchCosts.Value = od.FetchCosts.ToString();
-        txtInsureCosts.Value = od.InsureCosts.ToString();
+        txtFuelCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.FuelCosts.ToString());
+        txtDamageMoney.Value = Backend.Utilities.StringHelper.CurtNumber(od.DamageMoney.ToString());
+        txtDisposalCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.DisposalCosts.ToString());
+        txtFetchCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.FetchCosts.ToString());
+        txtInsureCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.InsureCosts.ToString());
         //txtKgPrice.Value = od.KgPrice.ToString();
-        txtMaterialCosts.Value = od.MaterialCosts.ToString();
-        txtOtherCosts.Value = od.OtherCosts.ToString();
+        txtMaterialCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.MaterialCosts.ToString());
+        txtOtherCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.OtherCosts.ToString());
         txtOtherCostsNote.Value = od.OtherCostsNote;
-        txtPostCosts.Value = od.PostCosts.ToString();
-        txtRegisterCosts.Value = od.RegisterCosts.ToString();
+        txtPostCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.PostCosts.ToString());
+        txtRegisterCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.RegisterCosts.ToString());
         txtRemark.Text = od.Remark;
-        txtRemoteCosts.Value = od.RemoteCosts.ToString();
-        txtReturnCosts.Value = od.ReturnCosts.ToString();
-        txtReturnMoney.Value = od.ReturnMoney.ToString();
+        txtRemoteCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.RemoteCosts.ToString());
+        txtReturnCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.ReturnCosts.ToString());
+        txtReturnMoney.Value = Backend.Utilities.StringHelper.CurtNumber(od.ReturnMoney.ToString());
         txtToAddress.Value = od.ToAddress;
         txtToCity.Value = od.ToCity;
         txtToCountry.Value = od.ToCountry;
         txtToEmail.Value = od.ToEmail;
         txtToPhone.Value = od.ToPhone;
         txtToPostcode.Value = od.ToPostcode;
-        txtTotalCosts.Value = od.TotalCosts.ToString();
+        txtTotalCosts.Value = Backend.Utilities.StringHelper.CurtNumber(od.TotalCosts.ToString());
         txtToUsername.Value = od.ToUsername;       
         slGoodsType.Value = od.Type.ToString();
     }
